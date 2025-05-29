@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tag Pro Agency LLC</title>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('uscongress.jpg') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        header h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 48px;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+        header p {
+            font-size: 20px;
+            margin-top: 12px;
+        }
+        nav {
+            background-color: #002244;
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+        }
+        nav button {
+            background: none;
+            border: none;
+            color: white;
+            margin: 0 20px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 16px;
+            position: relative;
+        }
+        nav button::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+        nav button:hover::after {
+            width: 100%;
+        }
+        section {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        section h2 {
+            font-size: 28px;
+            color: #003366;
+            margin-bottom: 20px;
+            border-left: 4px solid #004080;
+            padding-left: 12px;
+        }
+        section h3 {
+            margin-top: 25px;
+            color: #004080;
+            font-size: 22px;
+            border-bottom: 2px solid #e0e6ed;
+            padding-bottom: 5px;
+        }
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        ul li {
+            margin-bottom: 8px;
+        }
+        .hidden { display: none; }
+        footer {
+            background-color: #002244;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 14px;
+        }
+        footer p {
+            margin: 8px 0;
+        }
+        footer a {
+            color: #66b2ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function showLanguage(lang) {
+            document.querySelectorAll('.content').forEach(section => section.classList.add('hidden'));
+            document.getElementById(lang).classList.remove('hidden');
+        }
+        window.onload = function() {
+            showLanguage('English');
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Tag Pro Agency LLC</h1>
+        <p>Fast, Reliable Document & Notary Services</p>
+    </header>
+    <nav>
+        <button onclick="showLanguage('English')">English</button>
+        <button onclick="showLanguage('Russian')">Русский</button>
+        <button onclick="showLanguage('Uzbek')">Oʻzbek</button>
+    </nav>
+
+    <section id="English" class="content">
+        <h2>About Us</h2>
+        <p>Welcome to Tag Pro Agency LLC! We are a trusted family-owned agency helping individuals, families, and small businesses with essential document and registration services. We believe every client deserves personal attention, clear communication, and a friendly helping hand. </p>
+        <br/>
+        <p>📞 Call us before visiting for fast service! We can have your documents ready to save you time.</p>
+	
+	<div style="display: flex; align-items: center; justify-content: space-between;">
+           <div style="max-width: 70%;">
+          </div>
+         <div>
+        <img src="qr.png" alt="QR Code" style="max-width: 150px; height: auto;">
+       </div>
+      </div>
+
+        <h2>Our Services</h2>
+        <h3>AUTO TAG SERVICES</h3>
+        <ul>
+            <li>Car Title Transfers (Buying or Selling)</li>
+            <li>New Pennsylvania Plates & Stickers</li>
+            <li>Truck & Trailer IRP Registration</li>
+            <li>Duplicate Titles or Registration Cards</li>
+            <li>Temporary Tags & Renewals</li>
+            <li>Dealer & Commercial Vehicle Processing</li>
+            <li>EZ Pass & Toll Payments</li>
+        </ul>
+        <h3>NOTARY & DOCUMENT SERVICES</h3>
+        <ul>
+            <li>Notary (All Documents)</li>
+            <li>Power of Attorney</li>
+            <li>Apostille (International Certification)</li>
+            <li>Affidavits</li>
+            <li>Divorce / Separation Document Help</li>
+            <li>Living Will & Trust Notarization</li>
+            <li>Sponsor Letters</li>
+            <li>Employee Verification Letters</li>
+            <li>Lease Agreement Notarization</li>
+            <li>Mobile Home Title Transfers</li>
+            <li>Document Translation (Russian, Uzbek, English)</li>
+            <li>Certified Mail & Return Envelope Help</li>
+            <li>Mobile Notary Visits (Home, Office, Hospital)</li>
+        </ul>
+        <h3>IMMIGRATION, GOVERNMENT & EDUCATION HELP</h3>
+        <ul>
+            <li>Green Card Renewal</li>
+            <li>Work Permit Renewal</li>
+            <li>U.S. Citizenship Applications</li>
+            <li>Modify or Request Duplicate Birth Certificates</li>
+            <li>Passport Applications & Emergency Passport Help</li>
+            <li>Uzbekistan Consulate Visa & Return Travel Certificates</li>
+            <li>ELRC Applications</li>
+            <li>Health Insurance Applications</li>
+            <li>SNAP Applications</li>
+            <li>School & Pre-K Registrations</li>
+            <li>Diploma & Transcript Evaluation</li>
+            <li>Social Security Paperwork</li>
+        </ul>
+        <h3>BUSINESS & FINANCIAL HELP</h3>
+        <ul>
+            <li>Small Business Registration</li>
+            <li>Payroll Setup</li>
+            <li>Workers’ Compensation Support</li>
+            <li>Business Insurance Help</li>
+            <li>QuickBooks Setup</li>
+            <li>Help with Revenue Department Letters & Penalties</li>
+        </ul>
+        <h3>MOBILE & PREMIUM SERVICES</h3>
+        <ul>
+            <li>Mobile Notary Visits</li>
+            <li>After-Hours & Weekend Appointments</li>
+            <li>Same-Day Courier, Drop-Off, Pick-Up</li>
+            <li>On-Site Passport Photos</li>
+        </ul>
+    </section>
+
+    <section id="Russian" class="content hidden">
+    <h2>О нас</h2>
+    <p>Добро пожаловать в Tag Pro Agency LLC! Мы — надёжное семейное агентство, помогающее частным лицам, семьям и малому бизнесу с важными документами и регистрацией. Мы считаем, что каждый клиент заслуживает личного внимания, понятного общения и дружеской поддержки.</p>
+    <br/>
+    <p>📞 Позвоните нам перед визитом для быстрого обслуживания! Мы подготовим ваши документы заранее, чтобы сэкономить ваше время.</p>
+
+	
+	<div style="display: flex; align-items: center; justify-content: space-between;">
+           <div style="max-width: 70%;">
+          </div>
+         <div>
+        <img src="qr.png" alt="QR Code" style="max-width: 150px; height: auto;">
+       </div>
+      </div>
+
+    <h2>Наши услуги</h2>
+    <h3>АВТО УСЛУГИ</h3>
+    <ul>
+        <li>Передача прав собственности на автомобиль</li>
+        <li>Новые номерные знаки и наклейки Пенсильвании</li>
+        <li>IRP регистрация грузовиков и прицепов</li>
+        <li>Дубликаты титулов или регистрационных карт</li>
+        <li>Временные теги и продления</li>
+        <li>Обработка дилерских и коммерческих транспортных средств</li>
+        <li>EZ Pass и оплата дорожных сборов</li>
+    </ul>
+    <h3>НОТАРИАЛЬНЫЕ И ДОКУМЕНТАЛЬНЫЕ УСЛУГИ</h3>
+    <ul>
+        <li>Нотариальные услуги (все документы)</li>
+        <li>Доверенность</li>
+        <li>Апостиль (международная сертификация)</li>
+        <li>Аффидевиты</li>
+        <li>Помощь с разводом / разделом</li>
+        <li>Нотариат завещаний и трастов</li>
+        <li>Спонсорские письма</li>
+        <li>Письма о подтверждении занятости</li>
+        <li>Нотариат договоров аренды</li>
+        <li>Передача титулов мобильных домов</li>
+        <li>Перевод документов (русский, узбекский, английский)</li>
+        <li>Помощь с заказными письмами и конвертами</li>
+        <li>Выездной нотариус (дом, офис, больница)</li>
+    </ul>
+    <h3>ИММИГРАЦИОННАЯ, ГОСУДАРСТВЕННАЯ И ОБРАЗОВАТЕЛЬНАЯ ПОМОЩЬ</h3>
+    <ul>
+        <li>Продление грин-карты</li>
+        <li>Продление разрешения на работу</li>
+        <li>Заявки на гражданство США</li>
+        <li>Изменение или дубликат свидетельства о рождении</li>
+        <li>Заявки на паспорта и экстренная помощь</li>
+        <li>Визы консульства Узбекистана и сертификаты на возвращение</li>
+        <li>Заявки ELRC (детская помощь)</li>
+        <li>Медицинская страховка</li>
+        <li>Заявки на талоны SNAP</li>
+        <li>Регистрация в школу и детский сад</li>
+        <li>Оценка дипломов и транскриптов</li>
+        <li>Социальное обеспечение</li>
+    </ul>
+    <h3>БИЗНЕС И ФИНАНСОВАЯ ПОМОЩЬ</h3>
+    <ul>
+        <li>Регистрация малого бизнеса</li>
+        <li>Настройка зарплаты</li>
+        <li>Поддержка по рабочей компенсации</li>
+        <li>Страхование бизнеса</li>
+        <li>Настройка QuickBooks</li>
+        <li>Помощь с письмами и штрафами налогового департамента</li>
+    </ul>
+    <h3>МОБИЛЬНЫЕ И ПРЕМИУМ УСЛУГИ</h3>
+    <ul>
+        <li>Выездной нотариус</li>
+        <li>Встречи после рабочего времени и в выходные</li>
+        <li>Курьер в тот же день, доставка, получение</li>
+        <li>Фото на паспорт на месте</li>
+    </ul>
+</section>
+
+<section id="Uzbek" class="content hidden">
+    <h2>Biz haqimizda</h2>
+    <p>Tag Pro Agency LLC ga xush kelibsiz! Biz shaxslar, oilalar va kichik biznesga hujjatlar va ro‘yxatga olish xizmatlarida yordam beruvchi ishonchli oilaviy agentlikmiz. Har bir mijoz shaxsiy e’tibor va tushunarli muloqotga loyiq deb hisoblaymiz.</p>
+    <br/>
+    <p>📞 Tezkor xizmat uchun tashrifdan oldin bizga qo‘ng‘iroq qiling! Vaqtingizni tejash uchun hujjatlaringizni oldindan tayyorlab qo‘yamiz.</p>
+
+	
+	<div style="display: flex; align-items: center; justify-content: space-between;">
+           <div style="max-width: 70%;">
+          </div>
+         <div>
+        <img src="qr.png" alt="QR Code" style="max-width: 150px; height: auto;">
+       </div>
+      </div>
+
+    <h2>Xizmatlarimiz</h2>
+    <h3>AVTO XIZMATLAR</h3>
+    <ul>
+        <li>Avtomobil hujjatlarini o‘tkazish</li>
+        <li>Yangi Pensilvaniya raqamlari va stikerlari</li>
+        <li>Yuk mashinalari va treylerlar uchun IRP ro‘yxatga olish</li>
+        <li>Titul yoki ro‘yxatdan o‘tish kartalarini dublikat qilish</li>
+        <li>Vaqtinchalik teglar va yangilash</li>
+        <li>Dilerlik va tijorat transport vositalari bilan ishlash</li>
+        <li>EZ Pass va yo‘l to‘lovlarini to‘lash</li>
+    </ul>
+    <h3>NOTARIUS VA HUJJATLAR XIZMATLARI</h3>
+    <ul>
+        <li>Notarius xizmatlari (barcha hujjatlar)</li>
+        <li>Ishonchnoma</li>
+        <li>Apostil (xalqaro sertifikat)</li>
+        <li>Affidavitlar</li>
+        <li>Ajrashish / ajratish hujjatlari bo‘yicha yordam</li>
+        <li>Vasiyatnoma va ishonchli boshqaruv notariusi</li>
+        <li>Homiylik xatlari</li>
+        <li>Ish joyi tasdiq xatlari</li>
+        <li>Ijaraga olish shartnomasi notariusi</li>
+        <li>Mobil uy hujjatlarini o‘tkazish</li>
+        <li>Hujjatlarni tarjima qilish (rus, o‘zbek, ingliz)</li>
+        <li>Qaytariladigan xat va konvertlar bilan yordam</li>
+        <li>Sayyor notarius (uy, ofis, shifoxona)</li>
+    </ul>
+    <h3>IMMIGRATSIYA, DAVLAT VA TA’LIM YORDAMI</h3>
+    <ul>
+        <li>Grin karta yangilash</li>
+        <li>Ish ruxsatnomasi yangilash</li>
+        <li>Amerika fuqaroligi uchun arizalar</li>
+        <li>Tug‘ilganlik guvohnomasini o‘zgartirish yoki dublikat qilish</li>
+        <li>Pasport arizalari va shoshilinch yordam</li>
+        <li>O‘zbekiston konsulligi vizalari va qaytish sertifikatlari</li>
+        <li>ELRC (bolalar yordam dasturi) arizalari</li>
+        <li>Tibbiy sug‘urta arizalari</li>
+        <li>SNAP (ovqat bonlari) arizalari</li>
+        <li>Maktab va bog‘cha ro‘yxatdan o‘tkazish</li>
+        <li>Diplom va transkriptlarni baholash</li>
+        <li>Ijtimoiy ta’minot hujjatlari</li>
+    </ul>
+    <h3>BIZNES VA MOLIYAVIY YORDAM</h3>
+    <ul>
+        <li>Kichik biznesni ro‘yxatdan o‘tkazish</li>
+        <li>Ish haqi tizimini sozlash</li>
+        <li>Ishchilarning kompensatsiyasi bo‘yicha yordam</li>
+        <li>Biznes sug‘urtasi yordami</li>
+        <li>QuickBooks sozlash</li>
+        <li>Daromad departamenti xatlari va jarimalari bo‘yicha yordam</li>
+    </ul>
+    <h3>KO‘CHMA VA PREMIUM XIZMATLAR</h3>
+    <ul>
+        <li>Sayyor notarius</li>
+        <li>Ishdan keyingi va dam olish kunlari uchrashuvlar</li>
+        <li>Bir kunlik kur’er, yetkazib berish, olish</li>
+        <li>Saytda pasport fotosuratlari</li>
+    </ul>
+</section>
+
+    <footer>
+        <p><strong>Address:</strong> 40 Bellevue Ave, Penndel, PA 19047</p>
+        <p><strong>Phone:</strong> <a href="tel:2672176500">267-217-6500</a></p>
+        <p><strong>Telegram:</strong> <a href="https://t.me/notary_fm7" target="_blank">@notary_fm7</a></p>
+        <p>&copy; 2025 Tag Pro Agency LLC | Designed with care</p>
+    </footer>
+</body>
+</html>
