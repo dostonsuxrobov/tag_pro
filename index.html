@@ -3,361 +3,428 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tag Pro Agency LLC</title>
+    <title>TAG PRO</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
+        /* Custom styles for the US Government website theme */
         body {
-            font-family: 'Open Sans', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7fa;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f0f0; /* A standard government-style light gray */
+            color: #1b1b1b;
         }
-        header {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('uscongress.jpg') no-repeat center center;
+
+        /* Official-looking color variables */
+        :root {
+            --primary-dark: #112e51; /* Dark Navy Blue */
+            --primary-medium: #0071bc; /* Medium Blue */
+            --primary-light: #46a1e5; /* Light Blue */
+            --accent-red: #d83933; /* Red Accent */
+        }
+
+        /* Hero section with background image */
+        .hero-section {
+            background-image: linear-gradient(rgba(17, 46, 81, 0.8), rgba(17, 46, 81, 0.8)), url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBYWFRgWFhYZGRgaGhocGhwaHBwcHBocGhwaGhwhHBwhIS4lHCErIRoYJjgmKy8xNTU1GiQ7QDs0Py40NTEBDAwMEA8QHxISHzQrJCs0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NP/AABEIALcBEwMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAEAQIDBQYAB//EAEcQAAIBAgQDBgIHBgMGBgMAAAECAwARBBIhBTFBUQYTImFxgTKRobEUQlLB0fAjUmJy4fEVM4KSorLCFiTT0xckU3SDk//EABoBAAIDAQEAAAAAAAAAAAAAAAECAAMEBQb/xAAyEQACAgEDAgMGBgMBAAAAAAAAAQIRAxIhMQRBE1EFFFJhcYGhIsHR8BSRscEyM+FC/9oADAMBAAIRAxEAPwD2eiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoorynGPpMkhkZMLGgRTbO92Lf8oIAHxJrOc1HiWwxt7I9Xorx+P6WMcL/AOyYc/8AE/8A61WX+kzIq5v+XYYn+WSRh/hIpv5kPQl8NnqtFeTR/Sxi/8A08P/APJIP/zqzJ9JGLt8uGwwP96WQ//Gg/Mj6E+Gz1iiorK7SVA8bK6NyZSCCPQimpWhmFFFQYvGRxLmkdUXu7BVHxJoAnorKwnFcPL8sU8T/wB2RG/gazdACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACi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');
             background-size: cover;
+            background-position: center;
+        }
+
+        /* Animation for sections fading in on scroll */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Active state for language buttons */
+        .lang-btn.active {
+            background-color: var(--primary-medium);
             color: white;
-            text-align: center;
-            padding: 100px 20px;
+            font-weight: 600;
         }
-        header h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 48px;
-            margin: 0;
-            letter-spacing: 1px;
+        .lang-btn:hover {
+             background-color: var(--primary-light);
+             color: white;
         }
-        header p {
-            font-size: 20px;
-            margin-top: 12px;
-        }
-        nav {
-            background-color: #002244;
+
+        /* Styling for the service cards */
+        .service-card {
+            background-color: white;
+            border: 1px solid #dfe1e2;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
-            justify-content: center;
-            padding: 15px;
+            flex-direction: column;
         }
-        nav button {
-            background: none;
-            border: none;
-            color: white;
-            margin: 0 20px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 16px;
-            position: relative;
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
-        nav button::after {
-            content: '';
-            display: block;
-            width: 0;
-            height: 2px;
-            background: white;
-            transition: width 0.3s;
-            position: absolute;
-            bottom: -5px;
-            left: 0;
+        .service-card .card-content {
+            padding: 2rem;
+            flex-grow: 1;
         }
-        nav button:hover::after {
-            width: 100%;
+        .service-card h3 {
+            color: var(--primary-dark);
         }
-        section {
-            max-width: 1100px;
-            margin: 50px auto;
-            padding: 40px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        section h2 {
-            font-size: 28px;
-            color: #003366;
-            margin-bottom: 20px;
-            border-left: 4px solid #004080;
-            padding-left: 12px;
-        }
-        section h3 {
-            margin-top: 25px;
-            color: #004080;
-            font-size: 22px;
-            border-bottom: 2px solid #e0e6ed;
-            padding-bottom: 5px;
-        }
-        ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        ul li {
-            margin-bottom: 8px;
-        }
-        .hidden { display: none; }
-        footer {
-            background-color: #002244;
-            color: white;
-            text-align: center;
-            padding: 30px;
-            font-size: 14px;
-        }
-        footer p {
-            margin: 8px 0;
-        }
-        footer a {
-            color: #66b2ff;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        footer a:hover {
-            text-decoration: underline;
+        .service-card .icon-bg {
+            background-color: #e1f3f8;
+            color: var(--primary-medium);
         }
     </style>
-    <script>
-        function showLanguage(lang) {
-            document.querySelectorAll('.content').forEach(section => section.classList.add('hidden'));
-            document.getElementById(lang).classList.remove('hidden');
-        }
-        window.onload = function() {
-            showLanguage('English');
-        };
-    </script>
 </head>
-<body>
-    <header>
-        <h1>Tag Pro Agency LLC</h1>
-        <p>Fast, Reliable Document & Notary Services</p>
+<body class="text-gray-800">
+
+    <!-- Header and Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="bg-[var(--primary-dark)] text-white text-xs text-center py-1">
+            <p data-translate-key="gov_banner">An official website of the TAG PRO</p>
+        </div>
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-xl font-bold text-[var(--primary-dark)]" data-translate-key="brand_name">TAG PRO</a>
+                </div>
+                <div class="flex items-center space-x-1">
+                    <!-- Language Switcher -->
+                    <button class="lang-btn px-3 py-1.5 text-sm font-medium text-gray-700 rounded-md transition-colors" data-lang="en">EN</button>
+                    <button class="lang-btn px-3 py-1.5 text-sm font-medium text-gray-700 rounded-md transition-colors" data-lang="ru">RU</button>
+                    <button class="lang-btn px-3 py-1.5 text-sm font-medium text-gray-700 rounded-md transition-colors" data-lang="uz">UZ</button>
+                </div>
+            </div>
+        </nav>
     </header>
-    <nav>
-        <button onclick="showLanguage('English')">English</button>
-        <button onclick="showLanguage('Russian')">Русский</button>
-        <button onclick="showLanguage('Uzbek')">Oʻzbek</button>
-    </nav>
 
-    <section id="English" class="content">
-        <h2>About Us</h2>
-        <p>Welcome to Tag Pro Agency LLC! We are a trusted family-owned agency helping individuals, families, and small businesses with essential document and registration services. We believe every client deserves personal attention, clear communication, and a friendly helping hand. </p>
-        <br/>
-        <p>📞 Call us before visiting for fast service! We can have your documents ready to save you time.</p>
-	
-	<div style="display: flex; align-items: center; justify-content: space-between;">
-           <div style="max-width: 70%;">
-          </div>
-         <div>
-        <img src="qr.PNG" style="max-width: 150px; height: auto;">
-       </div>
-      </div>
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section style="background-image: url('uscongress.jpg');" class="hero-section text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4" data-translate-key="hero_title">Your Trusted Partner for Every Need</h1>
+                <p class="text-lg md:text-xl text-gray-200 max-w-3xl mx-auto" data-translate-key="hero_subtitle">Comprehensive support for vehicle, legal, immigration, and business services. We speak your language.</p>
+            </div>
+        </section>
 
-        <h2>Our Services</h2>
-        <h3>AUTO TAG SERVICES</h3>
-        <ul>
-            <li>Car Title Transfers (Buying or Selling)</li>
-            <li>New Pennsylvania Plates & Stickers</li>
-            <li>Truck & Trailer IRP Registration</li>
-            <li>Duplicate Titles or Registration Cards</li>
-            <li>Temporary Tags & Renewals</li>
-            <li>Dealer & Commercial Vehicle Processing</li>
-            <li>EZ Pass & Toll Payments</li>
-        </ul>
-        <h3>NOTARY & DOCUMENT SERVICES</h3>
-        <ul>
-            <li>Notary (All Documents)</li>
-            <li>Power of Attorney</li>
-            <li>Apostille (International Certification)</li>
-            <li>Affidavits</li>
-            <li>Divorce / Separation Document Help</li>
-            <li>Living Will & Trust Notarization</li>
-            <li>Sponsor Letters</li>
-            <li>Employee Verification Letters</li>
-            <li>Lease Agreement Notarization</li>
-            <li>Mobile Home Title Transfers</li>
-            <li>Document Translation (Russian, Uzbek, English)</li>
-            <li>Certified Mail & Return Envelope Help</li>
-            <li>Mobile Notary Visits (Home, Office, Hospital)</li>
-        </ul>
-        <h3>IMMIGRATION, GOVERNMENT & EDUCATION HELP</h3>
-        <ul>
-            <li>Green Card Renewal</li>
-            <li>Work Permit Renewal</li>
-            <li>U.S. Citizenship Applications</li>
-            <li>Modify or Request Duplicate Birth Certificates</li>
-            <li>Passport Applications & Emergency Passport Help</li>
-            <li>Uzbekistan Consulate Visa & Return Travel Certificates</li>
-            <li>ELRC Applications</li>
-            <li>Health Insurance Applications</li>
-            <li>SNAP Applications</li>
-            <li>School & Pre-K Registrations</li>
-            <li>Diploma & Transcript Evaluation</li>
-            <li>Social Security Paperwork</li>
-        </ul>
-        <h3>BUSINESS & FINANCIAL HELP</h3>
-        <ul>
-            <li>Small Business Registration</li>
-            <li>Payroll Setup</li>
-            <li>Workers’ Compensation Support</li>
-            <li>Business Insurance Help</li>
-            <li>QuickBooks Setup</li>
-            <li>Help with Revenue Department Letters & Penalties</li>
-        </ul>
-        <h3>MOBILE & PREMIUM SERVICES</h3>
-        <ul>
-            <li>Mobile Notary Visits</li>
-            <li>After-Hours & Weekend Appointments</li>
-            <li>Same-Day Courier, Drop-Off, Pick-Up</li>
-            <li>On-Site Passport Photos</li>
-        </ul>
-    </section>
+        <!-- Services Section -->
+        <section id="services" class="py-16 sm:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[var(--primary-dark)]" data-translate-key="services_title">Our Services</h2>
+                    <p class="mt-4 text-lg text-gray-600" data-translate-key="services_subtitle">Expert solutions tailored to your personal and professional life.</p>
+                </div>
 
-    <section id="Russian" class="content hidden">
-    <h2>О нас</h2>
-    <p>Добро пожаловать в Tag Pro Agency LLC! Мы — надёжное семейное агентство, помогающее частным лицам, семьям и малому бизнесу с важными документами и регистрацией. Мы считаем, что каждый клиент заслуживает личного внимания, понятного общения и дружеской поддержки.</p>
-    <br/>
-    <p>📞 Позвоните нам перед визитом для быстрого обслуживания! Мы подготовим ваши документы заранее, чтобы сэкономить ваше время.</p>
+                <!-- Grid of Service Cards -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Service Card: Vehicle -->
+                    <div class="fade-in-section service-card">
+                        <div class="card-content">
+                            <div class="flex items-center">
+                                <div class="p-3 rounded-full icon-bg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1 .4-1 1v7c0 .6.4 1 1 1h2"/><path d="M10 17h6"/><path d="M14 17a2 2 0 1 0-4 0"/><path d="M5 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/><path d="M9 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg>
+                                </div>
+                                <h3 class="ml-4 text-xl font-semibold" data-translate-key="s1_title">Vehicle & Registration Services</h3>
+                            </div>
+                            <ul class="mt-6 space-y-3 text-gray-600 list-disc list-inside" data-translate-key="s1_list"></ul>
+                        </div>
+                    </div>
+                    
+                    <!-- All other cards follow the same structure -->
+                    <!-- Service Card: Notary -->
+                    <div class="fade-in-section service-card">
+                         <div class="card-content">
+                           <div class="flex items-center">
+                                <div class="p-3 rounded-full icon-bg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="m16 13-3.1 3.9a.5.5 0 0 1-.8 0L9 13"/><path d="M12 17V8"/></svg>
+                                </div>
+                                <h3 class="ml-4 text-xl font-semibold" data-translate-key="s2_title">Notary & Legal Document Services</h3>
+                            </div>
+                            <ul class="mt-6 space-y-3 text-gray-600 list-disc list-inside" data-translate-key="s2_list"></ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Service Card: Translation -->
+                    <div class="fade-in-section service-card">
+                         <div class="card-content">
+                            <div class="flex items-center">
+                               <div class="p-3 rounded-full icon-bg">
+                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
+                                </div>
+                                <h3 class="ml-4 text-xl font-semibold" data-translate-key="s3_title">Translation & Certified Document Handling</h3>
+                            </div>
+                            <ul class="mt-6 space-y-3 text-gray-600 list-disc list-inside" data-translate-key="s3_list"></ul>
+                        </div>
+                    </div>
 
-	
-	<div style="display: flex; align-items: center; justify-content: space-between;">
-           <div style="max-width: 70%;">
-          </div>
-         <div>
-        <img src="qr.PNG" style="max-width: 150px; height: auto;">
-       </div>
-      </div>
+                    <!-- Service Card: Immigration -->
+                    <div class="fade-in-section service-card">
+                         <div class="card-content">
+                            <div class="flex items-center">
+                               <div class="p-3 rounded-full icon-bg">
+                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9"/><path d="M4 13h16"/><path d="M10 3 8 21"/><path d="m14 3 2 18"/></svg>
+                                </div>
+                                <h3 class="ml-4 text-xl font-semibold" data-translate-key="s4_title">Immigration & Government Form Assistance</h3>
+                            </div>
+                            <ul class="mt-6 space-y-3 text-gray-600 list-disc list-inside" data-translate-key="s4_list"></ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Service Card: Business -->
+                    <div class="fade-in-section service-card">
+                         <div class="card-content">
+                            <div class="flex items-center">
+                               <div class="p-3 rounded-full icon-bg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="16" y2="12"/><path d="M12 2a10 10 0 0 0-7.53 16.59l1.42-1.42A8 8 0 1 1 12 20a8 8 0 0 1-6.5-3.23"/><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"/><path d="M12 12v4"/></svg>
+                                </div>
+                                <h3 class="ml-4 text-xl font-semibold" data-translate-key="s5_title">Business & Financial Services</h3>
+                            </div>
+                            <ul class="mt-6 space-y-3 text-gray-600 list-disc list-inside" data-translate-key="s5_list"></ul>
+                        </div>
+                    </div>
 
-    <h2>Наши услуги</h2>
-    <h3>АВТО УСЛУГИ</h3>
-    <ul>
-        <li>Передача прав собственности на автомобиль</li>
-        <li>Новые номерные знаки и наклейки Пенсильвании</li>
-        <li>IRP регистрация грузовиков и прицепов</li>
-        <li>Дубликаты титулов или регистрационных карт</li>
-        <li>Временные теги и продления</li>
-        <li>Обработка дилерских и коммерческих транспортных средств</li>
-        <li>EZ Pass и оплата дорожных сборов</li>
-    </ul>
-    <h3>НОТАРИАЛЬНЫЕ И ДОКУМЕНТАЛЬНЫЕ УСЛУГИ</h3>
-    <ul>
-        <li>Нотариальные услуги (все документы)</li>
-        <li>Доверенность</li>
-        <li>Апостиль (международная сертификация)</li>
-        <li>Аффидевиты</li>
-        <li>Помощь с разводом / разделом</li>
-        <li>Нотариат завещаний и трастов</li>
-        <li>Спонсорские письма</li>
-        <li>Письма о подтверждении занятости</li>
-        <li>Нотариат договоров аренды</li>
-        <li>Передача титулов мобильных домов</li>
-        <li>Перевод документов (русский, узбекский, английский)</li>
-        <li>Помощь с заказными письмами и конвертами</li>
-        <li>Выездной нотариус (дом, офис, больница)</li>
-    </ul>
-    <h3>ИММИГРАЦИОННАЯ, ГОСУДАРСТВЕННАЯ И ОБРАЗОВАТЕЛЬНАЯ ПОМОЩЬ</h3>
-    <ul>
-        <li>Продление грин-карты</li>
-        <li>Продление разрешения на работу</li>
-        <li>Заявки на гражданство США</li>
-        <li>Изменение или дубликат свидетельства о рождении</li>
-        <li>Заявки на паспорта и экстренная помощь</li>
-        <li>Визы консульства Узбекистана и сертификаты на возвращение</li>
-        <li>Заявки ELRC (детская помощь)</li>
-        <li>Медицинская страховка</li>
-        <li>Заявки на талоны SNAP</li>
-        <li>Регистрация в школу и детский сад</li>
-        <li>Оценка дипломов и транскриптов</li>
-        <li>Социальное обеспечение</li>
-    </ul>
-    <h3>БИЗНЕС И ФИНАНСОВАЯ ПОМОЩЬ</h3>
-    <ul>
-        <li>Регистрация малого бизнеса</li>
-        <li>Настройка зарплаты</li>
-        <li>Поддержка по рабочей компенсации</li>
-        <li>Страхование бизнеса</li>
-        <li>Настройка QuickBooks</li>
-        <li>Помощь с письмами и штрафами налогового департамента</li>
-    </ul>
-    <h3>МОБИЛЬНЫЕ И ПРЕМИУМ УСЛУГИ</h3>
-    <ul>
-        <li>Выездной нотариус</li>
-        <li>Встречи после рабочего времени и в выходные</li>
-        <li>Курьер в тот же день, доставка, получение</li>
-        <li>Фото на паспорт на месте</li>
-    </ul>
-</section>
+                    <!-- Service Card: Court Support -->
+                    <div class="fade-in-section service-card">
+                         <div class="card-content">
+                            <div class="flex items-center">
+                               <div class="p-3 rounded-full icon-bg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20h.01"/><path d="M4 18c3.5-2.5 7-2.5 10.5 0"/><path d="M18.5 18c1.2-.8 2.5-1.7 3.5-2.5"/><path d="M20 15.5c-1.5 1-3 2-4.5 3"/><path d="M2 22v-4c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v4"/><path d="M12.2 12.2a3 3 0 0 0 4.1 4.1L20 20"/><path d="M2 12.5a3.5 3.5 0 0 1 5.1-3.1 3.5 3.5 0 0 1 4.9 0"/><path d="M8 7.5a3.5 3.5 0 0 0 5.1 3.1 3.5 3.5 0 0 0 4.9 0"/><path d="M2 12V2L12 7l10-5v10"/></svg>
+                                </div>
+                                <h3 class="ml-4 text-xl font-semibold" data-translate-key="s6_title">Court Support & Legal Navigation</h3>
+                            </div>
+                            <ul class="mt-6 space-y-3 text-gray-600 list-disc list-inside" data-translate-key="s6_list"></ul>
+                        </div>
+                    </div>
 
-<section id="Uzbek" class="content hidden">
-    <h2>Biz haqimizda</h2>
-    <p>Tag Pro Agency LLC ga xush kelibsiz! Biz shaxslar, oilalar va kichik biznesga hujjatlar va ro‘yxatga olish xizmatlarida yordam beruvchi ishonchli oilaviy agentlikmiz. Har bir mijoz shaxsiy e’tibor va tushunarli muloqotga loyiq deb hisoblaymiz.</p>
-    <br/>
-    <p>📞 Tezkor xizmat uchun tashrifdan oldin bizga qo‘ng‘iroq qiling! Vaqtingizni tejash uchun hujjatlaringizni oldindan tayyorlab qo‘yamiz.</p>
+                     <!-- Service Card: Event Services -->
+                    <div class="fade-in-section service-card">
+                         <div class="card-content">
+                            <div class="flex items-center">
+                               <div class="p-3 rounded-full icon-bg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M12 12.3c7.2 4.2 12 1.3 12-4.3 0-3.5-5-7-12-7s-12 3.5-12 7c0 5.6 4.8 8.5 12 4.3Z"/><path d="M20.6 13.3c.3.2.5.5.5.8 0 .5-.4 1-1 1s-1-.5-1-1c0-.3.2-.6.5-.8"/><path d="M3.4 13.3c-.3.2-.5.5-.5.8 0 .5.4 1 1 1s1-.5 1-1c0-.3-.2-.6-.5-.8"/></svg>
+                                </div>
+                                <h3 class="ml-4 text-xl font-semibold" data-translate-key="s7_title">Event Services & Invitations</h3>
+                            </div>
+                            <ul class="mt-6 space-y-3 text-gray-600 list-disc list-inside" data-translate-key="s7_list"></ul>
+                        </div>
+                    </div>
 
-	
-	<div style="display: flex; align-items: center; justify-content: space-between;">
-           <div style="max-width: 70%;">
-          </div>
-         <div>
-        <img src="qr.PNG" style="max-width: 150px; height: auto;">
-       </div>
-      </div>
+                    <!-- Service Card: Mobile Services -->
+                    <div class="fade-in-section service-card">
+                         <div class="card-content">
+                            <div class="flex items-center">
+                               <div class="p-3 rounded-full icon-bg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M10 14h4"/><path d="M12 12v4"/><path d="M12 18h.01"/></svg>
+                                </div>
+                                <h3 class="ml-4 text-xl font-semibold" data-translate-key="s8_title">Mobile & After-Hours Services</h3>
+                            </div>
+                            <ul class="mt-6 space-y-3 text-gray-600 list-disc list-inside" data-translate-key="s8_list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <h2>Xizmatlarimiz</h2>
-    <h3>AVTO XIZMATLAR</h3>
-    <ul>
-        <li>Avtomobil hujjatlarini o‘tkazish</li>
-        <li>Yangi Pensilvaniya raqamlari va stikerlari</li>
-        <li>Yuk mashinalari va treylerlar uchun IRP ro‘yxatga olish</li>
-        <li>Titul yoki ro‘yxatdan o‘tish kartalarini dublikat qilish</li>
-        <li>Vaqtinchalik teglar va yangilash</li>
-        <li>Dilerlik va tijorat transport vositalari bilan ishlash</li>
-        <li>EZ Pass va yo‘l to‘lovlarini to‘lash</li>
-    </ul>
-    <h3>NOTARIUS VA HUJJATLAR XIZMATLARI</h3>
-    <ul>
-        <li>Notarius xizmatlari (barcha hujjatlar)</li>
-        <li>Ishonchnoma</li>
-        <li>Apostil (xalqaro sertifikat)</li>
-        <li>Affidavitlar</li>
-        <li>Ajrashish / ajratish hujjatlari bo‘yicha yordam</li>
-        <li>Vasiyatnoma va ishonchli boshqaruv notariusi</li>
-        <li>Homiylik xatlari</li>
-        <li>Ish joyi tasdiq xatlari</li>
-        <li>Ijaraga olish shartnomasi notariusi</li>
-        <li>Mobil uy hujjatlarini o‘tkazish</li>
-        <li>Hujjatlarni tarjima qilish (rus, o‘zbek, ingliz)</li>
-        <li>Qaytariladigan xat va konvertlar bilan yordam</li>
-        <li>Sayyor notarius (uy, ofis, shifoxona)</li>
-    </ul>
-    <h3>IMMIGRATSIYA, DAVLAT VA TA’LIM YORDAMI</h3>
-    <ul>
-        <li>Grin karta yangilash</li>
-        <li>Ish ruxsatnomasi yangilash</li>
-        <li>Amerika fuqaroligi uchun arizalar</li>
-        <li>Tug‘ilganlik guvohnomasini o‘zgartirish yoki dublikat qilish</li>
-        <li>Pasport arizalari va shoshilinch yordam</li>
-        <li>O‘zbekiston konsulligi vizalari va qaytish sertifikatlari</li>
-        <li>ELRC (bolalar yordam dasturi) arizalari</li>
-        <li>Tibbiy sug‘urta arizalari</li>
-        <li>SNAP (ovqat bonlari) arizalari</li>
-        <li>Maktab va bog‘cha ro‘yxatdan o‘tkazish</li>
-        <li>Diplom va transkriptlarni baholash</li>
-        <li>Ijtimoiy ta’minot hujjatlari</li>
-    </ul>
-    <h3>BIZNES VA MOLIYAVIY YORDAM</h3>
-    <ul>
-        <li>Kichik biznesni ro‘yxatdan o‘tkazish</li>
-        <li>Ish haqi tizimini sozlash</li>
-        <li>Ishchilarning kompensatsiyasi bo‘yicha yordam</li>
-        <li>Biznes sug‘urtasi yordami</li>
-        <li>QuickBooks sozlash</li>
-        <li>Daromad departamenti xatlari va jarimalari bo‘yicha yordam</li>
-    </ul>
-    <h3>KO‘CHMA VA PREMIUM XIZMATLAR</h3>
-    <ul>
-        <li>Ishdan keyingi va dam olish kunlari uchrashuvlar</li>
-        <li>Bir kunlik kur’er, yetkazib berish, olish</li>
-        <li>Saytda pasport fotosuratlari</li>
-    </ul>
-</section>
+        <!-- Contact Section with QR Code -->
+        <section id="contact" class="bg-white py-16 sm:py-20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                 <h2 class="text-3xl md:text-4xl font-bold text-[var(--primary-dark)]" data-translate-key="contact_title">Contact Us</h2>
+                 <p class="mt-4 text-lg text-gray-600" data-translate-key="contact_subtitle">Scan the code below with your phone to get in touch with us instantly.</p>
+                 <div class="mt-8 flex justify-center">
+                    <img src="qr.PNG" alt="Contact QR Code" class="w-48 h-48 rounded-lg shadow-lg">
+                 </div>
+            </div>
+        </section>
 
-    <footer>
-        <p><strong>Address:</strong> 40 Bellevue Ave, Penndel, PA 19047</p>
-        <p><strong>Phone:</strong> <a href="tel:2672176500">267-217-6500</a></p>
-        <p><strong>Telegram:</strong> <a href="https://t.me/notary_fm7" target="_blank">@notary_fm7</a></p>
-        <p>&copy; 2025 Tag Pro Agency LLC | Designed with care</p>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[var(--primary-dark)] text-white border-t-4 border-[var(--primary-medium)]">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-2xl font-semibold mb-6" data-translate-key="footer_contact_title">Contact Information</h3>
+            <div class="space-y-4 text-gray-300">
+                <p><strong data-translate-key="footer_address">Address:</strong> 40 Bellevue Ave, Penndel, PA 19047</p>
+                <p><strong data-translate-key="footer_phone">Phone:</strong> <a href="tel:2672176500" class="hover:underline text-white">267-217-6500</a></p>
+                <p><strong data-translate-key="footer_telegram">Telegram:</strong> <a href="https://t.me/notary_fm7" target="_blank" class="hover:underline text-white">@notary_fm7</a></p>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700">
+                <p class="text-sm text-gray-400" data-translate-key="footer_copyright">&copy; 2025 Tag Pro Agency LLC | Designed with care</p>
+            </div>
+        </div>
     </footer>
+
+
+    <script>
+        // --- TRANSLATIONS DATA ---
+        const translations = {
+            en: {
+                gov_banner: "An official website of the TAG PRO",
+                brand_name: "TAG PRO",
+                hero_title: "Your Trusted Partner for Every Need",
+                hero_subtitle: "Comprehensive support for vehicle, legal, immigration, and business services. We speak your language.",
+                services_title: "Our Services",
+                services_subtitle: "Expert solutions tailored to your personal and professional life.",
+                contact_title: "Contact Us",
+                contact_subtitle: "Scan the code below with your phone to get in touch with us instantly.",
+                footer_contact_title: "Contact Information",
+                footer_address: "Address:",
+                footer_phone: "Phone:",
+                footer_telegram: "Telegram:",
+                footer_copyright: "© 2025 Tag Pro Agency LLC | Designed with care",
+                s1_title: "Vehicle & Registration Services",
+                s1_list: ["Title transfers for private and dealer vehicle sales", "New Pennsylvania license plates and validation stickers", "IRP (International Registration Plan) registration for commercial trucks", "Duplicate titles and registration cards", "Temporary tags and registration renewals", "Dealer and commercial vehicle processing", "EZ Pass setup and toll payments", "Violation management: citation support", "Suspended registration resolution", "Court fine payments and negotiation assistance",],
+                s2_title: "Notary & Legal Document Services",
+                s2_list: ["Notarization of all personal and legal documents", "Customized Power of Attorney", "Apostille services for international use", "Affidavits for court & legal requirements", "Divorce & property separation assistance", "Living Will & Trust notarization", "Sponsorship & employment verification letters", "Lease agreement notarization", "Mobile notary visits (home/office/hospital)",],
+                s3_title: "Translation & Certified Document Handling",
+                s3_list: ["Certified translations (English/Russian/Uzbek)", "Multilingual legal and immigration documentation", "Certified mail, envelope prep, and delivery", "Court interpreter and in-person translation support",],
+                s4_title: "Immigration & Government Form Assistance",
+                s4_list: ["Green Card renewals", "EAD (work permit) renewals", "U.S. citizenship (naturalization) applications", "Birth certificate corrections and duplicates", "Passport appointment support (regular, expedited, emergency)", "Uzbekistan consular visa & return certificates", "ELRC child care subsidies", "Health insurance enrollment (Marketplace, Medicaid, CHIP)", "SNAP applications", "School & daycare registration assistance", "Diploma/transcript evaluation", "Social Security Number applications",],
+                s5_title: "Business & Financial Services",
+                s5_list: ["Business formation (LLC, Corporation, Sole Proprietor)", "Payroll setup and compliance", "Workers’ compensation support", "Business insurance assistance", "QuickBooks setup & training", "Tax department letters and fine response", "IRS payment setup & installment planning", "New York Life – life insurance consultations & referrals",],
+                s6_title: "Court Support & Legal Navigation",
+                s6_list: ["Magisterial court phone support (plead guilty/not guilty)", "In-person court support: accompany, translate, advocate", "Traffic ticket, court date & hearing assistance", "Fine negotiation, documentation & translation",],
+                s7_title: "Event Services & Invitations",
+                s7_list: ["Custom invitations: weddings, birthdays, baby showers, special events", "Personalized RSVP link creation", "Fast turnaround & digital/mobile delivery",],
+                s8_title: "Mobile & After-Hours Services",
+                s8_list: ["Mobile notary & registration services", "Same-day courier/document delivery & pickup", "Evening & weekend appointments by request", "Emergency travel, court & legal support",],
+            },
+            ru: {
+                gov_banner: "Официальный сайт TAG PRO",
+                brand_name: "TAG PRO",
+                hero_title: "Ваш надежный партнер на все случаи жизни",
+                hero_subtitle: "Комплексная поддержка по автомобильным, юридическим, иммиграционным и бизнес-услугам. Мы говорим на вашем языке.",
+                services_title: "Наши Услуги",
+                services_subtitle: "Экспертные решения для вашей личной и профессиональной жизни.",
+                contact_title: "Свяжитесь с нами",
+                contact_subtitle: "Отсканируйте QR-код телефоном, чтобы связаться с нами.",
+                footer_contact_title: "Контактная информация",
+                footer_address: "Адрес:",
+                footer_phone: "Телефон:",
+                footer_telegram: "Телеграм:",
+                footer_copyright: "© 2025 Tag Pro Agency LLC | Разработано с заботой",
+                s1_title: "Автоуслуги",
+                s1_list: ["Передача TITLE при купле/продаже автомобиля", "Новые номерные знаки и стикеры Пенсильвании", "IRP-регистрация грузовиков", "Дубликаты TITLE и регистрационных карт", "Временные номера и продление регистрации", "Обработка дилерских и коммерческих автомобилей", "Подключение EZ Pass и оплата сборов", "Работа с нарушениями и штрафами", "Решение приостановленной регистрации", "Оплата штрафов и переговоры с судом",],
+                s2_title: "Нотариальные и юридические услуги",
+                s2_list: ["Заверение любых документов", "Доверенности по образцу", "Апостиль для международного использования", "Аффидевиты", "Помощь при разводе и разделе имущества", "Завещания и доверительное управление", "Спонсорские и справки с места работы", "Заверение договоров аренды", "Выездной нотариус (дома/офисе/больнице)",],
+                s3_title: "Переводы и работа с документами",
+                s3_list: ["Сертифицированный перевод (рус, узб, англ)", "Многоязычная поддержка для юридических и иммиграционных документов", "Заказные письма и подготовка конвертов", "Судебный перевод и сопровождение",],
+                s4_title: "Иммиграция и государственные услуги",
+                s4_list: ["Продление грин-карты", "Продление EAD (разрешения на работу)", "Заявки на гражданство США", "Устранение ошибок/дубликаты свидетельства о рождении", "Помощь с паспортами (обычные, ускоренные, срочные)", "Получение виз и сертификатов на возвращение Узбекистана", "Поддержка ELRC (детские субсидии)", "Оформление медстраховки (Marketplace, Medicaid, CHIP)", "SNAP", "Регистрация в школу/детский сад", "Эвалюация дипломов/транскриптов", "Заявки на Social Security",],
+                s5_title: "Бизнес и финансы",
+                s5_list: ["Открытие бизнеса (ООО, корпорация, ИП)", "Настройка и ведение payroll", "Поддержка по компенсациям", "Страхование бизнеса", "Настройка и обучение QuickBooks", "Ответы на письма/штрафы от налоговой", "Помощь в оплате налогов IRS и рассрочки", "New York Life: консультации и рекомендации по страхованию жизни",],
+                s6_title: "Поддержка в суде",
+                s6_list: ["Прозвон в магистратский суд: подача заявления о виновности/невиновности", "Сопровождение в суд – перевод и представительство", "Работа с билетами, начислениями, слушаниями", "Переговоры по штрафам и перевод документации",],
+                s7_title: "Приглашения и мероприятия",
+                s7_list: ["Создание пригласительных: свадьбы, дни рождения, baby shower", "Онлайн RSVP ссылки", "Быстрое изготовление и доставка",],
+                s8_title: "Мобильные и внерабочие услуги",
+                s8_list: ["Выездной нотариус и регистрация", "Курьерская доставка и сбор документов в тот же день", "Вечерние и выходные встречи по запросу", "Экстренная поддержка по вопросам права, поездок и суда",],
+            },
+            uz: {
+                gov_banner: "TAG PRO rasmiy veb-sayti",
+                brand_name: "TAG PRO",
+                hero_title: "Har bir ehtiyojingiz uchun ishonchli hamkoringiz",
+                hero_subtitle: "Avtomobil, huquqiy, immigratsiya va biznes xizmatlari bo'yicha keng qamrovli yordam. Biz sizning tilingizda gaplashamiz.",
+                services_title: "Bizning Xizmatlarimiz",
+                services_subtitle: "Shaxsiy va professional hayotingiz uchun moslashtirilgan ekspert yechimlari.",
+                contact_title: "Biz bilan bog'laning",
+                contact_subtitle: "Biz bilan tezda bog'lanish uchun quyidagi QR kodni telefoningiz bilan skanerlang.",
+                footer_contact_title: "Bog'lanish uchun ma'lumot",
+                footer_address: "Manzil:",
+                footer_phone: "Telefon:",
+                footer_telegram: "Telegram:",
+                footer_copyright: "© 2025 Tag Pro Agency LLC | G'amxo'rlik bilan ishlab chiqilgan",
+                s1_title: "Avtomobil Xizmatlari",
+                s1_list: ["Avtomobil TITLE’sini sotib olish/sotishda o‘tkazish", "Pennsylvania shtati raqam belgisi va stikerlari", "IRP ro‘yxatdan o‘tkazish (yuk mashinalari)", "TITLE va ro‘yxat kartasi dublikatlari", "Vaqtinchalik raqamlar va ro‘yxatdan o‘tish davomiyligi", "Diler va tijorat transport rasmiylashtiruvi", "EZ Pass o‘rnatish va yo‘l to‘lovlari", "Qoidabuzarliklar bilan ishlash", "Ro‘yxatning to‘xtatilishi masalalarini hal qilish", "Sudga to‘lovlar va jarimalarni to‘lash",],
+                s2_title: "Notarius va Huquqiy Hujjat Xizmatlari",
+                s2_list: ["Hujjatlarning notarial tasdiqlanishi", "Ishonchnomalar", "Apostil (xalqaro tasdiqlash)", "Affidavitlar", "Ajrashish va mulkka oid yordam", "Vasiyatnoma va ishonchli boshqaruv", "Homiylik va ish joyi xatlari", "Ijaraga berish shartnomalarini notarial tasdiqlash", "Mobil notarius (uy, ofis, shifoxona)",],
+                s3_title: "Tarjima va Sertifikatlangan Hujjatlar",
+                s3_list: ["Sertifikatlangan tarjima (ingliz/rus/uz)", "Ko‘p tilli hujjatlar uchun yordam", "Zakaznoy xatlar, konvert tayyorlash", "Sudda tarjima va mijozni himoya qilish",],
+                s4_title: "Immigratsiya va Hukumat Hujjatlari",
+                s4_list: ["Green Card yangilash", "EAD (ish ruxsatnomasi) yangilash", "AQSh fuqaroligi arizalari", "Tug‘ilganlik guvohnomalarini tuzatish yoki dublikat olish", "Pasport uchun appointment (oddiy, tezlashtirilgan, zudlik bilan)", "O‘zbekiston vizalari va qaytish guvohnomalari", "ELRC bolalar uchun yordam", "Sog‘liqni saqlash sug‘urtasi (Marketplace, Medicaid, CHIP)", "SNAP arizalari", "Maktab va bog‘chaga ro‘yxatdan o‘tkazish", "Diplom/transkriptlarni baholash", "Social Security arizalari",],
+                s5_title: "Biznes va Moliyaviy Xizmatlar",
+                s5_list: ["Biznes ro‘yxatdan o‘tkazish (LLC, Korporatsiya, Yakka tartibdagi)", "Ish haqi tizimi (payroll) sozlash", "Ishchilar kompensatsiyasiga yordam", "Biznes sug‘urtasi", "QuickBooks sozlash va ta’lim", "Soliq xatlari va jarimalarga yordam", "IRS to‘lovlariga yordam va bo‘lib-to‘lash rejalari", "New York Life – hayot sug‘urtasi bo‘yicha maslahat va yo‘naltirish",],
+                s6_title: "Sudda Yordam & Yuridik Yo‘riq",
+                s6_list: ["Magistrat sudiga qo‘ng‘iroq: aybsiz/aybdor deb bildirish", "Sudga borib tarjima va himoya qilish", "Chiptalar, sud chaqiruvlari, jarimalarni hal etish", "To‘xtatilgan ro‘yxatni tiklash",],
+                s7_title: "Tadbirlar va Taklifnomalar",
+                s7_list: ["Taklifnomalar yaratish: to‘yi, tug‘ilgan kun, baby shower", "Onlayn RSVP havola yaratish", "Tez tayyorlash va yetkazish",],
+                s8_title: "Mobil va Qo'shimcha Vaqt Xizmatlari",
+                s8_list: ["Mobil notarius va ro‘yxatdan o‘tish", "Shu kunning o‘zida hujjatlar yetkazish/olish", "Kechki va dam olish kunlari xizmat", "Shoshilinch yordami mavjud",],
+            }
+        };
+
+        // --- CORE LOGIC ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            const translatableElements = document.querySelectorAll('[data-translate-key]');
+            
+            const translatePage = (lang) => {
+                const content = translations[lang];
+                translatableElements.forEach(el => {
+                    const key = el.dataset.translateKey;
+                    
+                    // Handle dynamic text within elements that also have static text
+                    if (key === 'footer_address' || key === 'footer_phone' || key === 'footer_telegram') {
+                         const strongTag = el.querySelector('strong');
+                         if(strongTag) {
+                            strongTag.textContent = content[key];
+                         }
+                    } else if (key === 'footer_copyright') {
+                         el.textContent = content[key];
+                    } else if (Array.isArray(content[key])) {
+                        el.innerHTML = content[key].map(item => `<li>${item}</li>`).join('');
+                    } else if (content[key]) {
+                        el.textContent = content[key];
+                    }
+                });
+                
+                langButtons.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.lang === lang);
+                });
+                document.documentElement.lang = lang;
+            };
+            
+            const setLanguage = (lang) => {
+                localStorage.setItem('preferredLanguage', lang);
+                translatePage(lang);
+            };
+
+            langButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    setLanguage(button.dataset.lang);
+                });
+            });
+
+            const preferredLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            setLanguage(preferredLanguage);
+
+            // Intersection Observer for fade-in animations
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                rootMargin: '0px 0px -100px 0px'
+            });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+
 </body>
 </html>
