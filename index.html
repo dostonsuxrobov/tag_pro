@@ -1,1861 +1,724 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tag Pro Agency LLC</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Tag Pro Agency LLC - Professional Services</title>
+    <meta name="description" content="Vehicle, legal, immigration, and business support services in Penndel, PA.">
 
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#0b1523',
+                            slate: '#1f2937',
+                            gold: '#d6a83f',
+                            goldLight: '#f3cf7a',
+                            light: '#f9fafb',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'card': '0 10px 40px -10px rgba(0, 0, 0, 0.08)',
+                        'float': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                    }
+                }
+            }
+        }
+    </script>
 
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Icons (Lucide) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         body {
             font-family: "Inter", sans-serif;
-            background-color: #ffffff;
-            color: #111827;
+            -webkit-font-smoothing: antialiased;
         }
-
-        :root {
-            --primary-dark: #0b1523;      /* Deeper navy */
-            --primary-medium: #1f2937;    /* Slate */
-            --primary-soft: #111827;
-            --neutral-light: #f3f4f6;     /* Gray-100 */
-            --accent-gold: #d6a83f;       /* Gold accent */
-        }
-
-        .hero-section {
-            background-image: linear-gradient(
-                    rgba(3, 7, 18, 0.7),
-                    rgba(3, 7, 18, 0.88)
-                ),
-                url("bg.jpg");
-            background-size: cover;
-            background-position: center;
-        }
-
-        .service-card {
-            background-color: #ffffff;
-            border-radius: 0.75rem;
-            border: 1px solid #e5e7eb;
-            transition: transform 0.2s ease, box-shadow 0.2s ease,
-                border-color 0.2s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 18px 35px rgba(15, 23, 42, 0.15);
-            border-color: rgba(214, 168, 63, 0.6);
-        }
-
-        .service-card .card-content {
-            padding: 1.75rem;
-            flex-grow: 1;
-        }
-
-        .service-card h3 {
-            color: var(--primary-dark);
-        }
-
-        .service-card .icon-bg {
-            background-color: #fef9c3;
-            color: var(--primary-dark);
-        }
-
-        .lang-btn.active {
-            background-color: var(--primary-dark);
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        .lang-btn:hover {
-            background-color: #e5e7eb;
-        }
-
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(18px);
-            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-        }
-
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .chat-scroll::-webkit-scrollbar { width: 6px; }
+        .chat-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
+        .chat-scroll::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+        .chat-scroll::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+        .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .typing-dot { animation: typing 1.4s infinite ease-in-out both; }
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes typing { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1); } }
+        @keyframes pulse-gold { 0% { box-shadow: 0 0 0 0 rgba(214, 168, 63, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(214, 168, 63, 0); } 100% { box-shadow: 0 0 0 0 rgba(214, 168, 63, 0); } }
+        .btn-pulse { animation: pulse-gold 2s infinite; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="text-gray-800">
+<body class="bg-slate-50 text-gray-800 relative">
 
-    <!-- Top Info Bar -->
-    <div class="bg-gray-900 text-gray-100 text-xs sm:text-sm">
-        <div
-            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-col sm:flex-row items-center justify-between gap-2"
-        >
-            <div
-                class="flex items-center gap-2 text-gray-200"
-                data-translate-key="gov_banner"
-            >
-                An official website of the Tag Pro Agency LLC
-            </div>
-            <div class="flex items-center gap-4 text-gray-300 text-xs">
-                <a
-                    href="tel:2672176500"
-                    class="inline-flex items-center gap-1 hover:text-white"
-                >
-                    <img
-                        src="phone.png"
-                        alt="Phone"
-                        class="w-3.5 h-3.5"
-                    />
-                    <span>267-217-6500</span>
+    <!-- Top Notification Bar -->
+    <div class="bg-brand-navy text-white text-xs py-2 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <span class="opacity-80 hidden sm:block" data-translate-key="gov_banner">Trusted Professional Agency in PA</span>
+            <div class="flex items-center gap-4 ml-auto sm:ml-0">
+                <a href="tel:2672176500" class="hover:text-brand-gold transition flex items-center gap-1">
+                    <i data-lucide="phone" class="w-3 h-3"></i> 267-217-6500
                 </a>
-                <a
-                    href="mailto:tagproagency@gmail.com"
-                    class="inline-flex items-center gap-1 hover:text-white"
-                >
-                    <img
-                        src="email.png"
-                        alt="Email"
-                        class="w-3.5 h-3.5"
-                    />
-                    <span>tagproagency@gmail.com</span>
+                <a href="mailto:tagproagency@gmail.com" class="hover:text-brand-gold transition flex items-center gap-1">
+                    <i data-lucide="mail" class="w-3 h-3"></i> Email Us
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- Header -->
-    <header
-        class="bg-white/95 backdrop-blur shadow-sm sticky top-0 z-40 border-b border-gray-100"
-    >
-        <nav
-            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4"
-        >
-            <!-- Logo -->
-            <div class="flex items-center gap-3">
-                <a href="#top" class="flex items-center gap-2">
-                    <img
-                        src="logo.png"
-                        alt="Tag Pro Agency LLC Logo"
-                        class="h-10 w-auto"
-                    />
-                </a>
+    <!-- Navigation -->
+    <header class="bg-white sticky top-0 z-40 shadow-sm border-b border-gray-100">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[80px] py-2 flex items-center justify-between gap-2">
+            <a href="#" class="flex items-center gap-2 group shrink-0">
+                <img src="logo.png" alt="Tag Pro Agency" class="h-10 sm:h-12 w-auto transition transform group-hover:scale-105" />
+            </a>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+                <a href="#services" class="hover:text-brand-navy transition" data-translate-key="nav_services">Services</a>
+                <a href="#process" class="hover:text-brand-navy transition" data-translate-key="nav_process">Process</a>
+                <a href="#contact" class="hover:text-brand-navy transition" data-translate-key="nav_contact">Contact</a>
             </div>
-
-            <!-- Main Nav -->
-            <div
-                class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-700"
-            >
-                <a
-                    href="#services"
-                    class="hover:text-black transition"
-                    data-translate-key="nav_services"
-                    >Services</a
-                >
-                <a
-                    href="#about"
-                    class="hover:text-black transition"
-                    data-translate-key="nav_about"
-                    >About</a
-                >
-                <a
-                    href="#process"
-                    class="hover:text-black transition"
-                    data-translate-key="nav_process"
-                    >How it works</a
-                >
-                <a
-                    href="#contact"
-                    class="hover:text-black transition"
-                    data-translate-key="nav_contact"
-                    >Contact</a
-                >
-            </div>
-
-            <!-- Right: language + CTA -->
-            <div class="flex items-center gap-3">
-                <div
-                    class="flex items-center rounded-full bg-gray-100 border border-gray-200 px-1 py-0.5"
-                >
-                    <button
-                        class="lang-btn px-2.5 py-1 text-xs font-medium text-gray-700 rounded-full"
-                        data-lang="en"
-                    >
-                        EN
-                    </button>
-                    <button
-                        class="lang-btn px-2.5 py-1 text-xs font-medium text-gray-700 rounded-full"
-                        data-lang="ru"
-                    >
-                        RU
-                    </button>
-                    <button
-                        class="lang-btn px-2.5 py-1 text-xs font-medium text-gray-700 rounded-full"
-                        data-lang="uz"
-                    >
-                        UZ
-                    </button>
-                    <button
-                        class="lang-btn px-2.5 py-1 text-xs font-medium text-gray-700 rounded-full"
-                        data-lang="tj"
-                    >
-                        TJ
-                    </button>
+            <div class="flex items-center gap-3 shrink-0">
+                <div class="flex bg-gray-100 rounded-full p-1 overflow-x-auto hide-scrollbar max-w-[160px] sm:max-w-none">
+                    <button class="lang-btn px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold transition whitespace-nowrap" data-lang="en">EN</button>
+                    <button class="lang-btn px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold transition whitespace-nowrap" data-lang="ru">RU</button>
+                    <button class="lang-btn px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold transition whitespace-nowrap" data-lang="uz">UZ</button>
+                    <button class="lang-btn px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold transition whitespace-nowrap" data-lang="tj">TJ</button>
                 </div>
-                <a
-                    href="tel:2672176500"
-                    class="hidden sm:inline-flex items-center gap-2 rounded-full bg-[var(--accent-gold)] text-xs sm:text-sm font-semibold text-gray-900 px-4 py-1.5 shadow-sm hover:brightness-110"
-                    data-translate-key="nav_cta_phone"
-                >
-                    Call now
-                </a>
+                <button onclick="toggleBookingModal()" class="hidden sm:flex bg-brand-navy text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-gray-800 transition shadow-lg items-center gap-2 whitespace-nowrap">
+                    <i data-lucide="calendar-days" class="w-4 h-4"></i>
+                    <span data-translate-key="nav_book">Book Appointment</span>
+                </button>
             </div>
         </nav>
     </header>
 
-    <main id="top">
+    <main>
         <!-- Hero -->
-        <section class="hero-section text-white">
-            <div
-                class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-28"
-            >
-                <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-                    <!-- Left: text -->
-                    <div class="space-y-6">
-                        <div
-                            class="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-3 py-1 text-xs font-medium tracking-wide uppercase"
-                        >
-                            <span
-                                class="w-1.5 h-1.5 rounded-full bg-[var(--accent-gold)]"
-                            ></span>
-                            <span data-translate-key="hero_badge"
-                                >Vehicle, legal, immigration, business
-                                support</span
-                            >
-                        </div>
-
-                        <h1
-                            class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight"
-                            data-translate-key="hero_title"
-                        >
-                            Your Trusted Partner for Every Need
-                        </h1>
-
-                        <p
-                            class="text-sm sm:text-base md:text-lg text-gray-100 max-w-xl"
-                            data-translate-key="hero_subtitle"
-                        >
-                            Comprehensive support for vehicle, legal,
-                            immigration, and business services. We speak your
-                            language.
-                        </p>
-
-                        <div
-                            class="flex flex-col sm:flex-row gap-3 sm:items-center"
-                        >
-                            <a
-                                href="tel:2672176500"
-                                class="inline-flex justify-center items-center gap-2 rounded-full bg-[var(--accent-gold)] text-gray-900 font-semibold text-sm px-6 py-2.5 shadow-md hover:brightness-110"
-                                data-translate-key="hero_cta_primary"
-                            >
-                                Call 267-217-6500
-                            </a>
-                            <a
-                                href="https://t.me/notary_fm7"
-                                target="_blank"
-                                class="inline-flex justify-center items-center gap-2 rounded-full border border-white/40 text-sm font-medium px-5 py-2.5 hover:bg-white/10"
-                                data-translate-key="hero_cta_secondary"
-                            >
-                                Message us on Telegram
-                            </a>
-                        </div>
-
-                        <div
-                            class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 text-xs sm:text-sm text-gray-100"
-                        >
-                            <div>
-                                <div class="font-semibold" data-translate-key="hero_stat_1_title">3 Languages</div>
-                                <div class="text-gray-200" data-translate-key="hero_stat_1_desc">English, Russian, Uzbek</div>
-                            </div>
-                            <div>
-                                <div class="font-semibold" data-translate-key="hero_stat_2_title">Full-service</div>
-                                <div class="text-gray-200" data-translate-key="hero_stat_2_desc">Vehicle, forms, court, more</div>
-                            </div>
-                            <div>
-                                <div class="font-semibold" data-translate-key="hero_stat_3_title">Personal help</div>
-                                <div class="text-gray-200" data-translate-key="hero_stat_3_desc">In-office + mobile</div>
-                            </div>
-                            <div>
-                                <div class="font-semibold" data-translate-key="hero_stat_4_title">Located in PA</div>
-                                <div class="text-gray-200" data-translate-key="hero_stat_4_desc">Penndel, Bucks County</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right: contact card with QR -->
-                    <div>
-                        <div
-                            class="bg-white/95 text-gray-900 rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-7 space-y-5"
-                        >
-                            <div class="flex items-center gap-3">
-                                <img
-                                    src="logo.png"
-                                    alt="Tag Pro Agency"
-                                    class="h-10 w-auto"
-                                />
-                                <div>
-                                    <p
-                                        class="text-xs uppercase tracking-[0.16em] text-gray-500 font-semibold"
-                                        data-translate-key="hero_card_label"
-                                    >
-                                        Professional agency
-                                    </p>
-                                    <p
-                                        class="text-base font-semibold text-gray-900"
-                                        data-translate-key="hero_card_title"
-                                    >
-                                        Tag Pro Agency LLC
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div
-                                class="grid grid-cols-[auto,1fr] gap-x-3 gap-y-2 text-sm"
-                            >
-                                <div class="mt-0.5">
-                                    <img
-                                        src="address.png"
-                                        alt="Address"
-                                        class="w-4 h-4"
-                                    />
-                                </div>
-                                <a
-                                    href="https://maps.app.goo.gl/eSomKXqPEGDvki928"
-                                    class="hover:underline text-gray-800"
-                                    data-translate-key="hero_card_address"
-                                >
-                                    40 Bellevue Ave, Penndel, PA 19047
-                                </a>
-
-                                <div class="mt-0.5">
-                                    <img
-                                        src="phone.png"
-                                        alt="Phone"
-                                        class="w-4 h-4"
-                                    />
-                                </div>
-                                <a
-                                    href="tel:2672176500"
-                                    class="hover:underline"
-                                >
-                                    267-217-6500
-                                </a>
-
-                                <div class="mt-0.5">
-                                    <img
-                                        src="email.png"
-                                        alt="Email"
-                                        class="w-4 h-4"
-                                    />
-                                </div>
-                                <a
-                                    href="mailto:tagproagency@gmail.com"
-                                    class="hover:underline"
-                                >
-                                    tagproagency@gmail.com
-                                </a>
-
-                                <div class="mt-0.5">
-                                    <img
-                                        src="telegram.png"
-                                        alt="Telegram"
-                                        class="w-4 h-4"
-                                    />
-                                </div>
-                                <a
-                                    href="https://t.me/notary_fm7"
-                                    target="_blank"
-                                    class="hover:underline"
-                                >
-                                    @notary_fm7
-                                </a>
-                            </div>
-
-                            <div
-                                class="flex items-center justify-between gap-4 pt-4 border-t border-gray-200"
-                            >
-                                <div class="text-xs text-gray-600">
-                                    <p
-                                        class="font-semibold"
-                                        data-translate-key="hero_qr_title"
-                                    >
-                                        Quick contact
-                                    </p>
-                                    <p
-                                        class="text-[11px] leading-snug"
-                                        data-translate-key="hero_qr_desc"
-                                    >
-                                        Scan the QR code with your phone to
-                                        save our contact and message us.
-                                    </p>
-                                </div>
-                                <img
-                                    src="qr.PNG"
-                                    alt="Contact QR Code"
-                                    class="w-24 h-24 rounded-lg border border-gray-200"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <section class="relative bg-brand-navy text-white overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="bgrd.jpg" alt="Office Background" class="w-full h-full object-cover opacity-40" onerror="this.style.backgroundColor='#0b1523'" />
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-navy via-brand-navy/90 to-transparent"></div>
             </div>
-        </section>
-
-        <!-- About / Why section -->
-        <section
-            id="about"
-            class="bg-white py-16 sm:py-20 border-b border-gray-100"
-        >
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div
-                    class="grid lg:grid-cols-[1.1fr,0.9fr] gap-10 lg:gap-16 items-start"
-                >
-                    <div class="space-y-4 fade-in-section">
-                        <h2
-                            class="text-2xl sm:text-3xl font-bold text-[var(--primary-dark)]"
-                            data-translate-key="about_title"
-                        >
-                            One office. Many services. Real support.
-                        </h2>
-                        <p
-                            class="text-sm sm:text-base text-gray-600"
-                            data-translate-key="about_subtitle"
-                        >
-                            Tag Pro Agency LLC helps immigrants, families, and
-                            business owners handle the paperwork that actually
-                            affects their life: titles, registrations, court
-                            forms, immigration, insurance, and more.
-                        </p>
-                        <ul
-                            class="mt-4 space-y-2 text-sm sm:text-base text-gray-700 list-disc list-inside"
-                            data-translate-key="about_points"
-                        >
-                            <li>In-person, phone, and mobile service</li>
-                            <li>We speak English, Russian, and Uzbek</li>
-                            <li>We focus on explaining in simple language</li>
-                            <li>We help you avoid mistakes and delays</li>
-                        </ul>
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-32 flex flex-col md:flex-row items-center gap-12">
+                <div class="flex-1 space-y-8 fade-up">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm text-xs font-medium text-brand-goldLight">
+                        <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
+                        <span data-translate-key="hero_badge">Accepting New Clients</span>
                     </div>
-
-                    <div
-                        class="bg-gray-50 border border-gray-200 rounded-2xl p-6 fade-in-section"
-                    >
-                        <h3
-                            class="text-lg font-semibold text-gray-900 mb-3"
-                            data-translate-key="about_block_title"
-                        >
-                            What we can help you with
-                        </h3>
-                        <p
-                            class="text-sm text-gray-600 mb-4"
-                            data-translate-key="about_block_text"
-                        >
-                            Vehicle and registration issues, notarization and
-                            legal documents, immigration and government forms,
-                            business setup, court support, and everyday
-                            paperwork that is hard to do alone.
-                        </p>
-                        <div class="grid sm:grid-cols-2 gap-3 text-xs">
-                            <div
-                                class="rounded-xl bg-white border border-gray-200 px-3 py-2.5"
-                            >
-                                <p class="font-semibold text-gray-900 mb-1" data-translate-key="about_chip_1_title">
-                                    Vehicle & driving
-                                </p>
-                                <p class="text-gray-600" data-translate-key="about_chip_1_desc">
-                                    Titles, tags, registrations, violations.
-                                </p>
-                            </div>
-                            <div
-                                class="rounded-xl bg-white border border-gray-200 px-3 py-2.5"
-                            >
-                                <p class="font-semibold text-gray-900 mb-1" data-translate-key="about_chip_2_title">
-                                    Legal & notary
-                                </p>
-                                <p class="text-gray-600" data-translate-key="about_chip_2_desc">
-                                    Power of attorney, affidavits, apostille.
-                                </p>
-                            </div>
-                            <div
-                                class="rounded-xl bg-white border border-gray-200 px-3 py-2.5"
-                            >
-                                <p class="font-semibold text-gray-900 mb-1" data-translate-key="about_chip_3_title">
-                                    Immigration & forms
-                                </p>
-                                <p class="text-gray-600" data-translate-key="about_chip_3_desc">
-                                    Green Card, EAD, citizenship, SSN, SNAP.
-                                </p>
-                            </div>
-                            <div
-                                class="rounded-xl bg-white border border-gray-200 px-3 py-2.5"
-                            >
-                                <p class="font-semibold text-gray-900 mb-1" data-translate-key="about_chip_4_title">
-                                    Business & finance
-                                </p>
-                                <p class="text-gray-600" data-translate-key="about_chip_4_desc">
-                                    LLC setup, payroll, tax and IRS letters.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services -->
-        <section
-            id="services"
-            class="py-16 sm:py-20"
-            style="
-                background-image: linear-gradient(
-                        rgba(0, 0, 0, 0.78),
-                        rgba(0, 0, 0, 0.92)
-                    ),
-                    url('bgrd.jpg');
-                background-size: cover;
-                background-position: center center;
-                background-repeat: no-repeat;
-                background-attachment: fixed;
-            "
-        >
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-10 sm:mb-14">
-                    <h2
-                        class="text-3xl md:text-4xl font-bold text-white"
-                        data-translate-key="services_title"
-                    >
-                        Our Services
-                    </h2>
-                    <p
-                        class="mt-3 text-sm sm:text-lg text-gray-200 max-w-2xl mx-auto"
-                        data-translate-key="services_subtitle"
-                    >
-                        Expert solutions tailored to your personal and
-                        professional life.
+                    <h1 class="text-4xl md:text-6xl font-bold leading-tight tracking-tight" data-translate-key="hero_title">
+                        Navigate Complexity <br/> with <span class="text-brand-gold">Confidence.</span>
+                    </h1>
+                    <p class="text-lg text-gray-300 max-w-xl leading-relaxed" data-translate-key="hero_subtitle">
+                        Your dedicated partner for vehicle registration, legal notarization, immigration forms, and business setup. We speak your language.
                     </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="toggleBookingModal()" class="px-6 sm:px-8 py-3 bg-brand-gold text-brand-navy font-bold rounded-lg shadow-lg hover:bg-white transition transform hover:-translate-y-1 flex items-center gap-2">
+                            <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                            <span data-translate-key="hero_cta_primary">Book Consultation</span>
+                        </button>
+                        <a href="https://t.me/notary_fm7" target="_blank" class="px-6 sm:px-8 py-3 bg-transparent border border-gray-500 text-white font-medium rounded-lg hover:bg-white/10 transition flex items-center gap-2">
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                            <span>Telegram</span>
+                        </a>
+                    </div>
                 </div>
-
-                <div
-                    class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 text-sm"
-                >
-                    <!-- All 8 service cards exactly as in your version, only spacing adjusted -->
-                    <!-- 1 -->
-                    <div class="fade-in-section service-card">
-                        <div class="card-content">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full icon-bg">
-                                    <!-- icon -->
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="22"
-                                        height="22"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    >
-                                        <path
-                                            d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1 .4-1 1v7c0 .6.4 1 1 1h2"
-                                        />
-                                        <path d="M10 17h6" />
-                                        <path d="M14 17a2 2 0 1 0-4 0" />
-                                        <path
-                                            d="M5 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
-                                        />
-                                        <path
-                                            d="M9 17a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
-                                        />
-                                    </svg>
-                                </div>
-                                <h3
-                                    class="ml-4 text-lg font-semibold"
-                                    data-translate-key="s1_title"
-                                >
-                                    Vehicle & Registration Services
-                                </h3>
-                            </div>
-                            <ul
-                                class="mt-4 space-y-2 text-gray-700 list-disc list-inside"
-                                data-translate-key="s1_list"
-                            ></ul>
+                <div class="w-full max-w-sm bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-2xl shadow-2xl fade-up" style="animation-delay: 0.2s;">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="bg-white p-2 rounded-lg">
+                            <img src="logo.png" class="w-12 h-auto" alt="Logo">
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg">Tag Pro Agency</h3>
+                            <p class="text-brand-gold text-sm" data-translate-key="hero_card_label">Professional Services</p>
                         </div>
                     </div>
-
-                    <!-- 2 -->
-                    <div class="fade-in-section service-card">
-                        <div class="card-content">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full icon-bg">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="22"
-                                        height="22"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    >
-                                        <path
-                                            d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
-                                        />
-                                        <polyline
-                                            points="14 2 14 8 20 8"
-                                        ></polyline>
-                                        <path
-                                            d="m16 13-3.1 3.9a.5.5 0 0 1-.8 0L9 13"
-                                        />
-                                        <path d="M12 17V8" />
-                                    </svg>
-                                </div>
-                                <h3
-                                    class="ml-4 text-lg font-semibold"
-                                    data-translate-key="s2_title"
-                                >
-                                    Notary & Legal Document Services
-                                </h3>
-                            </div>
-                            <ul
-                                class="mt-4 space-y-2 text-gray-700 list-disc list-inside"
-                                data-translate-key="s2_list"
-                            ></ul>
+                    <div class="space-y-4 text-sm text-gray-200">
+                        <div class="flex items-start gap-3">
+                            <img src="address.png" class="w-5 h-5 mt-1 opacity-80" />
+                            <a href="https://maps.app.goo.gl/eSomKXqPEGDvki928" class="hover:text-white transition">40 Bellevue Ave, Penndel, PA 19047</a>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img src="phone.png" class="w-5 h-5 opacity-80" />
+                            <a href="tel:2672176500" class="hover:text-white transition">267-217-6500</a>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img src="email.png" class="w-5 h-5 opacity-80" />
+                            <a href="mailto:tagproagency@gmail.com" class="hover:text-white transition">tagproagency@gmail.com</a>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
 
-                    <!-- 3 -->
-                    <div class="fade-in-section service-card">
-                        <div class="card-content">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full icon-bg">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="22"
-                                        height="22"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    >
-                                        <path d="m5 8 6 6" />
-                                        <path d="m4 14 6-6 2-3" />
-                                        <path d="M2 5h12" />
-                                        <path d="M7 2h1" />
-                                        <path d="m22 22-5-10-5 10" />
-                                        <path d="M14 18h6" />
-                                    </svg>
-                                </div>
-                                <h3
-                                    class="ml-4 text-lg font-semibold"
-                                    data-translate-key="s3_title"
-                                >
-                                    Translation & Certified Document Handling
-                                </h3>
-                            </div>
-                            <ul
-                                class="mt-4 space-y-2 text-gray-700 list-disc list-inside"
-                                data-translate-key="s3_list"
-                            ></ul>
-                        </div>
+        <!-- Services Grid -->
+        <section id="services" class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
+                    <h2 class="text-brand-navy text-3xl font-bold mb-4" data-translate-key="services_title">Comprehensive Professional Services</h2>
+                    <p class="text-gray-600" data-translate-key="services_subtitle">One location for all your administrative, legal, and vehicle needs.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-white p-8 rounded-2xl shadow-soft hover:shadow-card transition border border-gray-100 group fade-up">
+                        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-brand-navy mb-6 group-hover:bg-brand-navy group-hover:text-brand-gold transition-colors"><i data-lucide="car" class="w-6 h-6"></i></div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3" data-translate-key="s1_title">Vehicle Services</h3>
+                        <ul class="space-y-2 text-sm text-gray-600 mb-6 list-disc list-inside" data-translate-key="s1_list"></ul>
                     </div>
-
-                    <!-- 4 -->
-                    <div class="fade-in-section service-card">
-                        <div class="card-content">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full icon-bg">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="22"
-                                        height="22"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    >
-                                        <path
-                                            d="M20 9v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9"
-                                        />
-                                        <path d="M4 13h16" />
-                                        <path d="M10 3 8 21" />
-                                        <path d="m14 3 2 18" />
-                                    </svg>
-                                </div>
-                                <h3
-                                    class="ml-4 text-lg font-semibold"
-                                    data-translate-key="s4_title"
-                                >
-                                    Immigration & Government Form Assistance
-                                </h3>
-                            </div>
-                            <ul
-                                class="mt-4 space-y-2 text-gray-700 list-disc list-inside"
-                                data-translate-key="s4_list"
-                            ></ul>
-                        </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-soft hover:shadow-card transition border border-gray-100 group fade-up" style="animation-delay: 0.1s;">
+                        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-brand-navy mb-6 group-hover:bg-brand-navy group-hover:text-brand-gold transition-colors"><i data-lucide="scroll-text" class="w-6 h-6"></i></div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3" data-translate-key="s2_title">Notary & Legal</h3>
+                        <ul class="space-y-2 text-sm text-gray-600 mb-6 list-disc list-inside" data-translate-key="s2_list"></ul>
                     </div>
-
-                    <!-- 5 -->
-                    <div class="fade-in-section service-card">
-                        <div class="card-content">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full icon-bg">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="22"
-                                        height="22"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    >
-                                        <line
-                                            x1="12"
-                                            x2="12"
-                                            y1="16"
-                                            y2="12"
-                                        />
-                                        <path
-                                            d="M12 2a10 10 0 0 0-7.53 16.59l1.42-1.42A8 8 0 1 1 12 20a8 8 0 0 1-6.5-3.23"
-                                        />
-                                        <path
-                                            d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20Z"
-                                        />
-                                        <path d="M12 12v4" />
-                                    </svg>
-                                </div>
-                                <h3
-                                    class="ml-4 text-lg font-semibold"
-                                    data-translate-key="s5_title"
-                                >
-                                    Business & Financial Services
-                                </h3>
-                            </div>
-                            <ul
-                                class="mt-4 space-y-2 text-gray-700 list-disc list-inside"
-                                data-translate-key="s5_list"
-                            ></ul>
-                        </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-soft hover:shadow-card transition border border-gray-100 group fade-up" style="animation-delay: 0.2s;">
+                        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-brand-navy mb-6 group-hover:bg-brand-navy group-hover:text-brand-gold transition-colors"><i data-lucide="languages" class="w-6 h-6"></i></div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3" data-translate-key="s3_title">Translations</h3>
+                        <ul class="space-y-2 text-sm text-gray-600 mb-6 list-disc list-inside" data-translate-key="s3_list"></ul>
                     </div>
-
-                    <!-- 6 -->
-                    <div class="fade-in-section service-card">
-                        <div class="card-content">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full icon-bg">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="22"
-                                        height="22"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    >
-                                        <path d="M16 20h.01" />
-                                        <path
-                                            d="M4 18c3.5-2.5 7-2.5 10.5 0"
-                                        />
-                                        <path
-                                            d="M18.5 18c1.2-.8 2.5-1.7 3.5-2.5"
-                                        />
-                                        <path
-                                            d="M20 15.5c-1.5 1-3 2-4.5 3"
-                                        />
-                                        <path
-                                            d="M2 22v-4c0-1.1.9-2 2-2h16a2 2 0 0 1 2 2v4"
-                                        />
-                                        <path
-                                            d="M12.2 12.2a3 3 0 0 0 4.1 4.1L20 20"
-                                        />
-                                        <path
-                                            d="M2 12.5a3.5 3.5 0 0 1 5.1-3.1 3.5 3.5 0 0 1 4.9 0"
-                                        />
-                                        <path
-                                            d="M8 7.5a3.5 3.5 0 0 0 5.1 3.1 3.5 3.5 0 0 0 4.9 0"
-                                        />
-                                        <path d="M2 12V2L12 7l10-5v10" />
-                                    </svg>
-                                </div>
-                                <h3
-                                    class="ml-4 text-lg font-semibold"
-                                    data-translate-key="s6_title"
-                                >
-                                    Court Support & Legal Navigation
-                                </h3>
-                            </div>
-                            <ul
-                                class="mt-4 space-y-2 text-gray-700 list-disc list-inside"
-                                data-translate-key="s6_list"
-                            ></ul>
-                        </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-soft hover:shadow-card transition border border-gray-100 group fade-up">
+                        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-brand-navy mb-6 group-hover:bg-brand-navy group-hover:text-brand-gold transition-colors"><i data-lucide="passport" class="w-6 h-6"></i></div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3" data-translate-key="s4_title">Immigration</h3>
+                        <ul class="space-y-2 text-sm text-gray-600 mb-6 list-disc list-inside" data-translate-key="s4_list"></ul>
                     </div>
-
-                    <!-- 7 -->
-                    <div class="fade-in-section service-card">
-                        <div class="card-content">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full icon-bg">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="22"
-                                        height="22"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    >
-                                        <path
-                                            d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"
-                                        />
-                                        <circle cx="12" cy="7" r="4" />
-                                        <path
-                                            d="M12 12.3c7.2 4.2 12 1.3 12-4.3 0-3.5-5-7-12-7s-12 3.5-12 7c0 5.6 4.8 8.5 12 4.3Z"
-                                        />
-                                        <path
-                                            d="M20.6 13.3c.3.2.5.5.5.8 0 .5-.4 1-1 1s-1-.5-1-1c0-.3.2-.6.5-.8"
-                                        />
-                                        <path
-                                            d="M3.4 13.3c-.3.2-.5.5-.5.8 0 .5.4 1 1 1s1-.5 1-1c0-.3-.2-.6-.5-.8"
-                                        />
-                                    </svg>
-                                </div>
-                                <h3
-                                    class="ml-4 text-lg font-semibold"
-                                    data-translate-key="s7_title"
-                                >
-                                    Event Services & Invitations
-                                </h3>
-                            </div>
-                            <ul
-                                class="mt-4 space-y-2 text-gray-700 list-disc list-inside"
-                                data-translate-key="s7_list"
-                            ></ul>
-                        </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-soft hover:shadow-card transition border border-gray-100 group fade-up" style="animation-delay: 0.1s;">
+                        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-brand-navy mb-6 group-hover:bg-brand-navy group-hover:text-brand-gold transition-colors"><i data-lucide="briefcase" class="w-6 h-6"></i></div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3" data-translate-key="s5_title">Business Setup</h3>
+                        <ul class="space-y-2 text-sm text-gray-600 mb-6 list-disc list-inside" data-translate-key="s5_list"></ul>
                     </div>
-
-                    <!-- 8 -->
-                    <div class="fade-in-section service-card">
-                        <div class="card-content">
-                            <div class="flex items-center">
-                                <div class="p-3 rounded-full icon-bg">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        width="22"
-                                        height="22"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    >
-                                        <path d="M8 2v4" />
-                                        <path d="M16 2v4" />
-                                        <rect
-                                            width="18"
-                                            height="18"
-                                            x="3"
-                                            y="4"
-                                            rx="2"
-                                        />
-                                        <path d="M3 10h18" />
-                                        <path d="M10 14h4" />
-                                        <path d="M12 12v4" />
-                                        <path d="M12 18h.01" />
-                                    </svg>
-                                </div>
-                                <h3
-                                    class="ml-4 text-lg font-semibold"
-                                    data-translate-key="s8_title"
-                                >
-                                    Mobile & After-Hours Services
-                                </h3>
-                            </div>
-                            <ul
-                                class="mt-4 space-y-2 text-gray-700 list-disc list-inside"
-                                data-translate-key="s8_list"
-                            ></ul>
-                        </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-soft hover:shadow-card transition border border-gray-100 group fade-up" style="animation-delay: 0.2s;">
+                        <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-brand-navy mb-6 group-hover:bg-brand-navy group-hover:text-brand-gold transition-colors"><i data-lucide="gavel" class="w-6 h-6"></i></div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3" data-translate-key="s6_title">Court Support</h3>
+                        <ul class="space-y-2 text-sm text-gray-600 mb-6 list-disc list-inside" data-translate-key="s6_list"></ul>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Process -->
-        <section
-            id="process"
-            class="bg-gray-50 py-16 sm:py-20 border-y border-gray-100"
-        >
+        <section id="process" class="py-20 bg-white border-t border-gray-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-10">
-                    <h2
-                        class="text-2xl sm:text-3xl font-bold text-[var(--primary-dark)]"
-                        data-translate-key="process_title"
-                    >
-                        How working with us looks
-                    </h2>
-                    <p
-                        class="mt-3 text-sm sm:text-base text-gray-600 max-w-2xl mx-auto"
-                        data-translate-key="process_subtitle"
-                    >
-                        We keep the steps simple so you know exactly what will
-                        happen next.
-                    </p>
-                </div>
-
-                <div
-                    class="grid md:grid-cols-3 gap-6 md:gap-8 text-sm fade-in-section"
-                    data-translate-key="process_steps"
-                >
-                    <!-- content filled by translations (list of 3 items) -->
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact -->
-        <section
-            id="contact"
-            class="bg-white py-16 sm:py-20"
-        >
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-8">
-                    <h2
-                        class="text-2xl sm:text-3xl font-bold text-[var(--primary-dark)]"
-                        data-translate-key="contact_title"
-                    >
-                        Contact Us
-                    </h2>
-                    <p
-                        class="mt-3 text-sm sm:text-base text-gray-600 max-w-xl mx-auto"
-                        data-translate-key="contact_subtitle"
-                    >
-                        Scan the code below with your phone to get in touch
-                        with us instantly.
-                    </p>
-                </div>
-
-                <div
-                    class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12"
-                >
-                    <div class="text-sm text-gray-700 space-y-3">
-                        <div class="flex items-start gap-3">
-                            <img
-                                src="address.png"
-                                alt="Address"
-                                class="w-4 h-4 mt-0.5"
-                            />
-                            <div>
-                                <div class="font-semibold" data-translate-key="contact_address_label">Office</div>
-                                <a
-                                    href="https://maps.app.goo.gl/eSomKXqPEGDvki928"
-                                    class="hover:underline text-gray-800"
-                                >
-                                    40 Bellevue Ave, Penndel, PA 19047
-                                </a>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <img
-                                src="phone.png"
-                                alt="Phone"
-                                class="w-4 h-4 mt-0.5"
-                            />
-                            <div>
-                                <div class="font-semibold" data-translate-key="contact_phone_label">Phone</div>
-                                <a href="tel:2672176500" class="hover:underline"
-                                    >267-217-6500</a
-                                >
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <img
-                                src="email.png"
-                                alt="Email"
-                                class="w-4 h-4 mt-0.5"
-                            />
-                            <div>
-                                <div class="font-semibold" data-translate-key="contact_email_label">Email</div>
-                                <a
-                                    href="mailto:tagproagency@gmail.com"
-                                    class="hover:underline"
-                                >
-                                    tagproagency@gmail.com
-                                </a>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-3">
-                            <img
-                                src="telegram.png"
-                                alt="Telegram"
-                                class="w-4 h-4 mt-0.5"
-                            />
-                            <div>
-                                <div class="font-semibold">Telegram</div>
-                                <a
-                                    href="https://t.me/notary_fm7"
-                                    target="_blank"
-                                    class="hover:underline"
-                                >
-                                    @notary_fm7
-                                </a>
-                            </div>
-                        </div>
+                <div class="flex flex-col md:flex-row gap-12 items-center">
+                    <div class="md:w-1/2 fade-up">
+                        <img src="bgrd.jpg" alt="Working Process" class="rounded-2xl shadow-2xl object-cover h-96 w-full grayscale hover:grayscale-0 transition duration-700" />
                     </div>
-
-                    <div class="flex flex-col items-center gap-3">
-                        <img
-                            src="qr.PNG"
-                            alt="Contact QR Code"
-                            class="w-40 h-40 sm:w-48 sm:h-48 rounded-xl shadow-lg border border-gray-200"
-                        />
-                        <p
-                            class="text-xs text-gray-500 max-w-xs text-center"
-                            data-translate-key="contact_qr_note"
-                        >
-                            Scan the QR code to quickly save our information,
-                            open directions, or start a message.
-                        </p>
+                    <div class="md:w-1/2 space-y-8 fade-up">
+                        <h2 class="text-3xl font-bold text-brand-navy" data-translate-key="process_title">Streamlined Process</h2>
+                        <div class="space-y-6" id="process-container"></div>
+                        <button onclick="toggleBookingModal()" class="text-brand-navy font-semibold border-b-2 border-brand-gold pb-1 hover:text-brand-gold transition" data-translate-key="process_cta">Start your application &rarr;</button>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Footer -->
+        <footer id="contact" class="bg-brand-navy text-gray-300 py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <img src="logo.png" alt="Tag Pro Agency" class="h-10 mb-6 bg-white p-1 rounded" />
+                    <p class="max-w-xs mb-6 text-sm leading-relaxed" data-translate-key="footer_desc">Providing expert assistance in vehicle, legal, and business matters for the PA community.</p>
+                    <div class="flex gap-4">
+                        <a href="https://t.me/notary_fm7" class="text-white hover:text-brand-gold transition"><i data-lucide="send" class="w-5 h-5"></i></a>
+                        <a href="mailto:tagproagency@gmail.com" class="text-white hover:text-brand-gold transition"><i data-lucide="mail" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4" data-translate-key="footer_office">Office</h4>
+                    <address class="not-italic text-sm space-y-2">
+                        <p class="flex items-start gap-2"><i data-lucide="map-pin" class="w-4 h-4 mt-1"></i> 40 Bellevue Ave, Suite #5<br>Penndel, PA 19047</p>
+                        <p class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4"></i> Mon-Fri: 9am - 6pm</p>
+                    </address>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4" data-translate-key="footer_links">Quick Links</h4>
+                    <ul class="text-sm space-y-2">
+                        <li><a href="#services" class="hover:text-white transition" data-translate-key="nav_services">Services</a></li>
+                        <li><a href="#" onclick="toggleBookingModal()" class="hover:text-white transition" data-translate-key="nav_book">Book Appointment</a></li>
+                        <li><a href="https://t.me/notary_fm7" class="hover:text-white transition">Telegram Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="max-w-7xl mx-auto px-4 mt-12 pt-8 border-t border-gray-800 text-xs text-center text-gray-500">
+                &copy; 2025 Tag Pro Agency LLC. All rights reserved.
+            </div>
+        </footer>
     </main>
 
-    <!-- Footer -->
-    <footer
-        class="bg-[var(--primary-soft)] text-white border-t border-gray-800"
-    >
-        <div
-            class="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8 text-center space-y-4"
-        >
-            <p
-                class="text-sm font-semibold"
-                data-translate-key="footer_contact_title"
-            >
-                Contact Information
-            </p>
-            <div
-                class="flex flex-col sm:flex-row items-center justify-center gap-2 text-xs sm:text-sm text-gray-300"
-            >
-                <span
-                    >© 2025 Tag Pro Agency LLC ·
-                    <span data-translate-key="footer_copyright"
-                        >Designed with care</span
-                    ></span
-                >
+    <!-- CHAT WIDGET -->
+    <div id="chat-widget-container" class="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-4 font-sans">
+        <div id="chat-window" class="hidden bg-white w-[90vw] md:w-[350px] h-[500px] rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden transform transition-all origin-bottom-right duration-300 scale-95 opacity-0">
+            <div class="bg-brand-navy p-4 flex items-center justify-between text-white shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="relative">
+                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden">
+                            <img src="logo.png" class="w-8 object-contain" alt="Bot" />
+                        </div>
+                        <span class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-brand-navy rounded-full"></span>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm">Tag Pro Assistant</h4>
+                        <p class="text-xs text-gray-300" data-translate-key="chat_status">Online | Replies instantly</p>
+                    </div>
+                </div>
+                <button onclick="toggleChat()" class="hover:bg-white/10 p-1 rounded"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
-            <p
-                class="text-[10px] sm:text-xs text-gray-400 max-w-4xl mx-auto leading-snug"
-                data-translate-key="privacy_policy"
-            >
-                Privacy Policy: No mobile information will be shared with third
-                parties/affiliates for marketing/promotional purposes. All other
-                categories exclude text messaging originator opt-in data and
-                consent; this information will not be shared with any third
-                parties.
-            </p>
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto bg-gray-50 chat-scroll space-y-4"></div>
+            <div class="p-3 border-t bg-white shrink-0">
+                <div class="flex gap-2">
+                    <button onclick="toggleBookingModal()" class="flex-1 bg-brand-gold text-brand-navy text-xs font-bold py-2 px-3 rounded hover:brightness-110 transition" data-translate-key="nav_book">Book Appointment</button>
+                    <a href="https://t.me/notary_fm7" target="_blank" class="flex-1 bg-blue-500 text-white text-xs font-bold py-2 px-3 rounded hover:brightness-110 transition text-center flex items-center justify-center gap-1"><i data-lucide="send" class="w-3 h-3"></i> Telegram</a>
+                </div>
+                <p class="text-[10px] text-center text-gray-400 mt-2">Powered by Tag Pro Agency</p>
+            </div>
         </div>
-    </footer>
+        <button onclick="toggleChat()" id="chat-toggle-btn" class="btn-pulse bg-brand-navy text-white w-14 h-14 rounded-full flex items-center justify-center shadow-float hover:scale-110 transition duration-300"><i data-lucide="message-circle" class="w-7 h-7"></i></button>
+    </div>
+
+    <!-- BOOKING MODAL (Telegram Based) -->
+    <div id="booking-modal" class="fixed inset-0 z-[60] hidden">
+        <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="toggleBookingModal()"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white w-[95%] md:w-full max-w-md rounded-2xl shadow-2xl p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-brand-navy" data-translate-key="nav_book">Request Appointment</h3>
+                <button onclick="toggleBookingModal()" class="text-gray-400 hover:text-gray-600"><i data-lucide="x" class="w-6 h-6"></i></button>
+            </div>
+            
+            <div id="form-container">
+                <form id="booking-form" onsubmit="handleBooking(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 uppercase mb-1" data-translate-key="form_name">Full Name</label>
+                        <input type="text" name="name" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none" placeholder="John Doe">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 uppercase mb-1" data-translate-key="form_phone">Phone Number</label>
+                        <input type="tel" name="phone" required class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none" placeholder="(267) 000-0000">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 uppercase mb-1" data-translate-key="form_service">Service Needed</label>
+                        <select name="service" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none bg-white">
+                            <option>Vehicle Title/Registration</option>
+                            <option>Notary Service</option>
+                            <option>Immigration/Forms</option>
+                            <option>Business Setup</option>
+                            <option>Translation</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 uppercase mb-1" data-translate-key="form_time">Preferred Date/Time</label>
+                        <input type="text" name="timing" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none" placeholder="e.g. Monday morning">
+                    </div>
+                    <div class="pt-2">
+                        <button type="submit" class="w-full bg-brand-navy text-white font-bold py-3 rounded-lg hover:bg-gray-800 transition flex justify-center items-center gap-2">
+                            <span data-translate-key="form_send">Send Request</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                        <p class="text-xs text-center text-gray-500 mt-3" data-translate-key="form_note">This will open Telegram to send your request.</p>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Telegram Installation Prompt (Hidden by default) -->
+            <div id="telegram-prompt" class="hidden text-center py-6">
+                <div class="w-16 h-16 bg-blue-100 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-4"><i data-lucide="send" class="w-8 h-8"></i></div>
+                <h4 class="text-lg font-bold text-brand-navy mb-2" data-translate-key="tg_prompt_title">Telegram Required</h4>
+                <p class="text-gray-600 text-sm mb-4" data-translate-key="tg_prompt_desc">It seems Telegram didn't open. Do you have it installed?</p>
+                <div class="flex gap-3 justify-center">
+                    <a href="https://telegram.org/dl" target="_blank" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg text-sm font-medium hover:bg-gray-300" data-translate-key="tg_install">Install Telegram</a>
+                    <a href="#" id="retry-tg-btn" class="px-4 py-2 bg-blue-500 text-white rounded-lg text-sm font-medium hover:bg-blue-600" data-translate-key="tg_retry">Try Web Version</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <script>
+        lucide.createIcons();
+
         const translations = {
             en: {
-                gov_banner:
-                    "An official website of the Tag Pro Agency LLC",
-                nav_services: "Services",
-                nav_about: "About",
-                nav_process: "How it works",
-                nav_contact: "Contact",
-                nav_cta_phone: "Call now",
-
-                hero_badge:
-                    "Vehicle, legal, immigration, business support",
-                hero_title: "Your Trusted Partner for Every Need",
-                hero_subtitle:
-                    "Comprehensive support for vehicle, legal, immigration, and business services. We speak your language.",
-                hero_cta_primary: "Call 267-217-6500",
-                hero_cta_secondary: "Message us on Telegram",
-                hero_stat_1_title: "4 Languages",
-                hero_stat_1_desc: "English, Russian, Uzbek, Tajik",
-                hero_stat_2_title: "Full-service",
-                hero_stat_2_desc: "Vehicle, forms, court, more",
-                hero_stat_3_title: "Personal help",
-                hero_stat_3_desc: "In-office + mobile",
-                hero_stat_4_title: "Located in PA",
-                hero_stat_4_desc: "Penndel, Bucks County",
-                hero_card_label: "Professional agency",
-                hero_card_title: "Tag Pro Agency LLC",
-                hero_card_address: "40 Bellevue Ave, Penndel, PA 19047",
-                hero_qr_title: "Quick contact",
-                hero_qr_desc:
-                    "Scan the QR code with your phone to save our contact and message us.",
-
-                about_title:
-                    "One office. Many services. Real support.",
-                about_subtitle:
-                    "Tag Pro Agency LLC helps immigrants, families, and business owners handle the paperwork that actually affects their life: titles, registrations, court forms, immigration, insurance, and more.",
-                about_points: [
-                    "In-person, phone, and mobile service",
-                    "We speak English, Russian, Uzbek, and Tajik",
-                    "We focus on explaining in simple language",
-                    "We help you avoid mistakes and delays",
-                ],
-                about_block_title: "What we can help you with",
-                about_block_text:
-                    "Vehicle and registration issues, notarization and legal documents, immigration and government forms, business setup, court support, and everyday paperwork that is hard to do alone.",
-                about_chip_1_title: "Vehicle & driving",
-                about_chip_1_desc:
-                    "Titles, tags, registrations, violations.",
-                about_chip_2_title: "Legal & notary",
-                about_chip_2_desc:
-                    "Power of attorney, affidavits, apostille.",
-                about_chip_3_title: "Immigration & forms",
-                about_chip_3_desc:
-                    "Green Card, EAD, citizenship, SSN, SNAP.",
-                about_chip_4_title: "Business & finance",
-                about_chip_4_desc:
-                    "LLC setup, payroll, tax and IRS letters.",
-
-                services_title: "Our Services",
-                services_subtitle:
-                    "Expert solutions tailored to your personal and professional life.",
-
-                process_title: "How working with us looks",
-                process_subtitle:
-                    "We keep the steps simple so you know exactly what will happen next.",
+                gov_banner: "Trusted Professional Agency in PA",
+                hero_badge: "Accepting New Clients",
+                nav_services: "Services", nav_process: "Process", nav_contact: "Contact", nav_book: "Book Appointment",
+                hero_title: "Navigate Complexity <br/> with <span class='text-brand-gold'>Confidence.</span>",
+                hero_subtitle: "Your dedicated partner for vehicle registration, legal notarization, immigration forms, and business setup. We speak your language.",
+                hero_cta_primary: "Book Consultation",
+                hero_card_label: "Professional Services",
+                services_title: "Comprehensive Professional Services",
+                services_subtitle: "One location for all your administrative, legal, and vehicle needs.",
+                process_title: "Streamlined Process",
+                process_cta: "Start your application &rarr;",
+                footer_desc: "Providing expert assistance in vehicle, legal, and business matters for the PA community.",
+                footer_office: "Office", footer_links: "Quick Links",
+                chat_status: "Online | Replies instantly",
+                form_name: "Full Name", form_phone: "Phone Number", form_service: "Service Needed", form_time: "Preferred Date/Time", form_send: "Send Request", form_note: "This will open Telegram to send your request.",
+                tg_prompt_title: "Telegram Required", tg_prompt_desc: "It seems Telegram didn't open. Do you have it installed?", tg_install: "Install Telegram", tg_retry: "Try Web Version",
+                s1_title: "Vehicle Services", s1_list: ["Title transfers & new plates", "Commercial IRP registration", "Instant tag renewals", "Suspension resolution"],
+                s2_title: "Notary & Legal", s2_list: ["Power of Attorney", "Apostille services", "Affidavits", "Mobile notary available"],
+                s3_title: "Translations", s3_list: ["Certified Translations (En/Ru/Uz/Tj)", "Legal document translation", "Certified mail prep"],
+                s4_title: "Immigration", s4_list: ["Green Card & Citizenship", "Passport renewal", "Consular visas", "SSN & SNAP applications"],
+                s5_title: "Business Setup", s5_list: ["LLC & Corp formation", "Payroll & Tax IDs", "Business Insurance", "Compliance audit"],
+                s6_title: "Court Support", s6_list: ["Traffic violation support", "Court interpretation", "Fine negotiation", "Hearing prep"],
                 process_steps: [
-                    "<div class='bg-white border border-gray-200 rounded-2xl p-5'><div class='text-xs font-semibold text-gray-500 mb-1'>Step 1</div><div class='font-semibold text-gray-900 mb-1'>Reach out</div><p class='text-gray-600 text-sm'>Call, message on Telegram, or visit the office. Tell us your situation in simple words. We will tell you what is realistic and what is not.</p></div>",
-                    "<div class='bg-white border border-gray-200 rounded-2xl p-5'><div class='text-xs font-semibold text-gray-500 mb-1'>Step 2</div><div class='font-semibold text-gray-900 mb-1'>Bring documents</div><p class='text-gray-600 text-sm'>We review your documents, explain what is missing, and prepare the correct forms, translations, and applications for your case.</p></div>",
-                    "<div class='bg-white border border-gray-200 rounded-2xl p-5'><div class='text-xs font-semibold text-gray-500 mb-1'>Step 3</div><div class='font-semibold text-gray-900 mb-1'>We file and follow up</div><p class='text-gray-600 text-sm'>We submit, mail, or upload what is needed and help you track responses, deadlines, and next actions.</p></div>",
+                    { step: "01", title: "Consultation", desc: "Contact us via chat, phone, or visit. We assess your needs immediately." },
+                    { step: "02", title: "Processing", desc: "We prepare forms, translations, and handle the bureaucracy for you." },
+                    { step: "03", title: "Completion", desc: "You receive your documents, tags, or approvals. Simple and stress-free." }
                 ],
-
-                contact_title: "Contact Us",
-                contact_subtitle:
-                    "Scan the code below with your phone to get in touch with us instantly.",
-                contact_address_label: "Office",
-                contact_phone_label: "Phone",
-                contact_email_label: "Email",
-                contact_qr_note:
-                    "Scan the QR code to quickly save our information, open directions, or start a message.",
-
-                footer_contact_title: "Contact Information",
-                footer_copyright: "Designed with care",
-                privacy_policy:
-                    "Privacy Policy: No mobile information will be shared with third parties/affiliates for marketing/promotional purposes. All other categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.",
-
-                s1_title: "Vehicle & Registration Services",
-                s1_list: [
-                    "Title transfers for private and dealer vehicle sales",
-                    "New Pennsylvania license plates and validation stickers",
-                    "IRP (International Registration Plan) registration for commercial trucks",
-                    "Duplicate titles and registration cards",
-                    "Temporary tags and registration renewals",
-                    "Dealer and commercial vehicle processing",
-                    "EZ Pass setup and toll payments",
-                    "Violation management: citation support",
-                    "Suspended registration resolution",
-                    "Court fine payments and negotiation assistance",
-                ],
-                s2_title: "Notary & Legal Document Services",
-                s2_list: [
-                    "Notarization of all personal and legal documents",
-                    "Customized Power of Attorney",
-                    "Apostille services for international use",
-                    "Affidavits for court & legal requirements",
-                    "Marriage & Divorce Application Assistance",
-                    "Living Will & Trust notarization",
-                    "Sponsorship & employment verification letters",
-                    "Lease agreement notarization",
-                    "Mobile notary visits (home/office/hospital)",
-                ],
-                s3_title: "Translation & Certified Document Handling",
-                s3_list: [
-                    "Certified translations (English/Russian/Uzbek)",
-                    "Multilingual legal and immigration documentation",
-                    "Certified mail, envelope prep, and delivery",
-                    "Court interpreter and in-person translation support",
-                ],
-                s4_title: "Immigration & Government Form Assistance",
-                s4_list: [
-                    "Green Card renewals",
-                    "EAD (work permit) renewals",
-                    "U.S. citizenship (naturalization) applications",
-                    "Birth certificate corrections and duplicates",
-                    "Passport appointment support (regular, expedited, emergency)",
-                    "Uzbekistan consular visa & return certificates",
-                    "ELRC child care subsidies",
-                    "Health insurance enrollment (Marketplace, Medicaid, CHIP)",
-                    "SNAP applications",
-                    "School & daycare registration assistance",
-                    "Diploma/transcript evaluation",
-                    "Social Security Number applications",
-                ],
-                s5_title: "Business & Financial Services",
-                s5_list: [
-                    "Business formation (LLC, Corporation, Sole Proprietor)",
-                    "Payroll setup and compliance",
-                    "Workers’ compensation support",
-                    "Business insurance assistance",
-                    "QuickBooks setup & training",
-                    "Tax department letters and fine response",
-                    "IRS payment setup & installment planning",
-                    "New York Life – life insurance consultations & referrals",
-                ],
-                s6_title: "Court Support & Legal Navigation",
-                s6_list: [
-                    "Magisterial court phone support (plead guilty/not guilty)",
-                    "In-person court support: accompany, translate, advocate",
-                    "Traffic ticket, court date & hearing assistance",
-                    "Fine negotiation, documentation & translation",
-                ],
-                s7_title: "Event Services & Invitations",
-                s7_list: [
-                    "Custom invitations: weddings, birthdays, baby showers, special events",
-                    "Personalized RSVP link creation",
-                    "Fast turnaround & digital/mobile delivery",
-                ],
-                s8_title: "Mobile & After-Hours Services",
-                s8_list: [
-                    "Mobile notary & registration services",
-                    "Same-day courier/document delivery & pickup",
-                    "Evening & weekend appointments by request",
-                    "Emergency travel, court & legal support",
-                ],
+                chat: {
+                    greeting: "Hello! 👋 Welcome to Tag Pro Agency. I can help you in English.",
+                    ask: "What can I help you with today?",
+                    options: [{ label: "🚗 Vehicle/Tags", id: "vehicle" }, { label: "📝 Notary/Legal", id: "notary" }, { label: "📞 Call Me Back", id: "callback" }, { label: "📅 Book Appointment", id: "book" }],
+                    vehicle_resp: "For Vehicle services, are you looking for a Title Transfer or Registration Renewal?",
+                    vehicle_opts: [{label: "Title Transfer", id: "title"}, {label: "Registration", id: "reg"}, {label: "Back", id: "start"}],
+                    title_resp: "For a Title Transfer, please bring: <br>1. Original Title <br>2. Valid PA ID/DL <br>3. Insurance Card. <br><br>Would you like to book a slot?",
+                    callback_resp: "Please enter your phone number below, and an agent will call you shortly.",
+                    callback_confirm: "Thanks! We have received your number and will call you ASAP via Telegram."
+                }
             },
-
             ru: {
-                gov_banner: "Официальный сайт Tag Pro Agency LLC",
-                nav_services: "Услуги",
-                nav_about: "О нас",
-                nav_process: "Как мы работаем",
-                nav_contact: "Контакты",
-                nav_cta_phone: "Позвонить",
-
-                hero_badge:
-                    "Авто, юридические, иммиграционные и бизнес-услуги",
-                hero_title:
-                    "Ваш надёжный партнёр на все случаи жизни",
-                hero_subtitle:
-                    "Комплексная поддержка по автомобильным, юридическим, иммиграционным и бизнес-услугам. Мы говорим на вашем языке.",
-                hero_cta_primary: "Позвонить 267-217-6500",
-                hero_cta_secondary: "Написать в Telegram",
-                hero_stat_1_title: "4 языка",
-                hero_stat_1_desc: "Английский, русский, узбекский, таджикский",
-                hero_stat_2_title: "Полный спектр",
-                hero_stat_2_desc: "Авто, формы, суд и др.",
-                hero_stat_3_title: "Личное сопровождение",
-                hero_stat_3_desc: "Офис + выезд",
-                hero_stat_4_title: "Офис в Пенсильвании",
-                hero_stat_4_desc: "Penndel, округ Bucks",
-                hero_card_label: "Профессиональное агентство",
-                hero_card_title: "Tag Pro Agency LLC",
-                hero_card_address: "40 Bellevue Ave, Penndel, PA 19047",
-                hero_qr_title: "Быстрая связь",
-                hero_qr_desc:
-                    "Отсканируйте QR-код телефоном, чтобы сохранить контакт и написать нам.",
-
-                about_title:
-                    "Один офис. Много услуг. Реальная помощь.",
-                about_subtitle:
-                    "Tag Pro Agency LLC помогает иммигрантам, семьям и владельцам бизнеса разбираться с документами: тайтлы, регистрации, суд, иммиграция, страховка и другое.",
-                about_points: [
-                    "Приём в офисе, по телефону и выезд на место",
-                    "Говорим на английском, русском, узбекском и таджикском",
-                    "Объясняем простым языком без сложных терминов",
-                    "Помогаем избежать ошибок, штрафов и задержек",
-                ],
-                about_block_title: "Чем мы занимаемся",
-                about_block_text:
-                    "Проблемы с авто и регистрацией, нотариат и юридические документы, иммиграция и гос-формы, открытие бизнеса, сопровождение в суде и повседневная бумажная работа.",
-                about_chip_1_title: "Авто и вождение",
-                about_chip_1_desc:
-                    "Тайтлы, номера, регистрации, нарушения.",
-                about_chip_2_title: "Юридическое и нотариат",
-                about_chip_2_desc:
-                    "Доверенности, аффидевиты, апостиль.",
-                about_chip_3_title: "Иммиграция и формы",
-                about_chip_3_desc:
-                    "Грин-карта, EAD, гражданство, SSN, SNAP.",
-                about_chip_4_title: "Бизнес и финансы",
-                about_chip_4_desc:
-                    "Открытие бизнеса, payroll, IRS-письма.",
-
-                services_title: "Наши услуги",
-                services_subtitle:
-                    "Экспертные решения для вашей личной и профессиональной жизни.",
-
-                process_title: "Как проходит работа с нами",
-                process_subtitle:
-                    "Держим процесс простым и понятным, без лишней бюрократии.",
+                gov_banner: "Профессиональное агентство в Пенсильвании",
+                hero_badge: "Принимаем новых клиентов",
+                nav_services: "Услуги", nav_process: "Процесс", nav_contact: "Контакты", nav_book: "Записаться",
+                hero_title: "Решаем Сложности <br/> с <span class='text-brand-gold'>Уверенностью.</span>",
+                hero_subtitle: "Ваш партнер в вопросах регистрации авто, нотариата, иммиграции и бизнеса. Мы говорим на вашем языке.",
+                hero_cta_primary: "Записаться",
+                hero_card_label: "Профессиональные Услуги",
+                services_title: "Полный Спектр Услуг",
+                services_subtitle: "Единый центр для решения всех административных и юридических вопросов.",
+                process_title: "Как мы работаем",
+                process_cta: "Начать оформление &rarr;",
+                footer_desc: "Оказываем экспертную помощь в вопросах авто, права и бизнеса для жителей PA.",
+                footer_office: "Офис", footer_links: "Быстрые Ссылки",
+                chat_status: "Онлайн | Отвечаем мгновенно",
+                form_name: "ФИО", form_phone: "Номер телефона", form_service: "Нужная услуга", form_time: "Желаемое время", form_send: "Отправить запрос", form_note: "Откроется Telegram для отправки запроса.",
+                tg_prompt_title: "Нужен Telegram", tg_prompt_desc: "Похоже, Telegram не открылся. Он у вас установлен?", tg_install: "Установить", tg_retry: "Открыть Web-версию",
+                s1_title: "Авто Услуги", s1_list: ["Переоформление тайтлов", "Регистрация IRP", "Новые номера", "Решение проблем с правами"],
+                s2_title: "Нотариус", s2_list: ["Доверенности", "Апостиль", "Аффидевиты", "Выездной нотариус"],
+                s3_title: "Переводы", s3_list: ["Сертифицированные переводы", "Юридические документы", "Подготовка конвертов"],
+                s4_title: "Иммиграция", s4_list: ["Грин-карты и Гражданство", "Паспорта", "Визы", "SSN и пособия"],
+                s5_title: "Бизнес", s5_list: ["Открытие LLC и Corp", "Payroll и налоги", "Страхование бизнеса", "Аудит"],
+                s6_title: "Суд", s6_list: ["Помощь с тикетами", "Перевод в суде", "Переговоры по штрафам", "Подготовка к слушанию"],
                 process_steps: [
-                    "<div class='bg-white border border-gray-200 rounded-2xl p-5'><div class='text-xs font-semibold text-gray-500 mb-1'>Шаг 1</div><div class='font-semibold text-gray-900 mb-1'>Связаться с нами</div><p class='text-gray-600 text-sm'>Позвоните, напишите в Telegram или приходите в офис. Кратко объясните ситуацию — мы честно скажем, что реально и какие варианты есть.</p></div>",
-                    "<div class='bg-white border border-gray-200 rounded-2xl p-5'><div class='text-xs font-semibold text-gray-500 mb-1'>Шаг 2</div><div class='font-semibold text-gray-900 mb-1'>Принести документы</div><p class='text-gray-600 text-sm'>Проверяем ваши документы, говорим чего не хватает и готовим правильные формы, переводы и заявления.</p></div>",
-                    "<div class='bg-white border border-gray-200 rounded-2xl p-5'><div class='text-xs font-semibold text-gray-500 mb-1'>Шаг 3</div><div class='font-semibold text-gray-900 mb-1'>Подача и сопровождение</div><p class='text-gray-600 text-sm'>Подаём/отправляем документы, помогаем отслеживать ответы, сроки и следующие шаги.</p></div>",
+                    { step: "01", title: "Консультация", desc: "Свяжитесь с нами. Мы сразу оценим вашу ситуацию." },
+                    { step: "02", title: "Оформление", desc: "Мы готовим формы, переводы и берем на себя бюрократию." },
+                    { step: "03", title: "Результат", desc: "Вы получаете документы, номера или одобрение. Без стресса." }
                 ],
-
-                contact_title: "Свяжитесь с нами",
-                contact_subtitle:
-                    "Отсканируйте QR-код телефоном, чтобы быстро связаться с нами.",
-                contact_address_label: "Офис",
-                contact_phone_label: "Телефон",
-                contact_email_label: "Email",
-                contact_qr_note:
-                    "Сканируйте QR-код, чтобы сохранить контакт, построить маршрут или написать сообщение.",
-
-                footer_contact_title: "Контактная информация",
-                footer_copyright: "Разработано с заботой",
-                privacy_policy:
-                    "Политика конфиденциальности: Мобильная информация не передается третьим лицам/аффилированным лицам в маркетинговых/рекламных целях. Все остальные категории исключают данные и согласие на подписку на текстовые сообщения; эта информация не будет передана третьим лицам.",
-
-                s1_title: "Автоуслуги",
-                s1_list: [
-                    "Передача TITLE при купле/продаже автомобиля",
-                    "Новые номерные знаки и стикеры Пенсильвании",
-                    "IRP-регистрация грузовиков",
-                    "Дубликаты TITLE и регистрационных карт",
-                    "Временные номера и продление регистрации",
-                    "Обработка дилерских и коммерческих автомобилей",
-                    "Подключение EZ Pass и оплата сборов",
-                    "Работа с нарушениями и штрафами",
-                    "Решение приостановленной регистрации",
-                    "Оплата штрафов и переговоры с судом",
-                ],
-                s2_title: "Нотариальные и юридические услуги",
-                s2_list: [
-                    "Заверение любых личных и юридических документов",
-                    "Доверенности по образцу",
-                    "Апостиль для международного использования",
-                    "Аффидевиты для суда и гос-органов",
-                    "Помощь при браке и разводе",
-                    "Завещания и доверительное управление",
-                    "Спонсорские письма и подтверждение работы",
-                    "Заверение договоров аренды",
-                    "Выездной нотариус (дом/офис/больница)",
-                ],
-                s3_title: "Переводы и работа с документами",
-                s3_list: [
-                    "Сертифицированный перевод (англ/рус/узб)",
-                    "Многоязычная подготовка юридических и иммиграционных документов",
-                    "Заказные письма и подготовка конвертов",
-                    "Судебный перевод и сопровождение",
-                ],
-                s4_title: "Иммиграция и гос-формы",
-                s4_list: [
-                    "Продление грин-карты",
-                    "Продление EAD (разрешение на работу)",
-                    "Заявки на гражданство США",
-                    "Исправление и дубликаты свидетельства о рождении",
-                    "Помощь с паспортами (обычные, ускоренные, срочные)",
-                    "Визы и справки на возвращение в Узбекистан",
-                    "Поддержка ELRC (детские субсидии)",
-                    "Оформление медстраховки (Marketplace, Medicaid, CHIP)",
-                    "SNAP (фуд-стемпы)",
-                    "Регистрация в школу и детский сад",
-                    "Эвалюация дипломов и транскриптов",
-                    "Заявки на Social Security",
-                ],
-                s5_title: "Бизнес и финансы",
-                s5_list: [
-                    "Открытие бизнеса (LLC, Corporation, Sole Proprietor)",
-                    "Настройка и ведение payroll",
-                    "Поддержка по workers’ compensation",
-                    "Страхование бизнеса",
-                    "Настройка и обучение QuickBooks",
-                    "Ответы на письма/штрафы от налоговой",
-                    "Помощь с оплатой налогов IRS и рассрочкой",
-                    "New York Life – консультации и рекомендации по страхованию жизни",
-                ],
-                s6_title: "Поддержка в суде",
-                s6_list: [
-                    "Звонок в магистратский суд: подача guilty/not guilty",
-                    "Сопровождение в суд – перевод и поддержка",
-                    "Помощь с билетами, слушаниями и датами суда",
-                    "Переговоры по штрафам и перевод документов",
-                ],
-                s7_title: "Приглашения и мероприятия",
-                s7_list: [
-                    "Приглашения: свадьбы, дни рождения, baby shower, мероприятия",
-                    "Создание онлайн-RSVP ссылок",
-                    "Быстрое изготовление и электронная доставка",
-                ],
-                s8_title: "Мобильные и внерабочие услуги",
-                s8_list: [
-                    "Выездной нотариус и авто-регистрация",
-                    "Курьерская доставка и сбор документов в тот же день",
-                    "Вечерние и выходные встречи по запросу",
-                    "Экстренная поддержка по поездкам, суду и документам",
-                ],
+                 chat: {
+                    greeting: "Здравствуйте! 👋 Добро пожаловать в Tag Pro Agency.",
+                    ask: "Чем я могу вам помочь?",
+                    options: [{ label: "🚗 Авто/Номера", id: "vehicle" }, { label: "📝 Нотариус", id: "notary" }, { label: "📞 Перезвоните мне", id: "callback" }, { label: "📅 Записаться", id: "book" }],
+                    vehicle_resp: "По автоуслугам: вам нужно переоформление тайтла или продление регистрации?",
+                    vehicle_opts: [{label: "Тайтл (Title)", id: "title"}, {label: "Регистрация", id: "reg"}, {label: "Назад", id: "start"}],
+                    title_resp: "Для переоформления тайтла возьмите: <br>1. Оригинал Тайтла <br>2. ID/Права штата PA <br>3. Страховку. <br><br>Записаться на прием?",
+                    callback_resp: "Пожалуйста, введите ваш номер телефона, и мы перезвоним вам в ближайшее время.",
+                    callback_confirm: "Спасибо! Мы получили ваш номер и скоро свяжемся в Telegram."
+                }
             },
-
             uz: {
                 gov_banner: "Tag Pro Agency LLC rasmiy veb-sayti",
-                nav_services: "Xizmatlar",
-                nav_about: "Biz haqimizda",
-                nav_process: "Qanday ishlaymiz",
-                nav_contact: "Aloqa",
-                nav_cta_phone: "Qo'ng'iroq qilish",
-
-                hero_badge:
-                    "Avto, huquqiy, immigratsiya va biznes xizmatlari",
-                hero_title:
-                    "Har bir ehtiyojingiz uchun ishonchli hamkor",
-                hero_subtitle:
-                    "Avtomobil, huquqiy, immigratsiya va biznes xizmatlari bo‘yicha keng qamrovli yordam. Biz sizning tilingizda gaplashamiz.",
-                hero_cta_primary: "267-217-6500 raqamiga qo'ng'iroq qiling",
-                hero_cta_secondary: "Telegram orqali yozing",
-                hero_stat_1_title: "4 til",
-                hero_stat_1_desc: "Ingliz, rus, o‘zbek, tojik",
-                hero_stat_2_title: "To‘liq xizmat",
-                hero_stat_2_desc: "Avto, hujjatlar, sud va boshqalar",
-                hero_stat_3_title: "Shaxsiy yordam",
-                hero_stat_3_desc: "Ofis va mobil xizmat",
-                hero_stat_4_title: "PА shtatida",
-                hero_stat_4_desc: "Penndel, Bucks County",
-                hero_card_label: "Professional agentlik",
-                hero_card_title: "Tag Pro Agency LLC",
-                hero_card_address:
-                    "40 Bellevue Ave, Penndel, PA 19047",
-                hero_qr_title: "Tez aloqa",
-                hero_qr_desc:
-                    "Telefoningiz bilan QR-kodni skaner qilib, kontaktimizni saqlang va darhol yozing.",
-
-                about_title:
-                    "Bitta ofis. Ko‘p xizmat. Haqiqiy yordam.",
-                about_subtitle:
-                    "Tag Pro Agency LLC immigrantlar, oilalar va biznes egalari uchun hayotga ta'sir qiladigan hujjatlar bilan ishlashga yordam beradi: title, ro‘yxat, sud, immigratsiya, sug‘urta va boshqalar.",
-                about_points: [
-                    "Ofisda qabul, telefon va chiqib xizmat ko‘rsatish",
-                    "Ingliz, rus, o‘zbek va tojik tillarida gaplashamiz",
-                    "Murakkab so‘zlarsiz, oddiy tilda tushuntiramiz",
-                    "Xatoliklar, jarimalar va kechikishlarning oldini olishga harakat qilamiz",
-                ],
-                about_block_title: "Qanday hujjatlarda yordam beramiz",
-                about_block_text:
-                    "Avtomobil va ro‘yxat masalalari, notarial va huquqiy hujjatlar, immigratsiya va davlat shakllari, biznes ochish, sudda hamroh bo‘lish va kundalik qog‘oz ishlari.",
-                about_chip_1_title: "Avto va haydovchilik",
-                about_chip_1_desc:
-                    "Title, raqam, ro‘yxat, jarimalar.",
-                about_chip_2_title: "Huquqiy va notarius",
-                about_chip_2_desc:
-                    "Ishonchnoma, affidavit, apostil.",
-                about_chip_3_title: "Immigratsiya va shakllar",
-                about_chip_3_desc:
-                    "Green Card, EAD, fuqarolik, SSN, SNAP.",
-                about_chip_4_title: "Biznes va moliya",
-                about_chip_4_desc:
-                    "Biznes ochish, payroll, soliq xatlari.",
-
-                services_title: "Bizning xizmatlarimiz",
-                services_subtitle:
-                    "Shaxsiy va professional hayotingiz uchun moslashtirilgan yechimlar.",
-
-                process_title: "Biz bilan ishlash jarayoni",
-                process_subtitle:
-                    "Qadamlar aniq va sodda bo‘lishi uchun ortiqcha byurokratiyani qisqartiramiz.",
+                hero_badge: "Yangi mijozlarni qabul qilamiz",
+                nav_services: "Xizmatlar", nav_process: "Jarayon", nav_contact: "Aloqa", nav_book: "Uchrashuv",
+                hero_title: "Murakkabliklarni <br/> <span class='text-brand-gold'>Ishonch bilan</span> hal qiling.",
+                hero_subtitle: "Avtomobil ro'yxatga olish, notarial tasdiqlash, immigratsiya va biznes ochish bo'yicha sizning ishonchli hamkoringiz. Biz sizning tilingizda gaplashamiz.",
+                hero_cta_primary: "Uchrashuv Belgilash",
+                hero_card_label: "Professional Xizmatlar",
+                services_title: "Keng Qamrovli Professional Xizmatlar",
+                services_subtitle: "Barcha ma'muriy, huquqiy va avtomobil ehtiyojlaringiz uchun yagona manzil.",
+                process_title: "Ishlash Jarayoni",
+                process_cta: "Arizani boshlash &rarr;",
+                footer_desc: "PA hamjamiyati uchun avtomobil, huquqiy va biznes masalalarida ekspert yordami.",
+                footer_office: "Ofis", footer_links: "Tezkor Havolalar",
+                chat_status: "Onlayn | Tezkor javob",
+                form_name: "To'liq Ism", form_phone: "Telefon Raqam", form_service: "Kerakli Xizmat", form_time: "Qulay Vaqt", form_send: "Yuborish", form_note: "So'rovingizni yuborish uchun Telegram ochiladi.",
+                tg_prompt_title: "Telegram Kerak", tg_prompt_desc: "Telegram ochilmadi. Sizda u o'rnatilganmi?", tg_install: "O'rnatish", tg_retry: "Web Versiya",
+                s1_title: "Avtomobil Xizmatlari", s1_list: ["Avtomobil TITLE'sini o'tkazish", "IRP (yuk mashinalari)", "Yangi raqamlar", "Jarima va to'xtatilgan ro'yxatlar"],
+                s2_title: "Notarius va Huquqiy", s2_list: ["Ishonchnoma (Power of Attorney)", "Apostil xizmatlari", "Affidavitlar", "Mobil notarius"],
+                s3_title: "Tarjimalar", s3_list: ["Sertifikatlangan tarjima (Ingliz/Rus/O'zb/Toj)", "Huquqiy hujjatlar tarjimasi", "Konvert tayyorlash"],
+                s4_title: "Immigratsiya", s4_list: ["Green Card va Fuqarolik", "Pasport yangilash", "Viza va sertifikatlar", "SSN va SNAP arizalari"],
+                s5_title: "Biznes va Moliya", s5_list: ["LLC va Korporatsiya ochish", "Payroll va Soliq ID", "Biznes sug'urtasi", "Audit va tekshiruvlar"],
+                s6_title: "Sudda Yordam", s6_list: ["Yo'l harakati jarimalari", "Sudda tarjima", "Jarima muzokaralari", "Eshituvga tayyorgarlik"],
                 process_steps: [
-                    "<div class='bg-white border border-gray-200 rounded-2xl p-5'><div class='text-xs font-semibold text-gray-500 mb-1'>1-qadam</div><div class='font-semibold text-gray-900 mb-1'>Biz bilan bog‘laning</div><p class='text-gray-600 text-sm'>Qo‘ng‘iroq qiling, Telegram’da yozing yoki ofisga keling. Vaziyatni sodda qilib ayting — biz real variantlarni va keyingi qadamlarni tushuntiramiz.</p></div>",
-                    "<div class='bg-white border border-gray-200 rounded-2xl p-5'><div class='text-xs font-semibold text-gray-500 mb-1'>2-qadam</div><div class='font-semibold text-gray-900 mb-1'>Hujjatlarni olib keling</div><p class='text-gray-600 text-sm'>Hujjatlaringizni tekshiramiz, nimalar yetishmayotganini aytamiz va kerakli shakl, tarjima hamda arizalarni tayyorlaymiz.</p></div>",
-                    "<div class='bg-white border border-gray-200 rounded-2xl p-5'><div class='text-xs font-semibold text-gray-500 mb-1'>3-qadam</div><div class='font-semibold text-gray-900 mb-1'>Yuborish va kuzatish</div><p class='text-gray-600 text-sm'>Hujjatlarni topshiramiz yoki yuboramiz, javoblarni, muddatlarni va keyingi harakatlarni kuzatishda yordam beramiz.</p></div>",
+                    { step: "01", title: "Konsultatsiya", desc: "Biz bilan bog‘laning. Vaziyatni baholaymiz va yechim taklif qilamiz." },
+                    { step: "02", title: "Hujjatlashtirish", desc: "Biz kerakli shakl, tarjima va arizalarni to'liq tayyorlaymiz." },
+                    { step: "03", title: "Natija", desc: "Hujjatlarni oling. Jarayon oddiy va stresssiz o'tadi." }
                 ],
-
-                contact_title: "Biz bilan bog‘laning",
-                contact_subtitle:
-                    "Quyidagi QR-kodni telefoningiz bilan skanerlab tezda bog‘laning.",
-                contact_address_label: "Ofis manzili",
-                contact_phone_label: "Telefon",
-                contact_email_label: "Email",
-                contact_qr_note:
-                    "QR-kodni skaner qilishingiz orqali kontaktni saqlashingiz, manzilni ochishingiz yoki xabar yozishingiz mumkin.",
-
-                footer_contact_title: "Aloqa uchun ma'lumotlar",
-                footer_copyright: "Ehtiyotkorlik bilan ishlab chiqilgan",
-                privacy_policy:
-                    "Maxfiylik siyosati: Mobil ma'lumotlar marketing/reklama maqsadlarida uchinchi shaxslarga/filiallarga taqdim etilmaydi. Boshqa barcha toifalar matnli xabarlarga obuna bo‘lish ma'lumotlari va roziligini o‘z ichiga olmaydi; bu ma'lumotlar hech qanday uchinchi shaxslarga berilmaydi.",
-
-                s1_title: "Avtomobil xizmatlari",
-                s1_list: [
-                    "Avtomobil TITLE’sini sotib olish/sotishda o‘tkazish",
-                    "Pennsylvania raqam belgisi va stikerlari",
-                    "IRP ro‘yxatdan o‘tkazish (yuk mashinalari)",
-                    "TITLE va ro‘yxat kartasi dublikatlari",
-                    "Vaqtinchalik raqamlar va ro‘yxatdan o‘tishni uzaytirish",
-                    "Diler va tijorat transporti rasmiylashtiruvi",
-                    "EZ Pass o‘rnatish va yo‘l to‘lovlari",
-                    "Qoidabuzarliklar va jarimalar bo‘yicha yordam",
-                    "To‘xtatilgan ro‘yxatdan o‘tishni tiklash",
-                    "Sud jarimalarini to‘lash va muzokaralar",
-                ],
-                s2_title:
-                    "Notarius va huquqiy hujjatlar xizmatlari",
-                s2_list: [
-                    "Shaxsiy va huquqiy hujjatlarni notarial tasdiqlash",
-                    "Namunaviy ishonchnomalar",
-                    "Xalqaro foydalanish uchun apostil",
-                    "Sud va davlat idoralari uchun affidavitlar",
-                    "Nikoh va ajrashish hujjatlarida yordam",
-                    "Vasiyatnoma va ishonchli boshqaruv hujjatlari",
-                    "Homiylik va ish joyidan ma'lumotnoma xatlari",
-                    "Ijara shartnomalarini notarial tasdiqlash",
-                    "Mobil notarius (uy, ofis, shifoxona)",
-                ],
-                s3_title:
-                    "Tarjimalar va sertifikatlangan hujjatlar",
-                s3_list: [
-                    "Sertifikatlangan tarjima (ingliz/rus/uz)",
-                    "Ko‘p tilli huquqiy va immigratsiya hujjatlari",
-                    "Zakaznoy xatlar va konvert tayyorlash",
-                    "Sudda tarjima va hamroh bo‘lish",
-                ],
-                s4_title:
-                    "Immigratsiya va davlat shakllari",
-                s4_list: [
-                    "Green Card yangilash",
-                    "EAD (ish ruxsatnomasi) yangilash",
-                    "AQSh fuqaroligi arizalari",
-                    "Tug‘ilganlik guvohnomasini tuzatish/dublikat",
-                    "Pasport uchun appointment (oddiy, tezlashtirilgan, shoshilinch)",
-                    "O‘zbekiston vizalari va qaytish sertifikatlari",
-                    "ELRC bolalar uchun subsidiya",
-                    "Sog‘liqni saqlash sug‘urtasi (Marketplace, Medicaid, CHIP)",
-                    "SNAP arizalari",
-                    "Maktab va bog‘chaga ro‘yxatdan o‘tkazish",
-                    "Diplom va transkriptlarni baholash",
-                    "Social Security arizalari",
-                ],
-                s5_title:
-                    "Biznes va moliyaviy xizmatlar",
-                s5_list: [
-                    "Biznes ro‘yxatdan o‘tkazish (LLC, Corporation, Sole Proprietor)",
-                    "Payroll tizimini sozlash va yuritish",
-                    "Workers’ compensation bo‘yicha yordam",
-                    "Biznes sug‘urtasi",
-                    "QuickBooks o‘rnatish va o‘qitish",
-                    "Soliq idoralari xatlari va jarimalariga javob",
-                    "IRS to‘lov rejalari va bo‘lib-to‘lash",
-                    "New York Life – hayot sug‘urtasi bo‘yicha maslahat va yo‘naltirish",
-                ],
-                s6_title:
-                    "Sudda yordam va yo‘l-yo‘riq",
-                s6_list: [
-                    "Magistrat sudiga qo‘ng‘iroq: guilty/not guilty yozish",
-                    "Sudga borib tarjima va mijozni qo‘llab-quvvatlash",
-                    "Chiptalar, sud sanalari va eshituvlar bo‘yicha yordam",
-                    "Jarimalar bo‘yicha muzokara va hujjatlarni tarjima qilish",
-                ],
-                s7_title:
-                    "Tadbirlar va taklifnomalar",
-                s7_list: [
-                    "Taklifnoma dizayni: to‘y, tug‘ilgan kun, baby shower, tadbirlar",
-                    "Onlayn RSVP havolalarini yaratish",
-                    "Tez tayyorlash va raqamli yetkazib berish",
-                ],
-                s8_title:
-                    "Mobil va qo‘shimcha vaqt xizmatlari",
-                s8_list: [
-                    "Mobil notarius va ro‘yxatdan o‘tkazish",
-                    "Bir kunda hujjatlarni yetkazish yoki olib kelish",
-                    "Kechki va dam olish kunlari qabul (so‘rov bo‘yicha)",
-                    "Shoshilinch sayohat, sud va hujjatlar bo‘yicha yordam",
-                ],
+                chat: {
+                    greeting: "Assalomu alaykum! 👋 Tag Pro Agency-ga xush kelibsiz.",
+                    ask: "Sizga qanday yordam bera olaman?",
+                    options: [{ label: "🚗 Avto/Nomer", id: "vehicle" }, { label: "📝 Notarius", id: "notary" }, { label: "📞 Qayta qo'ng'iroq", id: "callback" }, { label: "📅 Uchrashuv", id: "book" }],
+                    vehicle_resp: "Avto bo'yicha: Title o'tkazish kerakmi yoki registratsiyani yangilashmi?",
+                    vehicle_opts: [{label: "Title O'tkazish", id: "title"}, {label: "Registratsiya", id: "reg"}, {label: "Orqaga", id: "start"}],
+                    title_resp: "Title o'tkazish uchun quyidagilar kerak: <br>1. Title originali <br>2. PA ID/Prava <br>3. Sug'urta (Insurance). <br><br>Uchrashuv belgilaymizmi?",
+                    callback_resp: "Iltimos, telefon raqamingizni yozib qoldiring, biz tez orada aloqaga chiqamiz.",
+                    callback_confirm: "Rahmat! Raqamingizni oldik, tez orada Telegram orqali aloqaga chiqamiz."
+                }
             },
             tj: {
                 gov_banner: "Сомонаи расмии Tag Pro Agency LLC",
-                nav_services: "Хизматрасониҳо",
-                nav_about: "Дар бораи мо",
-                nav_process: "Чӣ гуна кор мекунем",
-                nav_contact: "Алоқа",
-                nav_cta_phone: "Занг задан",
-
-                hero_badge:
-                    "Хизматрасонии авто, ҳуқуқӣ, immigratsiya ва бизнес",
-                hero_title: "Шарики боэътимод барои ҳамаи корҳо",
-                hero_subtitle:
-                    "Кумак барои мошин, суд, ҳуҷҷат, immigratsiya ва бизнес. Бо шумо бо забони худатон гап мезанем.",
-                hero_cta_primary: "Ба 267-217-6500 занг занед",
-                hero_cta_secondary: "Дар Telegram нависед",
-                hero_stat_1_title: "4 забон",
-                hero_stat_1_desc: "Англисӣ, русӣ, ўзбекӣ, тоҷикӣ",
-                hero_stat_2_title: "Хизматҳои пурра",
-                hero_stat_2_desc: "Авто, форма, суд ва дигар",
-                hero_stat_3_title: "Ёрии шахсӣ",
-                hero_stat_3_desc: "Дар офис ва бо баромад",
-                hero_stat_4_title: "Дар Пенсилвания",
-                hero_stat_4_desc: "Penndel, Bucks County",
-                hero_card_label: "Агентии касбӣ",
-                hero_card_title: "Tag Pro Agency LLC",
-                hero_card_address: "40 Bellevue Ave, Penndel, PA 19047",
-                hero_qr_title: "Алоқаи зуд",
-                hero_qr_desc:
-                    "QR-кодро бо телефон скан кунед, то контактро нигоҳ доред ва паём фиристед.",
-
-                about_title: "Як офис. Бисёр хизмат. Кӯмаки воқеӣ.",
-                about_subtitle:
-                    "Tag Pro Agency LLC ба муҳоҷирон, оилаҳо ва соҳибкорон ёрӣ медиҳад, то ҳуҷҷатҳои муҳим – title, регистрация, суд, immigratsiya, суғурта ва дигарро дуруст ҳал кунанд.",
-                about_points: [
-                    "Қабул дар офис, телефон ва хизмат бо баромад",
-                    "Бо забони англисӣ, русӣ, ўзбекӣ ва тоҷикӣ гап мезанем",
-                    "Ҳамаашро бо забони сода фаҳмонда медиҳем",
-                    "Кӯшиш мекунем хатогӣ, ҷарима ва таъхир нашавад",
-                ],
-                about_block_title: "Дар кадом корҳо ёрӣ медиҳем",
-                about_block_text:
-                    "Мушкилоти мошин ва регистрация, нотариус ва ҳуҷҷатҳои ҳуқуқӣ, immigratsiya ва формаҳои давлатӣ, кушодани бизнес, суд ва ҳуҷҷатҳои ҳаррӯза.",
-                about_chip_1_title: "Авто ва ронандагӣ",
-                about_chip_1_desc:
-                    "Title, ракам, регистрация, ҷаримаҳо.",
-                about_chip_2_title: "Ҳуқуқӣ ва нотариус",
-                about_chip_2_desc:
-                    "Ваколатнома, affidavit, apostille.",
-                about_chip_3_title: "Immigratsiya ва формаҳо",
-                about_chip_3_desc:
-                    "Green Card, EAD, гражданӣ, SSN, SNAP.",
-                about_chip_4_title: "Бизнес ва молия",
-                about_chip_4_desc:
-                    "Кушодани бизнес, payroll, номаҳои IRS.",
-
-                services_title: "Хизматрасониҳои мо",
-                services_subtitle:
-                    "Ҳалҳои қулай барои зиндагӣ ва кори шумо.",
-
-                process_title: "Чӣ гуна бо мо кор мекунед",
-                process_subtitle:
-                    "Қадамҳо рост ва равшан, бе гапи зиёдатӣ.",
+                hero_badge: "Қабули мизоҷони нав",
+                nav_services: "Хизматрасониҳо", nav_process: "Раванд", nav_contact: "Алоқа", nav_book: "Бақайдгирӣ",
+                hero_title: "Мушкилотро бо <br/> <span class='text-brand-gold'>Боварӣ</span> ҳал кунед.",
+                hero_subtitle: "Шарики боэътимоди шумо дар бақайдгирии мошин, нотариус, immigratsiya ва кушодани бизнес. Мо бо забони шумо гап мезанем.",
+                hero_cta_primary: "Бақайдгирии вохӯрӣ",
+                hero_card_label: "Хизматрасонии Касбӣ",
+                services_title: "Хизматрасониҳои Касбӣ",
+                services_subtitle: "Як марказ барои ҳамаи корҳои ҳуҷҷатӣ, ҳуқуқӣ ва мошин.",
+                process_title: "Чӣ гуна кор мекунем",
+                process_cta: "Аризаро оғоз кунед &rarr;",
+                footer_desc: "Ёрии экспертӣ дар масъалаҳои нақлиёт, ҳуқуқ ва тиҷорат барои ҷамъияти PA.",
+                footer_office: "Офис", footer_links: "Истинодҳои Тез",
+                chat_status: "Онлайн | Ҷавоби фаврӣ",
+                form_name: "Ному Насаб", form_phone: "Рақами Телефон", form_service: "Хизматрасонӣ", form_time: "Вақти қулай", form_send: "Фиристодан", form_note: "Барои фиристодани дархост Telegram кушода мешавад.",
+                tg_prompt_title: "Telegram Лозим аст", tg_prompt_desc: "Telegram кушода нашуд. Оё шумо онро доред?", tg_install: "Сабт кардан", tg_retry: "Web Версия",
+                s1_title: "Хизматҳои Авто", s1_list: ["Гузаронидани title (Тайтл)", "IRP регистратсия", "Рақамҳои нав", "Ҳалли ҷаримаҳо"],
+                s2_title: "Нотариус", s2_list: ["Ваколатнома (Power of Attorney)", "Apostille", "Affidavit", "Нотариуси сайёр"],
+                s3_title: "Тарҷума", s3_list: ["Тарҷумаи расмӣ (Англисӣ/Русӣ/Ўзбекӣ/Тоҷикӣ)", "Ҳуҷҷатҳои ҳуқуқӣ", "Тайёр кардани конверт"],
+                s4_title: "Immigratsiya", s4_list: ["Green Card ва Гражданӣ", "Нав кардани паспорт", "Виза ва справка", "SSN ва SNAP"],
+                s5_title: "Бизнес", s5_list: ["Кушодани LLC ва Corp", "Payroll ва ID-и андоз", "Суғуртаи бизнес", "Аудит"],
+                s6_title: "Суд", s6_list: ["Ёрӣ бо ҷаримаҳои роҳ", "Тарҷумонӣ дар суд", "Кам кардани ҷарима", "Тайёрӣ ба суд"],
                 process_steps: [
-                    "<div class='bg-white border border-gray-200 rounded-2xl p-5'><div class='text-xs font-semibold text-gray-500 mb-1'>Қадам 1</div><div class='font-semibold text-gray-900 mb-1'>Бо мо тамос гиред</div><p class='text-gray-600 text-sm'>Занг занед, дар Telegram нависед ё ба офис биёед. Якбор ҳолатро гап занед – мо рост мегӯем, чӣ роҳи воқеӣ ҳаст.</p></div>",
-                    "<div class='bg-white border border-gray-200 rounded-2xl p-5'><div class='text-xs font-semibold text-gray-500 mb-1'>Қадам 2</div><div class='font-semibold text-gray-900 mb-1'>Ҳуҷҷатҳоро биёред</div><p class='text-gray-600 text-sm'>Ҳуҷҷатҳоро месанҷем, мегӯем чӣ намерасад ва формаҳо, тарҷумаҳо ва аризаро тайёр мекунем.</p></div>",
-                    "<div class='bg-white border border-gray-200 rounded-2xl p-5'><div class='text-xs font-semibold text-gray-900 mb-1'>Қадам 3</div><p class='text-gray-600 text-sm'>Ҳуҷҷатҳоро мефиристем ё месупорем, ҷавобҳо ва срокҳоро пайгирӣ карданда кӯмак мекунем.</p></div>",
+                    { step: "01", title: "Машварат", desc: "Бо мо тамос гиред. Мо ҳолати шуморо месанҷем ва маслиҳат медиҳем." },
+                    { step: "02", title: "Коркард", desc: "Мо ҳамаи формаҳо ва тарҷумаҳоро барои шумо тайёр мекунем." },
+                    { step: "03", title: "Натиҷа", desc: "Ҳуҷҷатҳоро дастрас кунед. Осон ва бе ташвиш." }
                 ],
-
-                contact_title: "Бо мо тамос гиред",
-                contact_subtitle:
-                    "QR-кодро бо телефон скан кунед, то зуд бо мо тамос гиред.",
-                contact_address_label: "Адреси офис",
-                contact_phone_label: "Телефон",
-                contact_email_label: "Email",
-                contact_qr_note:
-                    "Бо скан кардани QR-код метавонед контактро нигоҳ доред, адресро кушоед ё паём нависед.",
-
-                footer_contact_title: "Маълумоти тамос",
-                footer_copyright:
-                    "Бо диққат ва масъулият тарҳрезӣ шудааст",
-                privacy_policy:
-                    "Сиёсати махфият: Маълумоти мобилӣ барои маркетинг ё реклама ба шахсони сеюм дода намешавад. Дигар маълумотҳо розигии паёмҳои матниро дар бар намегиранд; ин маълумот ба ягон тарафи сеюм намеравад.",
-
-                s1_title: "Хизматрасониҳои авто ва регистрация",
-                s1_list: [
-                    "Гузаронидани title ҳангоми харидуфурӯши мошин",
-                    "Рақам ва стикерҳои нави Пенсилвания",
-                    "IRP-регистрация барои мошинҳои боркаш",
-                    "Дубликати title ва корти регистрация",
-                    "Рақамҳои муваққатӣ ва тамдиди регистрация",
-                    "Коркарди мошинҳои дилерӣ ва тиҷоратӣ",
-                    "Пайваст кардани EZ Pass ва пардохти роҳпулӣ",
-                    "Ёрӣ дар ҷаримаҳо ва қоидавайронкунӣ",
-                    "Бартараф кардани боздошти регистрация",
-                    "Пардохти ҷаримаҳо ва кумак бо суд",
-                ],
-                s2_title: "Нотариус ва ҳуҷҷатҳои ҳуқуқӣ",
-                s2_list: [
-                    "Нотариалии ҳама гуна ҳуҷҷатҳои шахсӣ ва ҳуқуқӣ",
-                    "Тайёр ва тасдиқ кардани ваколатнома",
-                    "Apostille барои истифодаи хориҷӣ",
-                    "Affidavit барои суд ва идораҳо",
-                    "Ёрӣ дар аризаҳои никоҳ ва талоқ",
-                    "Васиятнома ва trust-ҳо",
-                    "Номаҳои спонсорӣ ва тасдиқи кор",
-                    "Нотариуси шартномаи иҷора",
-                    "Notarius бо баромад (хона/офис/беморхона)",
-                ],
-                s3_title: "Тарҷума ва ҳуҷҷатҳои тасдиқшуда",
-                s3_list: [
-                    "Тарҷумаи сертификатдор (англисӣ/русӣ/тоҷикӣ)",
-                    "Омодасозии ҳуҷҷатҳои ҳуқуқӣ ва immigratsionӣ ба чанд забон",
-                    "Certified mail, конверт ва фиристодан",
-                    "Тарҷумонӣ дар суд ва вохӯриҳо",
-                ],
-                s4_title: "Immigratsiya ва формаҳои давлатӣ",
-                s4_list: [
-                    "Нав кардани Green Card",
-                    "Нав кардани EAD (рухсатнома барои кор)",
-                    "Ариза ба граждании ИМА",
-                    "Ислоҳ ва дубликати шаҳодатномаи таваллуд",
-                    "Ёрӣ бо appointment барои паспорт (оддӣ, тез, шитобӣ)",
-                    "Виза ва справка барои бозгашт ба Ӯзбекистон",
-                    "ELRC – субсидия барои нигоҳубини кӯдак",
-                    "Суғуртаи тиббӣ (Marketplace, Medicaid, CHIP)",
-                    "SNAP (food stamps) ариза",
-                    "Сабт ба мактаб ва боғча",
-                    "Баҳогузории диплом ва транскрипт",
-                    "Ариза барои Social Security Number",
-                ],
-                s5_title: "Хизматҳои бизнес ва молиявӣ",
-                s5_list: [
-                    "Кушодани бизнес (LLC, Corporation, Sole Proprietor)",
-                    "Танзим ва бурдани payroll",
-                    "Ёрӣ бо workers’ compensation",
-                    "Суғуртаи бизнес",
-                    "Монтаж ва омӯзиши QuickBooks",
-                    "Ҷавоб ба номаҳо ва ҷаримаҳои андоз",
-                    "Нақшаи пардохт ва қисм-қисм пардохти IRS",
-                    "New York Life – маслиҳат оид ба суғуртаи ҳаёт",
-                ],
-                s6_title: "Кумак дар суд ва ҳуҷҷатҳои судӣ",
-                s6_list: [
-                    "Занг ба суди магистралӣ: пешниҳоди guilty/not guilty",
-                    "Ба суд рафтан, тарҷума ва дастгирӣ",
-                    "Ёрӣ бо билети ҳаракат, санаҳои суд ва шунидан",
-                    "Музокира барои кам кардани ҷарима ва тарҷумаи ҳуҷҷатҳо",
-                ],
-                s7_title: "Тадбирҳо ва даъватномаҳо",
-                s7_list: [
-                    "Даъватнома барои тӯй, зодрӯз, baby shower ва дигар чорабинӣ",
-                    "Сохтани пайванди онлайн барои RSVP",
-                    "Омодасозии зуд ва фиристодани рақамӣ",
-                ],
-                s8_title: "Хизматҳои мобилӣ ва баъди соатҳо",
-                s8_list: [
-                    "Notarius ва хизматҳои авто бо баромад",
-                    "Қабул ва расондани ҳуҷҷат дар як рӯз",
-                    "Мулоқотҳои бегоҳӣ ва рӯзҳои истироҳат бо қайд",
-                    "Ёрии таъҷилӣ барои сафар, суд ва ҳуҷҷатҳо",
-                ],
-            },
+                chat: {
+                    greeting: "Салом! 👋 Ба Tag Pro Agency хуш омадед.",
+                    ask: "Чӣ хел ёрӣ расонида метавонем?",
+                    options: [{ label: "🚗 Авто/Рақам", id: "vehicle" }, { label: "📝 Нотариус", id: "notary" }, { label: "📞 Занг занед", id: "callback" }, { label: "📅 Вохӯрӣ", id: "book" }],
+                    vehicle_resp: "Барои мошин: Тайтл гузаронидан даркор ё регистратсия?",
+                    vehicle_opts: [{label: "Тайтл (Title)", id: "title"}, {label: "Регистратсия", id: "reg"}, {label: "Ақиб", id: "start"}],
+                    title_resp: "Барои Тайтл инҳо лозим: <br>1. Тайтли оригинал <br>2. ID/Праваи PA <br>3. Суғурта (Insurance). <br><br>Вохӯрӣ банд мекунем?",
+                    callback_resp: "Лутфан рақами худро нависед, мо ба зудӣ занг мезанем.",
+                    callback_confirm: "Раҳмат! Рақамро гирифтем, тезтар Telegram тариқи занг мезанем."
+                }
+            }
         };
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const langButtons = document.querySelectorAll(".lang-btn");
-            const translatableElements =
-                document.querySelectorAll("[data-translate-key]");
+        let currentLang = localStorage.getItem("preferredLanguage") || "en";
 
-            const translatePage = (lang) => {
-                const content = translations[lang];
-                if (!content) return;
-
-                translatableElements.forEach((el) => {
-                    const key = el.dataset.translateKey;
-                    const value = content[key];
-
-                    if (!value) return;
-
-                    // For services lists and about_points etc. which are arrays
-                    if (Array.isArray(value)) {
-                        // If this container is meant to be list of cards (process)
-                        if (
-                            key === "process_steps" &&
-                            el.classList.contains("grid")
-                        ) {
-                            el.innerHTML = value.join("");
-                        } else {
-                            el.innerHTML = value
-                                .map((item) => `<li>${item}</li>`)
-                                .join("");
-                        }
-                    } else if (
-                        typeof value === "string" &&
-                        value.includes("<div") &&
-                        key === "process_steps"
-                    ) {
-                        el.innerHTML = value;
-                    } else if (key === "process_steps") {
-                        el.innerHTML = value;
+        function updateContent(lang) {
+            currentLang = lang;
+            const t = translations[lang] || translations['en'];
+            
+            document.querySelectorAll("[data-translate-key]").forEach(el => {
+                const key = el.dataset.translateKey;
+                if (t[key]) {
+                    if (Array.isArray(t[key])) {
+                        el.innerHTML = t[key].map(item => `<li>${item}</li>`).join('');
                     } else {
-                        el.textContent = value;
+                        el.innerHTML = t[key];
                     }
-                });
-
-                langButtons.forEach((btn) => {
-                    btn.classList.toggle(
-                        "active",
-                        btn.dataset.lang === lang
-                    );
-                });
-
-                document.documentElement.lang = lang;
-            };
-
-            const setLanguage = (lang) => {
-                localStorage.setItem("preferredLanguage", lang);
-                translatePage(lang);
-            };
-
-            langButtons.forEach((button) => {
-                button.addEventListener("click", (e) => {
-                    e.preventDefault();
-                    setLanguage(button.dataset.lang);
-                });
+                }
             });
 
-            const preferredLanguage =
-                localStorage.getItem("preferredLanguage") || "en";
-            setLanguage(preferredLanguage);
+            const processContainer = document.getElementById('process-container');
+            if(t.process_steps && processContainer) {
+                processContainer.innerHTML = t.process_steps.map(step => `
+                    <div class="flex gap-4 items-start">
+                        <div class="w-10 h-10 rounded-full bg-brand-navy text-white flex items-center justify-center font-bold shrink-0">${step.step}</div>
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-900">${step.title}</h4>
+                            <p class="text-gray-600 text-sm">${step.desc}</p>
+                        </div>
+                    </div>
+                `).join('');
+            }
 
-            // Fade-in animation
-            const sections =
-                document.querySelectorAll(".fade-in-section");
-            const observer = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add("is-visible");
-                        }
-                    });
-                },
-                {
-                    rootMargin: "0px 0px -100px 0px",
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.className = 'lang-btn px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold transition whitespace-nowrap';
+                if(btn.dataset.lang === lang) {
+                    btn.classList.add('bg-brand-navy', 'text-white');
+                } else {
+                    btn.classList.add('text-gray-500', 'hover:text-gray-900', 'bg-gray-100');
                 }
-            );
+            });
+            localStorage.setItem("preferredLanguage", lang);
+            
+            // Reload chat if open to apply new language
+            const chatMsgs = document.getElementById('chat-messages');
+            if(!document.getElementById('chat-window').classList.contains('hidden') && chatMsgs.children.length > 0) {
+                 chatMsgs.innerHTML = '';
+                 startChat();
+            }
+        }
 
-            sections.forEach((section) => observer.observe(section));
-
-            // Smooth scroll for internal links
-            document
-                .querySelectorAll('a[href^="#"]')
-                .forEach((anchor) => {
-                    anchor.addEventListener("click", function (e) {
-                        const targetId = this.getAttribute("href");
-                        if (!targetId || targetId === "#") return;
-                        const targetEl =
-                            document.querySelector(targetId);
-                        if (!targetEl) return;
-                        e.preventDefault();
-                        targetEl.scrollIntoView({
-                            behavior: "smooth",
-                        });
-                    });
-                });
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => updateContent(btn.dataset.lang));
         });
+        updateContent(currentLang);
+
+        // Chat Widget Logic
+        const chatWindow = document.getElementById('chat-window');
+        const chatMsgs = document.getElementById('chat-messages');
+        let chatOpen = false;
+
+        function toggleChat() {
+            chatOpen = !chatOpen;
+            if (chatOpen) {
+                chatWindow.classList.remove('hidden');
+                setTimeout(() => {
+                    chatWindow.classList.remove('scale-95', 'opacity-0');
+                    chatWindow.classList.add('scale-100', 'opacity-100');
+                }, 10);
+                if(chatMsgs.children.length === 0) startChat();
+            } else {
+                chatWindow.classList.remove('scale-100', 'opacity-100');
+                chatWindow.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => chatWindow.classList.add('hidden'), 300);
+            }
+        }
+
+        function addMsg(text, type = 'bot') {
+            const div = document.createElement('div');
+            div.className = `flex ${type === 'user' ? 'justify-end' : 'justify-start'}`;
+            const bubble = document.createElement('div');
+            bubble.className = `max-w-[85%] p-3 rounded-2xl text-sm ${type === 'user' ? 'bg-brand-navy text-white rounded-br-none' : 'bg-white border border-gray-200 text-gray-800 rounded-bl-none shadow-sm'}`;
+            bubble.innerHTML = text;
+            div.appendChild(bubble);
+            chatMsgs.appendChild(div);
+            chatMsgs.scrollTop = chatMsgs.scrollHeight;
+        }
+
+        function addOptions(options) {
+            const div = document.createElement('div');
+            div.className = "flex flex-wrap gap-2";
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = "text-xs bg-white border border-brand-gold text-brand-navy px-3 py-2 rounded-full hover:bg-brand-gold hover:text-white transition";
+                btn.innerText = opt.label;
+                btn.onclick = () => handleOption(opt);
+                div.appendChild(btn);
+            });
+            chatMsgs.appendChild(div);
+            chatMsgs.scrollTop = chatMsgs.scrollHeight;
+        }
+
+        function addInput(callback) {
+            const div = document.createElement('div');
+            div.className = "flex gap-2";
+            const input = document.createElement('input');
+            input.className = "flex-1 border border-gray-300 rounded-full px-3 py-2 text-sm focus:ring-2 focus:ring-brand-gold outline-none";
+            input.placeholder = "Phone Number...";
+            input.type = "tel";
+            const btn = document.createElement('button');
+            btn.className = "bg-brand-navy text-white rounded-full w-9 h-9 flex items-center justify-center";
+            btn.innerHTML = `<i data-lucide="send" class="w-4 h-4"></i>`;
+            btn.onclick = () => { if(input.value.trim()) callback(input.value); };
+            div.appendChild(input);
+            div.appendChild(btn);
+            chatMsgs.appendChild(div);
+            chatMsgs.scrollTop = chatMsgs.scrollHeight;
+            lucide.createIcons();
+        }
+
+        function startChat() {
+            const t = translations[currentLang].chat;
+            addMsg(t.greeting);
+            setTimeout(() => {
+                addMsg(t.ask);
+                addOptions(t.options);
+            }, 600);
+        }
+
+        function handleOption(opt) {
+            const t = translations[currentLang].chat;
+            addMsg(opt.label, 'user');
+            const typing = document.createElement('div');
+            typing.className = "flex gap-1 ml-2 p-2";
+            typing.innerHTML = `<div class="w-1.5 h-1.5 bg-gray-400 rounded-full typing-dot"></div><div class="w-1.5 h-1.5 bg-gray-400 rounded-full typing-dot"></div><div class="w-1.5 h-1.5 bg-gray-400 rounded-full typing-dot"></div>`;
+            chatMsgs.appendChild(typing);
+            chatMsgs.scrollTop = chatMsgs.scrollHeight;
+            setTimeout(() => {
+                chatMsgs.removeChild(typing);
+                if(opt.id === 'vehicle') { addMsg(t.vehicle_resp); addOptions(t.vehicle_opts); } 
+                else if(opt.id === 'title') { addMsg(t.title_resp); addOptions([{label: "Yes", id: "book"}, {label: "Back", id: "vehicle"}]); } 
+                else if(opt.id === 'notary') { addMsg("We offer full Notary Public services including Apostille and Power of Attorney."); addOptions([{ label: "Book Notary", id: "book" }, { label: "Back", id: "start" }]); } 
+                else if(opt.id === 'callback') {
+                    addMsg(t.callback_resp);
+                    addInput((phone) => {
+                         addMsg(phone, 'user');
+                         // TELEGRAM LOGIC FOR CHAT CALLBACK
+                         const message = `📞 *Chat Callback Request* 📞%0A%0A` +
+                                         `Phone: ${phone}`;
+                         const telegramUser = "notary_fm7"; 
+                         const url = `https://t.me/${telegramUser}?text=${message}`;
+                         window.open(url, '_blank');
+                         
+                         setTimeout(() => addMsg(t.callback_confirm), 500);
+                    });
+                } 
+                else if(opt.id === 'book') { toggleBookingModal(); addMsg("I've opened the booking form for you!"); } 
+                else { addMsg(t.ask); addOptions(t.options); }
+            }, 800);
+        }
+
+        // Booking Modal Logic
+        function toggleBookingModal() {
+            const modal = document.getElementById('booking-modal');
+            const formContainer = document.getElementById('form-container');
+            const tgPrompt = document.getElementById('telegram-prompt');
+            
+            if(modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                formContainer.classList.remove('hidden');
+                tgPrompt.classList.add('hidden');
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        function handleBooking(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData);
+            
+            // Format the message for Telegram
+            const message = `📅 *Appointment Request* 📅%0A%0A` +
+                            `👤 *Name:* ${data.name}%0A` +
+                            `📞 *Phone:* ${data.phone}%0A` +
+                            `🛠 *Service:* ${data.service}%0A` +
+                            `⏰ *Time:* ${data.timing}%0A%0A` +
+                            `Please confirm this appointment.`;
+            
+            // Telegram URL
+            const telegramUser = "notary_fm7"; 
+            const url = `https://t.me/${telegramUser}?text=${message}`;
+            
+            // Try to open Telegram
+            const win = window.open(url, '_blank');
+            
+            // Fallback logic: If the user closes the form, ask if it worked
+            document.getElementById('form-container').classList.add('hidden');
+            document.getElementById('telegram-prompt').classList.remove('hidden');
+            
+            // Setup Retry Link
+            const webUrl = `https://web.telegram.org/k/#@${telegramUser}`; // Web K version is generally more reliable
+            document.getElementById('retry-tg-btn').href = webUrl;
+
+            e.target.reset();
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
