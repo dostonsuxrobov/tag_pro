@@ -6,10 +6,8 @@
     <title>Tag Pro Agency LLC - Professional Services</title>
     <meta name="description" content="Vehicle, legal, immigration, and business support services in Penndel, PA.">
 
-    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
             theme: {
@@ -36,12 +34,10 @@
         }
     </script>
 
-    <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-    <!-- Icons (Lucide) -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
@@ -67,7 +63,6 @@
 </head>
 <body class="bg-slate-50 text-gray-800 relative">
 
-    <!-- Top Notification Bar -->
     <div class="bg-brand-navy text-white text-xs py-2 border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <span class="opacity-80 hidden sm:block" data-translate-key="gov_banner">Trusted Professional Agency in PA</span>
@@ -82,7 +77,6 @@
         </div>
     </div>
 
-    <!-- Navigation -->
     <header class="bg-white sticky top-0 z-40 shadow-sm border-b border-gray-100">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[80px] py-2 flex items-center justify-between gap-2">
             <a href="#" class="flex items-center gap-2 group shrink-0">
@@ -109,10 +103,9 @@
     </header>
 
     <main>
-        <!-- Hero -->
         <section class="relative bg-brand-navy text-white overflow-hidden">
             <div class="absolute inset-0 z-0">
-                <img src="bgrd.jpg" alt="Office Background" class="w-full h-full object-cover opacity-40" onerror="this.style.backgroundColor='#0b1523'" />
+                <img src="bgrd.webp" alt="Office Background" class="w-full h-full object-cover opacity-40" onerror="this.style.backgroundColor='#0b1523'" />
                 <div class="absolute inset-0 bg-gradient-to-r from-brand-navy via-brand-navy/90 to-transparent"></div>
             </div>
             <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-32 flex flex-col md:flex-row items-center gap-12">
@@ -166,7 +159,6 @@
             </div>
         </section>
 
-        <!-- Services Grid -->
         <section id="services" class="py-20 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-16 fade-up">
@@ -208,23 +200,21 @@
             </div>
         </section>
 
-        <!-- Process -->
         <section id="process" class="py-20 bg-white border-t border-gray-100">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col md:flex-row gap-12 items-center">
                     <div class="md:w-1/2 fade-up">
-                        <img src="bgrd.jpg" alt="Working Process" class="rounded-2xl shadow-2xl object-cover h-96 w-full grayscale hover:grayscale-0 transition duration-700" />
+                        <img src="bgrd.webp" alt="Working Process" class="rounded-2xl shadow-2xl object-cover h-96 w-full grayscale hover:grayscale-0 transition duration-700" />
                     </div>
                     <div class="md:w-1/2 space-y-8 fade-up">
                         <h2 class="text-3xl font-bold text-brand-navy" data-translate-key="process_title">Streamlined Process</h2>
                         <div class="space-y-6" id="process-container"></div>
-                        <button onclick="toggleBookingModal()" class="text-brand-navy font-semibold border-b-2 border-brand-gold pb-1 hover:text-brand-gold transition" data-translate-key="process_cta">Start your application &rarr;</button>
+                        <button onclick="toggleBookingModal()" class="text-brand-navy font-semibold border-b-2 border-brand-gold pb-1 hover:text-brand-gold transition" data-translate-key="process_cta">Start your application →</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Footer -->
         <footer id="contact" class="bg-brand-navy text-gray-300 py-16">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-8">
                 <div class="col-span-1 md:col-span-2">
@@ -252,12 +242,11 @@
                 </div>
             </div>
             <div class="max-w-7xl mx-auto px-4 mt-12 pt-8 border-t border-gray-800 text-xs text-center text-gray-500">
-                &copy; 2025 Tag Pro Agency LLC. All rights reserved.
+                © 2025 Tag Pro Agency LLC. All rights reserved.
             </div>
         </footer>
     </main>
 
-    <!-- CHAT WIDGET -->
     <div id="chat-widget-container" class="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-4 font-sans">
         <div id="chat-window" class="hidden bg-white w-[90vw] md:w-[350px] h-[500px] rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden transform transition-all origin-bottom-right duration-300 scale-95 opacity-0">
             <div class="bg-brand-navy p-4 flex items-center justify-between text-white shrink-0">
@@ -287,7 +276,6 @@
         <button onclick="toggleChat()" id="chat-toggle-btn" class="btn-pulse bg-brand-navy text-white w-14 h-14 rounded-full flex items-center justify-center shadow-float hover:scale-110 transition duration-300"><i data-lucide="message-circle" class="w-7 h-7"></i></button>
     </div>
 
-    <!-- BOOKING MODAL (Telegram Based) -->
     <div id="booking-modal" class="fixed inset-0 z-[60] hidden">
         <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="toggleBookingModal()"></div>
         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white w-[95%] md:w-full max-w-md rounded-2xl shadow-2xl p-6 md:p-8">
@@ -331,7 +319,6 @@
                 </form>
             </div>
             
-            <!-- Telegram Installation Prompt (Hidden by default) -->
             <div id="telegram-prompt" class="hidden text-center py-6">
                 <div class="w-16 h-16 bg-blue-100 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-4"><i data-lucide="send" class="w-8 h-8"></i></div>
                 <h4 class="text-lg font-bold text-brand-navy mb-2" data-translate-key="tg_prompt_title">Telegram Required</h4>
@@ -360,7 +347,7 @@
                 services_title: "Comprehensive Professional Services",
                 services_subtitle: "One location for all your administrative, legal, and vehicle needs.",
                 process_title: "Streamlined Process",
-                process_cta: "Start your application &rarr;",
+                process_cta: "Start your application →",
                 footer_desc: "Providing expert assistance in vehicle, legal, and business matters for the PA community.",
                 footer_office: "Office", footer_links: "Quick Links",
                 chat_status: "Online | Replies instantly",
@@ -399,7 +386,7 @@
                 services_title: "Полный Спектр Услуг",
                 services_subtitle: "Единый центр для решения всех административных и юридических вопросов.",
                 process_title: "Как мы работаем",
-                process_cta: "Начать оформление &rarr;",
+                process_cta: "Начать оформление →",
                 footer_desc: "Оказываем экспертную помощь в вопросах авто, права и бизнеса для жителей PA.",
                 footer_office: "Офис", footer_links: "Быстрые Ссылки",
                 chat_status: "Онлайн | Отвечаем мгновенно",
@@ -438,7 +425,7 @@
                 services_title: "Keng Qamrovli Professional Xizmatlar",
                 services_subtitle: "Barcha ma'muriy, huquqiy va avtomobil ehtiyojlaringiz uchun yagona manzil.",
                 process_title: "Ishlash Jarayoni",
-                process_cta: "Arizani boshlash &rarr;",
+                process_cta: "Arizani boshlash →",
                 footer_desc: "PA hamjamiyati uchun avtomobil, huquqiy va biznes masalalarida ekspert yordami.",
                 footer_office: "Ofis", footer_links: "Tezkor Havolalar",
                 chat_status: "Onlayn | Tezkor javob",
@@ -477,7 +464,7 @@
                 services_title: "Хизматрасониҳои Касбӣ",
                 services_subtitle: "Як марказ барои ҳамаи корҳои ҳуҷҷатӣ, ҳуқуқӣ ва мошин.",
                 process_title: "Чӣ гуна кор мекунем",
-                process_cta: "Аризаро оғоз кунед &rarr;",
+                process_cta: "Аризаро оғоз кунед →",
                 footer_desc: "Ёрии экспертӣ дар масъалаҳои нақлиёт, ҳуқуқ ва тиҷорат барои ҷамъияти PA.",
                 footer_office: "Офис", footer_links: "Истинодҳои Тез",
                 chat_status: "Онлайн | Ҷавоби фаврӣ",
