@@ -295,7 +295,7 @@
 
         /* ============ SERVICES ============ */
         .services { background: var(--paper-2); }
-        .svc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+        .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.4rem; }
         .svc-card {
             position: relative; overflow: hidden; background: var(--card);
             border: 1px solid var(--line); border-radius: 22px; padding: 2.1rem 1.9rem 1.9rem;
@@ -319,16 +319,6 @@
         .svc-list { display: flex; flex-direction: column; gap: 0.45rem; }
         .svc-list li { position: relative; padding-left: 1.25rem; font-size: 0.92rem; color: var(--muted); }
         .svc-list li::before { content: ''; position: absolute; left: 0; top: 0.62em; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
-        .svc-more { margin-top: 1rem; border-top: 1px solid var(--line); padding-top: 0.8rem; }
-        .svc-more summary {
-            display: flex; align-items: center; justify-content: space-between; gap: 0.8rem;
-            color: var(--ink); font-size: 0.82rem; font-weight: 800; cursor: pointer; list-style: none;
-        }
-        .svc-more summary::-webkit-details-marker { display: none; }
-        .svc-more summary span { display: inline-flex; align-items: center; gap: 0.45rem; }
-        .svc-more summary svg { color: var(--gold); transition: transform 0.25s var(--ease); }
-        .svc-more[open] summary svg { transform: rotate(180deg); }
-        .svc-more .svc-list { margin-top: 0.8rem; }
         .svc-note {
             margin-top: 1rem; padding: 0.85rem 0.95rem; border-radius: 12px;
             background: var(--gold-soft); border: 1px solid rgba(201, 162, 75, 0.22);
@@ -814,7 +804,7 @@
             <div class="container">
                 <div class="stats-grid">
                     <div class="stat reveal"><div class="stat-num" data-count="4">4</div><div class="stat-lbl" data-translate-key="stat1_l">Languages Spoken</div></div>
-                    <div class="stat reveal" data-d="80"><div class="stat-num" data-count="12">12</div><div class="stat-lbl" data-translate-key="stat2_l">Service Categories</div></div>
+                    <div class="stat reveal" data-d="80"><div class="stat-num" id="stat-service-count" data-count="12">12</div><div class="stat-lbl" data-translate-key="stat2_l">Service Categories</div></div>
                     <div class="stat reveal" data-d="160"><div class="stat-num" data-count="3">3</div><div class="stat-lbl" data-translate-key="stat3_l">Simple Steps</div></div>
                     <div class="stat reveal" data-d="240"><div class="stat-num" data-count="1">1</div><div class="stat-lbl" data-translate-key="stat4_l">Office For Everything</div></div>
                 </div>
@@ -1180,7 +1170,6 @@
                     "Add, delete, or transfer vehicles",
                     "Replacement apportioned plates and cab cards",
                     "Temporary Authorization cards",
-                    "IFTA registration and renewals",
                     "Form 2290 filing assistance",
                     "Commercial truck and trailer titles; permanent commercial trailer registration",
                     "Fleet registration and commercial document preparation"
@@ -1225,14 +1214,30 @@
                     "Printing, scanning, copying, uploading, appointments, and document checklists",
                     "Responses to document requests using information supplied by the customer"
                 ], note: "Non-attorney administrative and document-preparation assistance only. We do not provide immigration legal advice or representation." },
-                { icon: "book-open", title: "Passport & Consular Services", items: [
+                { icon: "book-open", title: "U.S. Passport Services", items: [
                     "New U.S. passport applications and renewals",
                     "Child passport applications",
                     "Urgent and same-day passport appointment assistance when available",
                     "Passport document-checklist assistance",
-                    "Foreign passport renewal and consular application assistance",
                     "Travel consent documents and translation or notarization of supporting documents"
                 ]},
+                { icon: "building-2", title: "Uzbekistan Consular Services", items: [
+                    "Appointments with the Embassy and consulates of Uzbekistan",
+                    "Assistance with applications for a certificate of return to Uzbekistan",
+                    "Appointments to obtain a certificate of return",
+                    "Assistance with visas to Uzbekistan",
+                    "Visa appointment scheduling",
+                    "Assistance with renewing an Uzbekistan passport",
+                    "Documents for a lost or expired passport",
+                    "Passport documents for children",
+                    "Consular registration",
+                    "Citizenship-related forms",
+                    "Powers of Attorney and child travel consents",
+                    "Document-checklist assistance",
+                    "Printing, scanning, uploading, and submission",
+                    "Translation, notarization, and apostille",
+                    "Urgent appointment assistance when available"
+                ], note: "Appointment availability and final decisions are determined by the Embassy or consulate of Uzbekistan." },
                 { icon: "heart-handshake", title: "Public Benefits & Family Assistance", items: [
                     "Medical Assistance (Medicaid), free or low-cost health insurance, and CHIP applications",
                     "SNAP food-assistance applications",
@@ -1246,7 +1251,7 @@
                     "Application follow-up and caseworker communication assistance",
                     "Translation and interpreting assistance",
                     "Reconsideration and appeal document preparation using customer-supplied information"
-                ], note: "We prepare and submit applications and organize documents. Government agencies determine eligibility, benefit amounts, and approval." },
+                ], note: "Government agencies determine eligibility, benefit amounts, and approval." },
                 { icon: "file-heart", title: "Vital Records & Family Documents", items: [
                     "Marriage license applications and certified or duplicate marriage certificates",
                     "Birth certificate applications and duplicate certified copies",
@@ -1257,7 +1262,7 @@
                     "Name-change document assistance",
                     "Replacement and certified-copy requests",
                     "Translation, notarization, and apostille preparation for vital records"
-                ], note: "Non-attorney administrative assistance only. Legal forms must be selected by the customer or a licensed attorney." },
+                ]},
                 { icon: "briefcase-business", title: "Business Services", items: [
                     "LLC and corporation formation assistance",
                     "EIN, Tax ID, and business registration documents",
@@ -1289,127 +1294,189 @@
                 ]}
             ],
             ru: [
-                { icon: "car", title: "Авто: номера, тайтлы и регистрация", items: [
-                    "Переоформление тайтлов Пенсильвании и других штатов",
-                    "Новые номерные знаки, регистрация автомобиля и продление",
-                    "Замена номеров и регистрационных карточек; дубликаты и заявления на утерянный тайтл",
-                    "Исправления в тайтле и передача автомобиля в подарок или члену семьи",
-                    "Временная регистрация и номера; постоянная регистрация прицепа",
+                { icon: "car", title: "ОФОРМЛЕНИЕ АВТОМОБИЛЕЙ, TITLE И РЕГИСТРАЦИИ", items: [
+                    "Переоформление Title автомобиля в Пенсильвании",
+                    "Перенос Title из другого штата",
+                    "Новые номерные знаки и регистрация автомобиля",
+                    "Продление регистрации",
+                    "Замена номерных знаков и регистрационных карточек",
+                    "Заявление на дубликат утерянного Title",
+                    "Исправление информации в Title",
+                    "Переоформление автомобиля в подарок или между членами семьи",
+                    "Временная регистрация и временные номера",
+                    "Постоянная регистрация прицепов",
                     "Подача и получение документов через PennDOT Messenger",
-                    "Восстановление регистрации и помощь при страховой приостановке Financial Responsibility",
-                    "Письма о требованиях, оплата сборов за восстановление и гражданских штрафов"
+                    "Восстановление регистрации автомобиля",
+                    "Помощь при приостановлении регистрации из-за страховки — Financial Responsibility",
+                    "Получение письма с требованиями для восстановления",
+                    "Помощь с оплатой сбора за восстановление",
+                    "Помощь с оплатой гражданского штрафа"
                 ]},
-                { icon: "truck", title: "Коммерческий транспорт", items: [
-                    "Пропорциональная регистрация IRP: открытие счетов и продление",
+                { icon: "truck", title: "УСЛУГИ ДЛЯ КОММЕРЧЕСКИХ ГРУЗОВИКОВ", items: [
+                    "Пропорциональная регистрация — IRP",
+                    "Открытие нового IRP-аккаунта",
+                    "Продление IRP",
                     "Добавление, удаление и перенос транспортных средств",
-                    "Замена пропорциональных номеров и cab card",
-                    "Временные карты разрешения (Temporary Authorization)",
-                    "Регистрация и продление IFTA",
-                    "Помощь с подачей формы 2290",
-                    "Тайтлы коммерческих грузовиков и прицепов; постоянная регистрация коммерческих прицепов",
-                    "Регистрация автопарка и подготовка коммерческих регистрационных документов"
+                    "Замена IRP-номеров и Cab Cards",
+                    "Оформление Temporary Authorization Cards",
+                    "Подача Form 2290 — Heavy Highway Vehicle Use Tax для грузовых автомобилей",
+                    "Оформление Title на коммерческие грузовики и прицепы",
+                    "Постоянная регистрация коммерческих прицепов",
+                    "Помощь с регистрацией автопарка",
+                    "Подготовка документов для коммерческой регистрации"
                 ]},
-                { icon: "stamp", title: "Нотариус и документы", items: [
-                    "Общее нотариальное заверение, acknowledgments и jurats",
-                    "Доверенности, аффидевиты и заявления под присягой",
-                    "Согласия на поездку ребенка, автомобильные и бизнес-документы",
-                    "Заверение подписей на завещании и self-proving affidavit",
-                    "Медицинские распоряжения и living will",
-                    "Выездной нотариус по записи",
-                    "Подготовка заказной почты",
+                { icon: "stamp", title: "НОТАРИАЛЬНЫЕ УСЛУГИ", items: [
+                    "Общие нотариальные услуги",
+                    "Доверенности",
+                    "Аффидевиты и заявления под присягой",
+                    "Acknowledgments и jurats",
+                    "Согласие на поездку ребёнка",
+                    "Автомобильные и деловые документы",
+                    "Нотариальное заверение подписи на завещании",
+                    "Нотариальное заверение self-proving affidavit",
+                    "Медицинские распоряжения и living wills",
+                    "Выездной нотариус по предварительной записи",
+                    "Подготовка Certified Mail",
                     "Печать, сканирование, копирование и факс"
-                ], note: "Принесите уже подготовленные документы. Мы не составляем завещания и не даем юридических консультаций." },
-                { icon: "badge-check", title: "Срочный апостиль по всей стране", items: [
-                    "Апостиль документов из всех 50 штатов, включая Пенсильванию",
-                    "Срочная, ускоренная и при возможности однодневная обработка",
-                    "Аутентификация Secretary of State и федеральных документов",
+                ], note: "Клиенты должны приносить уже подготовленные документы. Мы не составляем завещания и не предоставляем юридические консультации." },
+                { icon: "badge-check", title: "СРОЧНЫЙ АПОСТИЛЬ ПО ВСЕЙ ТЕРРИТОРИИ США", items: [
+                    "Апостиль для документов, выданных во всех 50 штатах",
+                    "Апостиль в Пенсильвании",
+                    "Срочное и ускоренное оформление",
+                    "Апостиль в тот же день, когда это возможно",
+                    "Аутентификация через Secretary of State",
+                    "Федеральная аутентификация",
                     "Свидетельства о рождении, браке, разводе и смерти",
-                    "Доверенности и нотариально заверенные документы",
-                    "Дипломы и документы об образовании",
-                    "Судебные, юридические, деловые и корпоративные документы",
-                    "Справки FBI background check",
-                    "Организация сертифицированного перевода и документы для использования за рубежом",
-                    "Возврат документов почтой или курьером"
-                ], note: "Обслуживание в тот же день зависит от документа, штата, доступности госоргана и времени подачи." },
-                { icon: "languages", title: "Переводы и устный перевод", items: [
-                    "Сертифицированные переводы на английском, русском, узбекском и таджикском",
-                    "Свидетельства о рождении, браке, разводе и смерти",
-                    "Паспорта, водительские права и иммиграционные документы",
+                    "Доверенности и нотариальные документы",
+                    "Дипломы и образовательные документы",
                     "Судебные и юридические документы",
-                    "Школьные, медицинские и бизнес-документы",
-                    "Нотариальное заверение перевода, когда применимо",
+                    "Деловые и корпоративные документы",
+                    "Справки ФБР",
+                    "Сертифицированные переводы",
+                    "Документы для использования за границей",
+                    "Возврат документов почтой или курьером"
+                ], note: "Возможность оформления в тот же день зависит от документа, штата, работы государственных учреждений и времени подачи." },
+                { icon: "languages", title: "ПИСЬМЕННЫЕ И УСТНЫЕ ПЕРЕВОДЫ", items: [
+                    "Сертифицированные переводы",
+                    "Английский, русский, узбекский и таджикский языки",
+                    "Свидетельства о рождении, браке, разводе и смерти",
+                    "Паспорта и водительские удостоверения",
+                    "Иммиграционные документы",
+                    "Судебные, школьные, медицинские и деловые документы",
+                    "Нотариально заверенные переводы, когда это применимо",
                     "Устный перевод лично и по телефону",
                     "Перевод подтверждающих документов для заявлений"
                 ]},
-                { icon: "landmark", title: "Помощь с иммиграционными формами", items: [
-                    "Продление Green Card и заявления на гражданство или натурализацию",
+                { icon: "landmark", title: "ПОМОЩЬ С ИММИГРАЦИОННЫМИ ФОРМАМИ", items: [
+                    "Продление Green Card",
+                    "Заявления на гражданство и натурализацию",
                     "Заявления и продление разрешения на работу",
-                    "Набор иммиграционных форм и административная помощь",
-                    "Организация и подача заявления, перевод подтверждающих документов",
-                    "Печать, сканирование, копирование, загрузка, запись и проверка списка документов",
-                    "Ответы на запросы документов по информации клиента"
-                ], note: "Только неюридическая административная помощь с документами. Мы не даем иммиграционных юридических консультаций и не представляем клиентов." },
-                { icon: "book-open", title: "Паспорта и консульские услуги", items: [
-                    "Новые заявления и продление паспорта США",
+                    "Печатное заполнение форм и административная помощь",
+                    "Организация и подача заявления",
+                    "Перевод подтверждающих документов",
+                    "Печать, сканирование, копирование и загрузка",
+                    "Помощь с записью и списком документов",
+                    "Ответы на запросы документов на основании информации клиента"
+                ], note: "Мы оказываем только неюридическую административную помощь. Мы не предоставляем иммиграционные юридические консультации или представительство." },
+                { icon: "book-open", title: "УСЛУГИ ПО ОФОРМЛЕНИЮ ПАСПОРТА США", items: [
+                    "Заявление на новый паспорт США",
+                    "Продление паспорта США",
                     "Паспортные заявления для детей",
-                    "Помощь со срочной и при возможности однодневной записью",
-                    "Проверка списка паспортных документов",
-                    "Документы для продления иностранного паспорта и консульских заявлений",
-                    "Согласия на поездку, перевод и нотариальное заверение подтверждающих документов"
+                    "Помощь со срочной записью",
+                    "Помощь с записью в тот же день, когда это возможно",
+                    "Помощь со списком документов",
+                    "Согласие на поездку ребёнка",
+                    "Перевод и нотариальное заверение документов"
                 ]},
-                { icon: "heart-handshake", title: "Пособия и помощь семье", items: [
-                    "Заявления Medical Assistance (Medicaid), на бесплатную или недорогую страховку и CHIP",
-                    "Заявления на продовольственную помощь SNAP",
-                    "Субсидии ELRC на уход за детьми",
-                    "Заявления Cash Assistance (TANF) и WIC",
-                    "Помощь LIHEAP и заявления Pennsylvania COMPASS",
-                    "Новые заявления, продление, изменения пособий и состава семьи",
-                    "Изменения дохода или работы и подтверждающие формы",
+                { icon: "building-2", title: "КОНСУЛЬСКИЕ УСЛУГИ УЗБЕКИСТАНА", items: [
+                    "Запись в Посольство и консульства Узбекистана",
+                    "Помощь с заявлением на свидетельство на возвращение в Узбекистан",
+                    "Запись для получения свидетельства на возвращение",
+                    "Помощь с визой в Узбекистан",
+                    "Запись на визовый приём",
+                    "Помощь с продлением паспорта Узбекистана",
+                    "Документы для утерянного или просроченного паспорта",
+                    "Паспортные документы для детей",
+                    "Постановка на консульский учёт",
+                    "Формы, связанные с гражданством",
+                    "Доверенности и согласия на поездку ребёнка",
+                    "Помощь со списком документов",
+                    "Печать, сканирование, загрузка и подача",
+                    "Перевод, нотариальное заверение и апостиль",
+                    "Помощь со срочной записью, когда она доступна"
+                ], note: "Свободные места и окончательные решения определяются Посольством или консульством Узбекистана." },
+                { icon: "heart-handshake", title: "ГОСУДАРСТВЕННЫЕ ПРОГРАММЫ И СЕМЕЙНЫЕ ПОСОБИЯ", items: [
+                    "Medical Assistance — Medicaid",
+                    "Бесплатная или доступная медицинская страховка",
+                    "Медицинская страховка CHIP для детей",
+                    "Продовольственная помощь SNAP",
+                    "Субсидия ELRC для оплаты детского сада",
+                    "Денежная помощь TANF",
+                    "Программа WIC",
+                    "Помощь с отоплением и коммунальными услугами LIHEAP",
+                    "Pennsylvania COMPASS",
+                    "Новые заявления, продления и обновления",
+                    "Добавление или удаление членов семьи",
+                    "Сообщение об изменении дохода или работы",
+                    "Подтверждение занятости и дохода",
                     "Документы о самозанятости и наличном доходе",
-                    "Ответы на уведомления о недостающей информации, загрузка и подача документов",
-                    "Сопровождение заявления и связь с caseworker",
+                    "Ответы на уведомления о недостающей информации",
+                    "Загрузка и подача документов",
+                    "Проверка статуса и общение с caseworker",
                     "Письменный и устный перевод",
-                    "Подготовка документов для пересмотра и апелляции по информации клиента"
-                ], note: "Мы готовим и подаем заявления и организуем документы. Право на пособие, сумму и решение определяет государственный орган." },
-                { icon: "file-heart", title: "Акты гражданского состояния и семейные документы", items: [
-                    "Заявления на marriage license и заверенные или повторные свидетельства о браке",
-                    "Заявления на свидетельство о рождении и заверенные дубликаты",
-                    "Исправления и изменения свидетельства о рождении",
-                    "Запросы свидетельства о смерти",
-                    "Набор форм развода и административная помощь",
-                    "Организация документов для развода по взаимному согласию",
-                    "Помощь с документами для смены имени",
-                    "Запросы замен и заверенных копий",
-                    "Перевод, нотариат и подготовка апостиля для актов гражданского состояния"
-                ], note: "Только неюридическая административная помощь. Юридические формы выбирает клиент или лицензированный адвокат." },
-                { icon: "briefcase-business", title: "Бизнес-услуги", items: [
-                    "Помощь с регистрацией LLC и корпораций",
-                    "EIN, Tax ID и документы регистрации бизнеса",
-                    "Регистрация названия бизнеса",
-                    "Работа с operating agreement, предоставленным клиентом",
-                    "Настройка payroll и помощь с заявлением на бизнес-страхование",
-                    "Нотариат бизнес-документов и отправка заказной почтой",
-                    "Печать, сканирование, копирование, факс и общая административная поддержка"
+                    "Документы для пересмотра решения или апелляции на основании информации клиента"
+                ], note: "Право на помощь, размер пособий и одобрение определяются государственным учреждением." },
+                { icon: "file-heart", title: "АКТЫ ГРАЖДАНСКОГО СОСТОЯНИЯ И СЕМЕЙНЫЕ ДОКУМЕНТЫ", items: [
+                    "Заявление на разрешение на брак",
+                    "Заверенные и дубликатные свидетельства о браке",
+                    "Заявление на свидетельство о рождении",
+                    "Дубликат заверенного свидетельства о рождении",
+                    "Исправление свидетельства о рождении",
+                    "Запрос свидетельства о смерти",
+                    "Техническая помощь с формами для развода",
+                    "Организация документов для неоспариваемого развода",
+                    "Документы для изменения имени",
+                    "Дубликаты и заверенные копии",
+                    "Перевод и нотариальное заверение",
+                    "Подготовка документов для апостиля"
                 ]},
-                { icon: "gavel", title: "Судебные и дорожные документы", items: [
-                    "Помощь с документами по traffic ticket и отправкой платежа",
-                    "Перевод судебных документов и устный перевод в суде",
-                    "Организация документов к слушанию",
-                    "Подготовка заказной почты",
-                    "Печать, копирование, сканирование и факс",
+                { icon: "briefcase-business", title: "УСЛУГИ ДЛЯ БИЗНЕСА", items: [
+                    "Регистрация LLC и корпораций",
+                    "Заявления на EIN и Tax ID",
+                    "Документы для регистрации бизнеса",
+                    "Регистрация названия компании",
+                    "Помощь с Operating Agreement, предоставленным клиентом",
+                    "Настройка payroll",
+                    "Помощь с заявлением на страхование бизнеса",
+                    "Нотариальное заверение деловых документов",
+                    "Certified Mail и подача документов",
+                    "Печать, сканирование, копирование и факс",
+                    "Общая административная помощь"
+                ]},
+                { icon: "gavel", title: "СУДЕБНЫЕ И ДОРОЖНЫЕ ДОКУМЕНТЫ", items: [
+                    "Помощь с документами по дорожным штрафам",
+                    "Перевод судебных документов",
+                    "Устный перевод в суде",
+                    "Организация документов для слушания",
+                    "Certified Mail",
+                    "Печать, сканирование, копирование и факс",
                     "Организация подтверждающих документов",
-                    "Нотариат допустимых аффидевитов и заявлений"
-                ], note: "Мы не даем юридических консультаций, не договариваемся о снижении штрафов и не представляем клиентов в суде." },
-                { icon: "monitor-cog", title: "Компьютерная и техническая помощь", items: [
-                    "Диагностика компьютера и помощь с аппаратными или механическими проблемами",
+                    "Нотариальное заверение подходящих заявлений",
+                    "Помощь с отправкой платежей"
+                ], note: "Мы не предоставляем юридические консультации, не договариваемся об уменьшении штрафов и не представляем клиентов в суде." },
+                { icon: "monitor-cog", title: "КОМПЬЮТЕРНАЯ И ТЕХНИЧЕСКАЯ ПОМОЩЬ", items: [
+                    "Диагностика компьютеров",
+                    "Помощь с аппаратными неисправностями",
                     "Установка и обновление программ",
-                    "Настройка принтера, сканера, компьютера и устройств",
-                    "Настройка email и рекомендации по восстановлению пароля",
+                    "Настройка принтера и сканера",
+                    "Настройка электронной почты и восстановление паролей",
                     "Помощь с онлайн-аккаунтами и порталами",
-                    "Загрузка документов и создание, конвертация или редактирование PDF",
+                    "Загрузка и скачивание документов",
+                    "Создание, конвертация и редактирование PDF",
                     "Печать, сканирование, копирование и факс",
                     "Помощь с онлайн-заявлениями",
-                    "Удаленная техническая помощь, когда доступна"
+                    "Настройка компьютеров и устройств",
+                    "Удалённая помощь, когда она доступна"
                 ]}
             ],
             uz: [
@@ -1428,7 +1495,6 @@
                     "Transportni qo'shish, o'chirish yoki o'tkazish",
                     "Apportioned raqam va cab card dublikatlari",
                     "Temporary Authorization kartalari",
-                    "IFTA registratsiyasi va yangilash",
                     "2290 formasini topshirishga yordam",
                     "Tijoriy yuk mashinasi va tirkama title hujjatlari; doimiy tijoriy tirkama registratsiyasi",
                     "Avtopark registratsiyasi va tijoriy hujjatlarni tayyorlash"
@@ -1473,14 +1539,30 @@
                     "Chop etish, skanerlash, nusxa, yuklash, uchrashuv va hujjatlar ro'yxati",
                     "Mijoz bergan ma'lumot asosida hujjat so'rovlariga javob"
                 ], note: "Faqat advokat bo'lmagan ma'muriy va hujjat tayyorlash yordami. Immigratsiya bo'yicha yuridik maslahat yoki vakillik bermaymiz." },
-                { icon: "book-open", title: "Pasport va konsullik xizmatlari", items: [
+                { icon: "book-open", title: "AQSh pasportini rasmiylashtirish xizmatlari", items: [
                     "Yangi AQSh pasport arizasi va yangilash",
                     "Bolalar pasport arizalari",
                     "Mavjud bo'lsa shoshilinch va shu kunning o'zida uchrashuvga yordam",
                     "Pasport hujjatlari ro'yxatini tekshirish",
-                    "Xorijiy pasport yangilash va konsullik arizalari",
                     "Sayohat roziligi, tasdiqlovchi hujjat tarjimasi va notarizatsiyasi"
                 ]},
+                { icon: "building-2", title: "O'zbekiston konsullik xizmatlari", items: [
+                    "O'zbekiston Elchixonasi va konsulliklariga uchrashuv olish",
+                    "O'zbekistonga qaytish guvohnomasi arizasiga yordam",
+                    "Qaytish guvohnomasini olish uchun uchrashuv",
+                    "O'zbekiston vizasiga yordam",
+                    "Viza qabuli uchun uchrashuv olish",
+                    "O'zbekiston pasportini yangilashga yordam",
+                    "Yo'qolgan yoki muddati o'tgan pasport hujjatlari",
+                    "Bolalar uchun pasport hujjatlari",
+                    "Konsullik hisobiga qo'yish",
+                    "Fuqarolik bilan bog'liq formalar",
+                    "Ishonchnoma va bolaning sayohat roziligi",
+                    "Hujjatlar ro'yxati bo'yicha yordam",
+                    "Chop etish, skanerlash, yuklash va topshirish",
+                    "Tarjima, notarizatsiya va apostil",
+                    "Mavjud bo'lsa shoshilinch uchrashuvga yordam"
+                ], note: "Bo'sh uchrashuv va yakuniy qarorlarni O'zbekiston Elchixonasi yoki konsulligi belgilaydi." },
                 { icon: "heart-handshake", title: "Davlat nafaqalari va oilaviy yordam", items: [
                     "Medical Assistance (Medicaid), bepul yoki arzon sug'urta va CHIP arizalari",
                     "SNAP oziq-ovqat yordami arizalari",
@@ -1494,7 +1576,7 @@
                     "Ariza holatini kuzatish va caseworker bilan aloqa",
                     "Yozma va og'zaki tarjima yordami",
                     "Mijoz ma'lumoti asosida qayta ko'rib chiqish va apellyatsiya hujjatlari"
-                ], note: "Biz arizalarni tayyorlaymiz, topshiramiz va hujjatlarni tartiblaymiz. Moslik, nafaqa miqdori va tasdiqni davlat idorasi belgilaydi." },
+                ], note: "Moslik, nafaqa miqdori va tasdiqni davlat idorasi belgilaydi." },
                 { icon: "file-heart", title: "FHDYO va oilaviy hujjatlar", items: [
                     "Nikoh litsenziyasi arizasi va sertifikatlangan yoki dublikat nikoh guvohnomasi",
                     "Tug'ilganlik guvohnomasi arizasi va sertifikatlangan dublikat",
@@ -1505,7 +1587,7 @@
                     "Ism o'zgartirish hujjatlariga yordam",
                     "Almashtirish va sertifikatlangan nusxa so'rovlari",
                     "FHDYO hujjatlari uchun tarjima, notarizatsiya va apostil tayyorlash"
-                ], note: "Faqat advokat bo'lmagan ma'muriy yordam. Yuridik formani mijoz yoki litsenziyali advokat tanlashi kerak." },
+                ]},
                 { icon: "briefcase-business", title: "Biznes xizmatlari", items: [
                     "LLC va korporatsiya ochishga yordam",
                     "EIN, Tax ID va biznes registratsiya hujjatlari",
@@ -1552,7 +1634,6 @@
                     "Илова, хориҷ ё гузаронидани воситаи нақлиёт",
                     "Ивази рақами apportioned ва cab card",
                     "Кортҳои Temporary Authorization",
-                    "Бақайдгирӣ ва тамдиди IFTA",
                     "Ёрӣ бо супоридани формаи 2290",
                     "Тайтли мошини боркаш ва прицеп; бақайдгирии доимии прицепи тиҷоратӣ",
                     "Бақайдгирии автопарк ва тайёр кардани ҳуҷҷатҳои тиҷоратӣ"
@@ -1597,14 +1678,30 @@
                     "Чоп, скан, нусха, upload, вохӯрӣ ва рӯйхати ҳуҷҷатҳо",
                     "Ҷавоб ба дархости ҳуҷҷат бо маълумоти пешниҳодкардаи мизоҷ"
                 ], note: "Танҳо ёрии маъмурӣ ва омодасозии ҳуҷҷат аз ҷониби ғайриадвокат. Мо маслиҳати ҳуқуқии муҳоҷират ё намояндагӣ намедиҳем." },
-                { icon: "book-open", title: "Паспорт ва хизматҳои консулӣ", items: [
+                { icon: "book-open", title: "Хизматҳои оформлении паспорти ИМА", items: [
                     "Аризаи нави паспорти ИМА ва тамдид",
                     "Аризаи паспорти кӯдак",
                     "Ёрӣ бо вохӯрии таъҷилӣ ва ҳамонрӯза, агар дастрас бошад",
                     "Санҷиши рӯйхати ҳуҷҷатҳои паспорт",
-                    "Ёрӣ бо тамдиди паспорти хориҷӣ ва аризаи консулӣ",
                     "Розигии сафар, тарҷума ва нотариати ҳуҷҷатҳои тасдиқкунанда"
                 ]},
+                { icon: "building-2", title: "Хизматҳои консулгарии Ӯзбекистон", items: [
+                    "Қайд ба Сафорат ва консулгариҳои Ӯзбекистон",
+                    "Ёрӣ бо ариза барои шаҳодатномаи бозгашт ба Ӯзбекистон",
+                    "Қайд барои гирифтани шаҳодатномаи бозгашт",
+                    "Ёрӣ бо визаи Ӯзбекистон",
+                    "Қайд ба қабули виза",
+                    "Ёрӣ бо тамдиди паспорти Ӯзбекистон",
+                    "Ҳуҷҷатҳо барои паспорти гумшуда ё муҳлатгузашта",
+                    "Ҳуҷҷатҳои паспорт барои кӯдакон",
+                    "Ба қайди консулӣ мондан",
+                    "Формаҳои вобаста ба шаҳрвандӣ",
+                    "Ваколатнома ва розигии сафари кӯдак",
+                    "Ёрӣ бо рӯйхати ҳуҷҷатҳо",
+                    "Чоп, скан, upload ва супоридан",
+                    "Тарҷума, нотариат ва апостил",
+                    "Ёрӣ бо қайди таъҷилӣ, агар дастрас бошад"
+                ], note: "Ҷойҳои холӣ ва қарорҳои ниҳоиро Сафорат ё консулгарии Ӯзбекистон муайян мекунад." },
                 { icon: "heart-handshake", title: "Кумакҳои давлатӣ ва ёрии оилавӣ", items: [
                     "Аризаи Medical Assistance (Medicaid), суғуртаи ройгон ё арзон ва CHIP",
                     "Аризаи кӯмаки озуқавории SNAP",
@@ -1618,7 +1715,7 @@
                     "Пайгирии ариза ва алоқа бо caseworker",
                     "Ёрии тарҷума ва тарҷумонӣ",
                     "Тайёр кардани ҳуҷҷати reconsideration ва appeal бо маълумоти мизоҷ"
-                ], note: "Мо аризаро тайёр ва месупорем ва ҳуҷҷатҳоро тартиб медиҳем. Шарт, маблағ ва тасдиқро идораи давлатӣ муайян мекунад." },
+                ], note: "Шарт, маблағ ва тасдиқро идораи давлатӣ муайян мекунад." },
                 { icon: "file-heart", title: "Сабтҳои ҳаётӣ ва ҳуҷҷатҳои оилавӣ", items: [
                     "Аризаи marriage license ва шаҳодатномаи тасдиқшуда ё дубликати никоҳ",
                     "Аризаи шаҳодатномаи таваллуд ва дубликати тасдиқшуда",
@@ -1629,7 +1726,7 @@
                     "Ёрӣ бо ҳуҷҷатҳои иваз кардани ном",
                     "Дархости иваз ва нусхаи тасдиқшуда",
                     "Тарҷума, нотариат ва омодасозии апостил барои сабтҳои ҳаётӣ"
-                ], note: "Танҳо ёрии маъмурии ғайриадвокатӣ. Формаи ҳуқуқиро мизоҷ ё адвокати иҷозатномадор интихоб мекунад." },
+                ]},
                 { icon: "briefcase-business", title: "Хизматҳои бизнес", items: [
                     "Ёрӣ бо кушодани LLC ва корпоратсия",
                     "EIN, Tax ID ва ҳуҷҷатҳои бақайдгирии бизнес",
@@ -1680,12 +1777,11 @@
                 stat1_l: "Languages Spoken", stat2_l: "Service Categories", stat3_l: "Simple Steps", stat4_l: "Office For Everything",
                 services_eyebrow: "What We Do",
                 services_title: "Our Services",
-                services_subtitle: "One trusted location for vehicle, trucking, notary, apostille, translation, application, business, and administrative services.",
-                catalog_more: "More services",
+                services_subtitle: "All services in one place: vehicle and commercial trucking paperwork, notary, apostille, translation, consular, administrative, and business services.",
                 legal_title: "Important Legal Disclaimer",
                 legal_p1: "TAG PRO AGENCY LLC is not a law firm, and our staff members are not attorneys. We do not provide legal advice, select legal forms, explain legal rights, represent customers in court, or guarantee any application outcome.",
                 legal_p2: "We provide non-attorney administrative assistance using information and customer-selected forms supplied by the customer, including typing, translation, notarization, application support, printing, scanning, and document submission.",
-                legal_p3: "Wills, divorce documents, Powers of Attorney, and other legal forms must be selected or prepared by the customer or a licensed attorney. Our notary may notarize eligible signatures but cannot prepare legal documents or provide legal advice. For legal advice or representation, consult a licensed attorney.",
+                legal_p3: "",
                 why_eyebrow: "Why Tag Pro",
                 why_title: "A team that speaks your language — <span class='text-brand-gold'>literally.</span>",
                 why_desc: "Government paperwork is stressful enough without a language barrier. At Tag Pro Agency, you explain your situation once — in English, Russian, Uzbek, or Tajik — and we handle the forms, the filings, and the follow-up.",
@@ -1765,13 +1861,12 @@
                 chip_mobile: "Выездной нотариус",
                 stat1_l: "Языка поддержки", stat2_l: "Категорий услуг", stat3_l: "Простых шага", stat4_l: "Офис для всего",
                 services_eyebrow: "Наши услуги",
-                services_title: "Наши услуги",
-                services_subtitle: "Один надежный офис для авто, грузового транспорта, нотариата, апостиля, переводов, заявлений, бизнеса и административных услуг.",
-                catalog_more: "Ещё услуги",
-                legal_title: "Важная юридическая информация",
-                legal_p1: "TAG PRO AGENCY LLC не является юридической фирмой, а наши сотрудники не являются адвокатами. Мы не даем юридических консультаций, не выбираем юридические формы, не разъясняем права, не представляем клиентов в суде и не гарантируем результат заявления.",
-                legal_p2: "Мы оказываем неюридическую административную помощь на основании информации и форм, выбранных клиентом: набор текста, перевод, нотариат, помощь с заявлениями, печать, сканирование и подача документов.",
-                legal_p3: "Завещания, документы о разводе, доверенности и другие юридические формы должен выбрать или подготовить клиент либо лицензированный адвокат. Наш нотариус может заверить допустимые подписи, но не составляет юридические документы и не дает юридических консультаций. За юридической консультацией или представительством обратитесь к адвокату.",
+                services_title: "НАШИ УСЛУГИ",
+                services_subtitle: "Все услуги в одном месте: оформление автомобилей и грузового транспорта, нотариус, апостиль, переводы, консульские, административные и бизнес-услуги.",
+                legal_title: "ВАЖНОЕ ЮРИДИЧЕСКОЕ УВЕДОМЛЕНИЕ",
+                legal_p1: "TAG PRO AGENCY LLC не является юридической фирмой, а наши сотрудники не являются адвокатами. Мы не предоставляем юридические консультации, не выбираем юридические формы, не объясняем юридические права, не представляем клиентов в суде и не гарантируем результат заявления.",
+                legal_p2: "Мы предоставляем неюридическую административную помощь: внесение информации клиента, помощь с выбранными клиентом формами, перевод, нотариальные услуги, помощь с заявлениями, печать, сканирование и подача документов.",
+                legal_p3: "",
                 why_eyebrow: "Почему Tag Pro",
                 why_title: "Команда, которая говорит на вашем языке — <span class='text-brand-gold'>буквально.</span>",
                 why_desc: "Государственные документы — это и так стресс, тем более на чужом языке. В Tag Pro Agency вы объясняете ситуацию один раз — по-английски, по-русски, по-узбекски или по-таджикски — а формы, подачу и все детали мы берём на себя.",
@@ -1811,11 +1906,11 @@
                 ph_name: "Ваше полное имя", ph_time: "напр., понедельник утром", ph_chat_phone: "Номер телефона…",
                 opt_vehicle: "Авто: тайтл / регистрация", opt_notary: "Нотариус", opt_imm: "Иммиграция / Формы", opt_biz: "Открытие бизнеса", opt_trans: "Перевод", opt_other: "Другое",
                 tg_prompt_title: "Нужен Telegram", tg_prompt_desc: "Похоже, Telegram не открылся. Он у вас установлен?", tg_install: "Установить", tg_retry: "Открыть Web-версию",
-                s1_title: "Авто и регистрация", s1_list: [],
-                s2_title: "Коммерческий транспорт", s2_list: [],
-                s3_title: "Нотариус и документы", s3_list: [],
-                s4_title: "Апостиль", s4_list: [],
-                s5_title: "Переводы", s5_list: [],
+                s1_title: "Оформление автомобилей", s1_list: [],
+                s2_title: "Коммерческие грузовики", s2_list: [],
+                s3_title: "Нотариальные услуги", s3_list: [],
+                s4_title: "Апостиль по всей территории США", s4_list: [],
+                s5_title: "Письменные и устные переводы", s5_list: [],
                 s6_title: "Иммиграционные формы", s6_list: [],
                 process_steps: [
                     { step: "01", title: "Консультация", desc: "Свяжитесь с нами. Мы сразу оценим вашу ситуацию." },
@@ -1852,12 +1947,11 @@
                 stat1_l: "Tilda xizmat", stat2_l: "Xizmat turi", stat3_l: "Oddiy qadam", stat4_l: "Ofis — hammasi uchun",
                 services_eyebrow: "Xizmatlarimiz",
                 services_title: "Bizning xizmatlar",
-                services_subtitle: "Avto, yuk transporti, notarius, apostil, tarjima, ariza, biznes va ma'muriy xizmatlar uchun yagona ishonchli manzil.",
-                catalog_more: "Boshqa xizmatlar",
+                services_subtitle: "Barcha xizmatlar bir joyda: avtomobil va tijoriy yuk transporti hujjatlari, notarius, apostil, tarjima, konsullik, ma'muriy va biznes xizmatlari.",
                 legal_title: "Muhim yuridik ogohlantirish",
                 legal_p1: "TAG PRO AGENCY LLC yuridik firma emas va xodimlarimiz advokat emas. Biz yuridik maslahat bermaymiz, mijoz uchun yuridik forma tanlamaymiz, huquqlarni sharhlamaymiz, sudda vakillik qilmaymiz va ariza natijasini kafolatlamaymiz.",
                 legal_p2: "Biz mijoz bergan ma'lumot va mijoz tanlagan formalar asosida advokat bo'lmagan ma'muriy yordam ko'rsatamiz: matn terish, tarjima, notarizatsiya, ariza yordami, chop etish, skanerlash va hujjat topshirish.",
-                legal_p3: "Vasiyat, ajrim hujjati, ishonchnoma va boshqa yuridik formalarni mijoz yoki litsenziyali advokat tanlashi yoki tayyorlashi kerak. Notariusimiz ruxsat etilgan imzolarni tasdiqlashi mumkin, ammo yuridik hujjat tayyorlamaydi yoki yuridik maslahat bermaydi. Yuridik maslahat yoki vakillik uchun litsenziyali advokatga murojaat qiling.",
+                legal_p3: "",
                 why_eyebrow: "Nega Tag Pro",
                 why_title: "Sizning tilingizda gaplashadigan jamoa — <span class='text-brand-gold'>tom ma'noda.</span>",
                 why_desc: "Davlat hujjatlari o'zi ham stress, ayniqsa boshqa tilda. Tag Pro Agency'da vaziyatingizni bir marta tushuntirasiz — ingliz, rus, o'zbek yoki tojik tilida — formalar, topshirish va barcha detallarni biz o'z zimmamizga olamiz.",
@@ -1938,12 +2032,11 @@
                 stat1_l: "Забони хизмат", stat2_l: "Намуди хизмат", stat3_l: "Қадами осон", stat4_l: "Офис барои ҳама кор",
                 services_eyebrow: "Хизматҳои мо",
                 services_title: "Хизматҳои мо",
-                services_subtitle: "Як ҷои боэътимод барои мошин, нақлиёти боркаш, нотариус, апостил, тарҷума, ариза, бизнес ва хизматҳои маъмурӣ.",
-                catalog_more: "Хизматҳои дигар",
+                services_subtitle: "Ҳама хизматҳо дар як ҷо: ҳуҷҷатҳои мошин ва нақлиёти боркаши тиҷоратӣ, нотариус, апостил, тарҷума, консулгарӣ, хизматҳои маъмурӣ ва бизнес.",
                 legal_title: "Огоҳии муҳими ҳуқуқӣ",
                 legal_p1: "TAG PRO AGENCY LLC ширкати ҳуқуқӣ нест ва кормандони мо адвокат нестанд. Мо маслиҳати ҳуқуқӣ намедиҳем, формаи ҳуқуқиро интихоб намекунем, ҳуқуқҳоро шарҳ намедиҳем, дар суд намояндагӣ намекунем ва натиҷаи аризаро кафолат намедиҳем.",
                 legal_p2: "Мо бо маълумот ва формаи интихобкардаи мизоҷ ёрии маъмурии ғайриадвокатӣ медиҳем: чоп, тарҷума, нотариат, ёрӣ бо ариза, скан ва супоридани ҳуҷҷат.",
-                legal_p3: "Васиятнома, ҳуҷҷати талоқ, ваколатнома ва дигар формаҳои ҳуқуқиро мизоҷ ё адвокати иҷозатномадор бояд интихоб ё тайёр кунад. Нотариуси мо метавонад имзои иҷозатшударо тасдиқ кунад, аммо ҳуҷҷати ҳуқуқӣ тайёр намекунад ва маслиҳати ҳуқуқӣ намедиҳад. Барои маслиҳат ё намояндагии ҳуқуқӣ ба адвокат муроҷиат кунед.",
+                legal_p3: "",
                 why_eyebrow: "Чаро Tag Pro",
                 why_title: "Дастае, ки бо забони шумо гап мезанад — <span class='text-brand-gold'>ба маънои аслӣ.</span>",
                 why_desc: "Ҳуҷҷатҳои давлатӣ худ аз худ стресс аст, боз бо забони бегона. Дар Tag Pro Agency шумо вазъиятро як бор мефаҳмонед — бо англисӣ, русӣ, ӯзбекӣ ё тоҷикӣ — формаҳо, супоридан ва ҳамаи ҷузъиётро мо ба ӯҳда мегирем.",
@@ -2016,22 +2109,20 @@
 
         function renderServices(lang, t) {
             const catalog = SERVICE_CATALOG[lang] || SERVICE_CATALOG.en;
+            const stat = document.getElementById('stat-service-count');
+            if (stat) {
+                stat.dataset.count = String(catalog.length);
+                stat.textContent = String(catalog.length);
+            }
             const grid = document.getElementById('services-grid');
             if (grid) {
                 grid.innerHTML = catalog.map((service, i) => {
-                    const featured = service.items.slice(0, 4);
-                    const more = service.items.slice(4);
                     return `
                         <article class="svc-card reveal in">
                             <span class="svc-num">${String(i + 1).padStart(2, '0')}</span>
                             <div class="svc-icon"><i data-lucide="${service.icon}"></i></div>
                             <h3>${service.title}</h3>
-                            <ul class="svc-list">${featured.map(item => `<li>${item}</li>`).join('')}</ul>
-                            ${more.length ? `
-                                <details class="svc-more">
-                                    <summary><span>${t.catalog_more} <i data-lucide="chevron-down"></i></span><b>+${more.length}</b></summary>
-                                    <ul class="svc-list">${more.map(item => `<li>${item}</li>`).join('')}</ul>
-                                </details>` : ''}
+                            <ul class="svc-list">${service.items.map(item => `<li>${item}</li>`).join('')}</ul>
                             ${service.note ? `<p class="svc-note">${service.note}</p>` : ''}
                         </article>`;
                 }).join('');
@@ -2073,6 +2164,7 @@
             document.querySelectorAll("[data-translate-key]").forEach(el => {
                 const key = el.dataset.translateKey;
                 if (t[key] !== undefined) {
+                    if (key.startsWith('legal_p')) el.hidden = !t[key];
                     if (Array.isArray(t[key])) {
                         el.innerHTML = t[key].map(item => `<li>${item}</li>`).join('');
                     } else {
