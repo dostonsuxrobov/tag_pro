@@ -2104,8 +2104,13 @@
         };
 
         /* ===================== I18N ENGINE ===================== */
-        let currentLang = localStorage.getItem("preferredLanguage") || "en";
+        const SUPPORTED_LANGS = ['en', 'ru', 'uz', 'tj'];
         const LANG_CODES = { en: 'en', ru: 'ru', uz: 'uz', tj: 'tg' };
+        const requestedLang = new URLSearchParams(window.location.search).get('lang');
+        const savedLang = localStorage.getItem("preferredLanguage");
+        let currentLang = SUPPORTED_LANGS.includes(requestedLang)
+            ? requestedLang
+            : (SUPPORTED_LANGS.includes(savedLang) ? savedLang : 'en');
 
         function renderServices(lang, t) {
             const catalog = SERVICE_CATALOG[lang] || SERVICE_CATALOG.en;
@@ -2156,7 +2161,8 @@
             `).join('');
         }
 
-        function updateContent(lang) {
+        function updateContent(lang, updateUrl = false) {
+            lang = SUPPORTED_LANGS.includes(lang) ? lang : 'en';
             currentLang = lang;
             const t = translations[lang] || translations['en'];
             document.documentElement.lang = LANG_CODES[lang] || 'en';
@@ -2195,6 +2201,12 @@
             });
             localStorage.setItem("preferredLanguage", lang);
 
+            if (updateUrl) {
+                const url = new URL(window.location.href);
+                url.searchParams.set('lang', lang);
+                window.history.replaceState(null, '', url);
+            }
+
             // reload chat if open so it speaks the new language
             const chatMsgsEl = document.getElementById('chat-messages');
             if (!document.getElementById('chat-window').classList.contains('hidden') && chatMsgsEl.children.length > 0) {
@@ -2204,9 +2216,14 @@
         }
 
         document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', () => updateContent(btn.dataset.lang));
+            btn.addEventListener('click', () => updateContent(btn.dataset.lang, true));
         });
         updateContent(currentLang);
+
+        window.addEventListener('popstate', () => {
+            const lang = new URLSearchParams(window.location.search).get('lang');
+            if (SUPPORTED_LANGS.includes(lang)) updateContent(lang);
+        });
 
         /* ===================== HEADER / MOBILE MENU ===================== */
         const header = document.getElementById('site-header');
